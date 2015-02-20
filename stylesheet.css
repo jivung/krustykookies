@@ -10,3 +10,19 @@ background: #304d71;
 padding: 0;
 margin: 0;
 }
+
+/*
+
+		MAIN WINDOW PROPERTIES
+
+*/
+#mainwindow {
+width: 400px;
+height: 300px;
+background: #FFF;
+padding: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
