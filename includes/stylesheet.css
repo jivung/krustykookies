@@ -6,23 +6,184 @@
 body {
 min-width: 100%;
 min-height: 100%;
-background: #304d71;
+background: #cecece;
 padding: 0;
 margin: 0;
 }
 
 /*
 
-		MAIN WINDOW PROPERTIES
+		TOP BANNER
 
 */
-#mainwindow {
-width: 400px;
-height: 300px;
-background: #FFF;
+#topbanner {
+min-width: 100%;
+height: 50px;
+background: #304d71;
 padding: 0;
+margin: 0;
+box-shadow: 0px 5px 5px #888888;
+}
+
+/*
+
+		TOP CONTAINER
+
+*/
+#topcontainer {
+width: 800px;
+height: 50px;
+background: #304d71;
+padding: 0;
+margin-left: auto;
+margin-right: auto;
+}
+
+/*
+
+		LOGO CONTAINER
+
+*/
+#logocontainer {
+float: left;
+width: ;
+height: 50px;
+background: #304d71;
+padding: 0;
+font-size: 20px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 50px;
+color: #FFF;
+}
+
+/*
+
+		STATUS CONTAINER
+
+*/
+#statuscontainer {
+float: right;
+width: ;
+height: 50px;
+background: #304d71;
+padding: 0;
+margin-right: 20px;
+font-size: 12px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 50px;
+color: #FFF;
+}
+
+/*
+
+		LOGOUT CONTAINER
+
+*/
+#logout {
+float: right;
+width: ;
+height: 50px;
+background: #304d71;
+padding: 0;
+font-size: 12px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 50px;
+color: #FFF;
+}
+
+/*
+
+		LOGIN CONTAINER
+
+*/
+#logincontainer {
+width: 400px;
+height: 330px;
+padding: 0;
+margin: 0;
 position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
+margin-top: 50px;
+}
+
+/*
+
+		LOGIN WINDOW
+
+*/
+#loginwindow {
+width: 400px;
+height: 300px;
+background: #FFF;
+padding: 0;
+margin: 0;
+float: left;
+box-shadow: 5px 5px 5px #888888;
+}
+
+/*
+
+		LOGIN HEADER
+
+*/
+#loginheader {
+width: 400px;
+height: 20px;
+float: left;
+margin: 0;
+padding: 0;
+font-size: 20px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 25px;
+color: #FFF;
+}
+
+/*
+
+		LOGHEAD
+
+*/
+#loghead {
+width: 100px;
+height: 20px;
+position: absolute;
+margin-top: 40px;
+margin-left: 40px;
+padding: 0;
+font-size: 20px;
+font-family: Corbel;
+font-weight: normal;
+line-height: 20px;
+color: #000;
+}
+
+/*
+
+		LOGOLINK
+
+*/
+a.logo {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.logo:visited {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.logo:active {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.logo:hover {
+color: #FFFFFF;
+text-decoration: none;
 }
