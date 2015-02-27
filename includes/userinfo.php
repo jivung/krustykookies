@@ -1,6 +1,6 @@
 				<div id="logout">
 					<form name="logoutform" id="logoutform" method=POST" action="includes/logout.php" >
-						<input type="submit" name="submit" value="Logga ut" />
+						<input type="submit" class="submit_button_logout" name="submit" value="Logga ut" />
 					</form>
 				</div>
 				<div id="statuscontainer">

@@ -13,6 +13,31 @@ margin: 0;
 
 /*
 
+		LOGOLINK
+
+*/
+a.logo {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.logo:visited {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.logo:active {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.logo:hover {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+/*
+
 		TOP BANNER
 
 */
@@ -103,6 +128,18 @@ color: #FFF;
 width: 400px;
 height: 330px;
 padding: 0;
+margin: 100px auto 0 auto;
+}
+
+/*
+
+		LOGIN CONTAINER
+
+*/
+#logincontainer2 {
+width: 400px;
+height: 330px;
+padding: 0;
 margin: 0;
 position: absolute;
 top: 50%;
@@ -117,8 +154,8 @@ margin-top: 50px;
 
 */
 #loginwindow {
-width: 400px;
-height: 300px;
+width: ;
+height: ;
 background: #FFF;
 padding: 0;
 margin: 0;
@@ -165,25 +202,104 @@ color: #000;
 
 /*
 
-		LOGOLINK
+		LOGIN FORM CONTAINER
 
 */
-a.logo {
-color: #FFFFFF;
-text-decoration: none;
+#loginformcontainer {
+width: ;
+height: ;
+background: #FFF;
+padding: 0;
+margin-left: 30px;
+margin-top: 30px;
+margin-right: 30px;
+float: left;
 }
 
-a.logo:visited {
-color: #FFFFFF;
-text-decoration: none;
+/*
+
+		LOGINPUT FIELD CONTAINER
+
+*/
+#loginputfieldcontainer {
+width: ;
+height: ;
+background: #FFF;
+padding: 0;
+margin-bottom: 30px;
+float: left;
 }
 
-a.logo:active {
-color: #FFFFFF;
-text-decoration: none;
+/*
+
+		LOGIN SUBMIT CONTAINER
+
+*/
+#loginsubmitcontainer {
+width: ;
+height: ;
+background: #FFF;
+padding: 0;
+margin-bottom: 30px;
+float: right;
 }
 
-a.logo:hover {
-color: #FFFFFF;
-text-decoration: none;
+/*
+
+		LOGIN MESSAGE CONTAINER
+
+*/
+#loginmessagecontainer {
+width: 300px;
+height: ;
+background: #FFF;
+padding-botom: 20px;
+margin: 0;
+font-family: Microsoft Tai le;
+font-weight: normal;
+font-size: 18px;
+color: red;
+line-height: 18px;
+float: left;
+}
+
+/*
+
+		INPUT FIELD FOR LOGIN
+
+*/
+.input_field_login {
+width: 328px;
+height: 30px;
+border: 1px solid #cecece; 
+padding: 5px; 
+font-size: 14px; 
+letter-spacing: 2px; 
+background-color: #FFFFFF;
+}
+
+/*
+
+		SUBMIT BUTTON FOR LOGIN
+
+*/
+.submit_button_login {
+border: 1px solid #cecece; 
+padding: 5px; 
+font-size: 16px; 
+letter-spacing: 2px; 
+background-color: #FFFFFF;
+}
+
+/*
+
+		SUBMIT BUTTON FOR LOGOUT
+
+*/
+.submit_button_logout {
+border: 1px solid #cecece; 
+padding: 5px; 
+font-size: 11px; 
+letter-spacing: 2px; 
+background-color: #FFFFFF;
 }

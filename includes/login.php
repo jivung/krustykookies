@@ -21,16 +21,11 @@
 	
 	if (!$db->userExists($user)) {
 		$db->closeConnection();
-		header("Location: ../index.php?no_user=" . $user);
+		header("Location: ../index.php?false");
 		exit();
 	}
 	
-	$passwordReal = $db->checkPassword($user);
-	foreach($passwordReal as $pass){
-		$passwordReal = $pass[0];
-	}
-	
-	if(!($passwordReal == $userPassword)) {
+	if(!($db->checkPassword($user, $userPassword))) {
 		$db->closeConnection();
 		header("Location: ../index.php?false");
 		exit();

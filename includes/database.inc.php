@@ -120,10 +120,22 @@ class Database {
 		return count($result) == 1; 
 	}
 	
-	public function checkPassword($userName){
+	/**
+	*
+	*
+	*
+	*
+	*/
+	public function checkPassword($userName, $passWord){
 		$sql = "SELECT passWord FROM users WHERE userName = ?";
 		$result = $this->executeQuery($sql, array($userName));
-		return $result;
+		foreach($result as $pass){
+			$result = $pass[0];
+		}
+		if ($result == $passWord) {
+			return true;
+		}
+		return false;
 	}
 }
 ?>
