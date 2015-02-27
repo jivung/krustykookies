@@ -132,7 +132,7 @@ class Database {
 		foreach($result as $pass){
 			$result = $pass[0];
 		}
-		if ($result == $passWord) {
+		if (password_verify($passWord, $result)) {
 			return true;
 		}
 		return false;
