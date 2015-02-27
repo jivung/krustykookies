@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 use krustyKookies;
 
 SET foreign_key_checks = 0;
@@ -48,8 +49,10 @@ CREATE TABLE pallets(
 	FOREIGN KEY(customerName) REFERENCES customers(name)
 );
 
+=======
 CREATE TABLE users (
 userName varchar(20),
 passWord varchar(60),
 PRIMARY KEY (username)
 );
+>>>>>>> 9a1d1c327586dd97e151ddcfee8c70c82e49c138

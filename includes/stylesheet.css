@@ -6,7 +6,585 @@
 body {
 min-width: 100%;
 min-height: 100%;
+background: #cecece;
+padding: 0;
+margin: 0;
+}
+
+/*
+
+		LOGOLINK
+
+*/
+a.logo {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.logo:visited {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.logo:active {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.logo:hover {
+color: #FFFFFF;
+text-decoration: none;
+}
+
+/*
+
+		TOPTOP BANNER
+
+*/
+#toptopbanner {
+min-width: 100%;
+height: 20px;
+background: #343434;
+padding: 0;
+margin: 0;
+border-bottom: 1px solid #5b5b5b;
+}
+
+/*
+
+		TOPTOP CONTAINER
+
+*/
+#toptopcontainer {
+width: 1000px;
+height: 20px;
+padding: 0;
+margin-left: auto;
+margin-right: auto;
+}
+
+/*
+
+		README CONTAINER
+
+*/
+#readmecontainer {
+float: right;
+width: ;
+height: 20px;
+padding: 0;
+font-size: 11px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 20px;
+color: #adadad;
+}
+
+/*
+
+		TOP BANNER
+
+*/
+#topbanner {
+min-width: 100%;
+height: 50px;
 background: #304d71;
 padding: 0;
 margin: 0;
+box-shadow: 0px 5px 5px #888888;
+}
+
+/*
+
+		TOP CONTAINER
+
+*/
+#topcontainer {
+width: 1000px;
+height: 50px;
+background: #304d71;
+padding: 0;
+margin-left: auto;
+margin-right: auto;
+}
+
+/*
+
+		LOGO CONTAINER
+
+*/
+#logocontainer {
+float: left;
+width: ;
+height: 50px;
+background: #304d71;
+padding: 0;
+font-size: 20px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 50px;
+color: #FFF;
+}
+
+/*
+
+		STATUS CONTAINER
+
+*/
+#statuscontainer {
+float: right;
+width: ;
+height: 50px;
+background: #304d71;
+padding: 0;
+margin-right: 20px;
+font-size: 12px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 50px;
+color: #FFF;
+}
+
+/*
+
+		LOGOUT CONTAINER
+
+*/
+#logout {
+float: right;
+width: ;
+height: 50px;
+background: #304d71;
+padding: 0;
+font-size: 12px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 50px;
+color: #FFF;
+}
+
+/*
+
+		MAIN CONTAINER
+
+*/
+#maincontainer {
+width: 1000px;
+height: ;
+background: ;
+padding: 0;
+margin-left: auto;
+margin-right: auto;
+}
+
+/*
+
+		LEFT BAR
+
+*/
+#leftbar {
+width: 220px;
+height: ;
+background: #FFFFFF;
+padding: 0;
+float: left;
+margin-top: 30px;
+box-shadow: 5px 5px 5px #adadad;
+}
+
+/*
+
+		LEFT BAR HEAD
+
+*/
+#leftbarhead {
+width: 200px;
+height: ;
+padding: 0;
+float: left;
+margin: 0;
+font-size: 15px;
+font-family: Microsoft Tai le;
+font-weight: bold;
+line-height: 15px;
+color: #000;
+}
+
+/*
+
+		LEFT BAR CONTENT
+
+*/
+#leftbarcontent {
+width: 200px;
+height: ;
+padding-bottom: 10px;
+float: left;
+margin-top: 10px;
+margin-left: 10px;
+font-size: 12px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 15px;
+color: #000;
+}
+
+#leftbar: after {
+clear: both;
+content: "";
+display: block;
+}
+
+/*
+
+		MAIN BAR
+
+*/
+#mainbar {
+width: 750px;
+height: 100px;
+background: #FFFFFF;
+padding: 0;
+float: right;
+margin-top: 30px;
+box-shadow: 5px 5px 5px #adadad;
+}
+
+
+/*
+
+		LOGIN CONTAINER
+
+*/
+#logincontainer {
+width: 400px;
+height: 330px;
+padding: 0;
+margin: 100px auto 0 auto;
+}
+
+/*
+
+		LOGIN CONTAINER
+
+*/
+#logincontainer2 {
+width: 400px;
+height: 330px;
+padding: 0;
+margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+margin-top: 50px;
+}
+
+/*
+
+		LOGIN WINDOW
+
+*/
+#loginwindow {
+width: ;
+height: ;
+background: #FFF;
+padding: 0;
+margin: 0;
+float: left;
+box-shadow: 5px 5px 5px #adadad;
+}
+
+/*
+
+		LOGIN HEADER
+
+*/
+#loginheader {
+width: 400px;
+height: 20px;
+float: left;
+margin: 0;
+padding: 0;
+font-size: 20px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 25px;
+color: #FFF;
+}
+
+/*
+
+		LOGHEAD
+
+*/
+#loghead {
+width: 100px;
+height: 20px;
+position: absolute;
+margin-top: 40px;
+margin-left: 40px;
+padding: 0;
+font-size: 20px;
+font-family: Corbel;
+font-weight: normal;
+line-height: 20px;
+color: #000;
+}
+
+/*
+
+		LOGIN FORM CONTAINER
+
+*/
+#loginformcontainer {
+width: ;
+height: ;
+background: #FFF;
+padding: 0;
+margin-left: 30px;
+margin-top: 30px;
+margin-right: 30px;
+float: left;
+}
+
+/*
+
+		LOGINPUT FIELD CONTAINER
+
+*/
+#loginputfieldcontainer {
+width: ;
+height: ;
+background: #FFF;
+padding: 0;
+margin-bottom: 30px;
+float: left;
+}
+
+/*
+
+		LOGIN SUBMIT CONTAINER
+
+*/
+#loginsubmitcontainer {
+width: ;
+height: ;
+background: #FFF;
+padding: 0;
+margin-bottom: 30px;
+float: right;
+}
+
+/*
+
+		LOGIN MESSAGE CONTAINER
+
+*/
+#loginmessagecontainer {
+width: 300px;
+height: ;
+background: #FFF;
+padding-botom: 20px;
+margin: 0;
+font-family: Microsoft Tai le;
+font-weight: normal;
+font-size: 18px;
+color: red;
+line-height: 18px;
+float: left;
+}
+
+/*
+
+		INPUT FIELD FOR LOGIN
+
+*/
+.input_field_login {
+width: 328px;
+height: 30px;
+border: 1px solid #cecece; 
+padding: 5px; 
+font-size: 14px; 
+letter-spacing: 2px; 
+background-color: #FFFFFF;
+}
+
+/*
+
+		SUBMIT BUTTON FOR LOGIN
+
+*/
+.submit_button_login {
+border: 1px solid #cecece; 
+padding: 5px; 
+font-size: 16px; 
+letter-spacing: 2px; 
+background-color: #FFFFFF;
+}
+
+/*
+
+		SUBMIT BUTTON FOR LOGOUT
+
+*/
+.submit_button_logout {
+border: 1px solid #cecece; 
+padding: 5px; 
+font-size: 11px; 
+letter-spacing: 2px; 
+background-color: #FFFFFF;
+}
+
+/*
+
+		LEFT BAR MENU OBJECT
+
+*/
+a.leftbar_menuobject {
+float: left;
+width: 190px;
+background-color: #FFFFFF;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 10px;
+margin-top: px;
+margin-left: 0;
+margin-right: 0;
+font-size: 16px;
+font-family: Corbel;
+font-weight: normal;
+color: #13496f;
+text-decoration: none;
+}
+
+a.leftbar_menuobject:visited {
+float: left;
+width: 190px;
+background-color: #FFFFFF;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 10px;
+margin-top: px;
+margin-left: 0;
+margin-right: 0;
+font-size: 16px;
+font-family: Corbel;
+font-weight: bold;
+color: #13496f;
+text-decoration: none;
+}
+
+a.leftbar_menuobject:hover {
+float: left;
+width: 190px;
+background-color: #e8e8e8;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 10px;
+margin-top: px;
+margin-left: 0;
+margin-right: 0;
+font-size: 16px;
+font-family: Corbel;
+font-weight: bold;
+color: #13496f;
+text-decoration: none;
+}
+
+a.menuobject:active {
+float: left;
+width: 190px;
+background-color: #e8e8e8;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 10px;
+padding-right: 10px;
+margin-top: px;
+margin-left: 0;
+margin-right: 0;
+font-size: 16px;
+font-family: Corbel;
+font-weight: bold;
+color: #13496f;
+text-decoration: none;
+}
+
+/*
+** Active menuobject
+*/
+a.menuobject.active {
+float: left;
+min-width: 10px;
+height: 23px;
+background-color: #156dab;
+padding-top: 5px;
+padding-bottom: 15px;
+padding-left: 10px;
+padding-right: 10px;
+margin-top: 15px;
+margin-left: 0;
+margin-right: 0;
+font-size: 16px;
+font-family: Corbel;
+font-weight: bold;
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.menuobject.active:visited {
+float: left;
+min-width: 10px;
+height: 23px;
+background-color: #156dab;
+padding-top: 5px;
+padding-bottom: 15px;
+padding-left: 10px;
+padding-right: 10px;
+margin-top: 15px;
+margin-left: 0;
+margin-right: 0;
+font-size: 16px;
+font-family: Corbel;
+font-weight: bold;
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.menuobject.active:hover {
+float: left;
+min-width: 10px;
+height: 23px;
+background-color: #156dab;
+padding-top: 5px;
+padding-bottom: 15px;
+padding-left: 10px;
+padding-right: 10px;
+margin-top: 15px;
+margin-left: 0;
+margin-right: 0;
+font-size: 16px;
+font-family: Corbel;
+font-weight: bold;
+color: #FFFFFF;
+text-decoration: none;
+}
+
+a.menuobject.active:active {
+float: left;
+min-width: 10px;
+height: 23px;
+background-color: #156dab;
+padding-top: 5px;
+padding-bottom: 15px;
+padding-left: 10px;
+padding-right: 10px;
+margin-top: 15px;
+margin-left: 0;
+margin-right: 0;
+font-size: 16px;
+font-family: Corbel;
+font-weight: bold;
+color: #FFFFFF;
+text-decoration: none;
 }
