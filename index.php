@@ -11,10 +11,17 @@ require_once("includes/setup.php");
 		<link type="text/css" rel="stylesheet" href="includes/stylesheet.css" />
 	</head>
 	<body>
+		<div id="toptopbanner">
+			<div id="toptopcontainer">
+				<div id="readmecontainer">
+					README - INFORMATION - SUPPORT
+				</div>
+			</div>
+		</div>
 		<div id="topbanner">
 			<div id="topcontainer">
 				<div id="logocontainer">
-					<a class="logo" href="index.php">KRUSTY KOOKIES</a>
+					<a class="logo" href="index.php">KRUSTY KOOKIES DATABASE SYSTEM</a>
 				</div>
 				<?php 
 					//Display user info if logged in.
@@ -25,9 +32,11 @@ require_once("includes/setup.php");
 			</div>
 		</div>
 		<?php 
-			//Display loginbox if not logged in.
+			//Display loginbox if not logged in, else show content appropriate to usertype.
 			if(!isset($_SESSION['username'])){
 				include_once("includes/loginbox.php");
+			} else {
+				include_once("includes/content.php");
 			}
 		?>
 		<?php
