@@ -1,23 +1,24 @@
-<!DOCTYPE html>
 <?php 
-require_once("includes/database.inc.php");
 require_once("includes/setup.php");
+require_once("includes/database.php");
 ?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>
 			Krusty Kookies Database System
 		</title>
+		<meta charset="utf8"/>
 		<link type="text/css" rel="stylesheet" href="includes/stylesheet.css" />
 	</head>
 	<body>
-		<div id="toptopbanner">
-			<div id="toptopcontainer">
+		<!--<div id="toptopbanner">
+			<<div id="toptopcontainer">
 				<div id="readmecontainer">
 					README - INFORMATION - SUPPORT
 				</div>
 			</div>
-		</div>
+		</div>-->
 		<div id="topbanner">
 			<div id="topcontainer">
 				<div id="logocontainer">

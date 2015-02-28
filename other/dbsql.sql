@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS recipes;
 DROP TABLE IF EXISTS ingredientsInRecipes;
 DROP TABLE IF EXISTS pallets;
 DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS users;
 SET foreign_key_checks = 1;
 
 CREATE TABLE ingredients(
@@ -49,7 +50,7 @@ CREATE TABLE pallets(
 );
 
 CREATE TABLE users (
-userName varchar(20),
-passWord varchar(60),
-PRIMARY KEY (username)
+	userName varchar(20),
+	passWord varchar(60),
+	PRIMARY KEY (username)
 );

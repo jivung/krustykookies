@@ -5,6 +5,6 @@
 				</div>
 				<div id="statuscontainer">
 					
-					Du är inloggad som <b><?php echo $_SESSION['username'] ?></b>
+					Du är inloggad som <b><?php echo $_SESSION['username']; ?></b>
 					
 				</div>

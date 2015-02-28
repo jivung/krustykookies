@@ -3,6 +3,11 @@
 	$username = "root";
 	$password = "Schecter2011";
 	$dbname = "krustykookies";
+	
+	$servername = "localhost";
+	$userName = "root";
+	$password = "root";
+	$dbname = "krustykookies";
 
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
@@ -12,8 +17,7 @@
 	} 
 	$password = password_hash("password", PASSWORD_DEFAULT);
 
-	$sql = "INSERT INTO Users (userName, passWord)
-	VALUES ('superuser', '".$password."')";
+	$sql = "INSERT INTO users (userName, passWord) VALUES ('superuser', '".$password."')";
 
 	if ($conn->query($sql) === TRUE) {
 		echo "New superuser created successfully";
