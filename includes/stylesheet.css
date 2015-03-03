@@ -73,6 +73,7 @@ border-bottom: 1px solid #5b5b5b;
 width: 1000px;
 height: 20px;
 padding: 0;
+margin-top: 0;
 margin-left: auto;
 margin-right: auto;
 }
@@ -84,9 +85,10 @@ margin-right: auto;
 */
 #readmecontainer {
 float: right;
-width: ;
+width: auto;
 height: 20px;
 padding: 0;
+margin-top: 0px;
 font-size: 11px;
 font-family: Microsoft Tai le;
 font-weight: normal;
@@ -129,7 +131,7 @@ margin-right: auto;
 */
 #logocontainer {
 float: left;
-width: ;
+width: auto;
 height: 50px;
 background: #304d71;
 padding: 0;
@@ -147,7 +149,7 @@ color: #FFF;
 */
 #statuscontainer {
 float: right;
-width: ;
+width: auto;
 height: 50px;
 background: #304d71;
 padding: 0;
@@ -166,7 +168,7 @@ color: #FFF;
 */
 #logout {
 float: right;
-width: ;
+width: auto;
 height: 50px;
 background: #304d71;
 padding: 0;
@@ -184,8 +186,8 @@ color: #FFF;
 */
 #maincontainer {
 width: 1000px;
-height: ;
-background: ;
+height: auto;
+background: transparent;
 padding: 0;
 margin-left: auto;
 margin-right: auto;
@@ -198,7 +200,7 @@ margin-right: auto;
 */
 #leftbar {
 width: 220px;
-height: ;
+height: auto;
 background: #FFFFFF;
 padding: 0;
 float: left;
@@ -213,7 +215,7 @@ box-shadow: 3px 3px 3px #bdbdbd;
 */
 #leftbarhead {
 width: 200px;
-height: ;
+height: auto;
 padding: 0;
 float: left;
 margin: 0;
@@ -246,7 +248,7 @@ font-size: 16px;
 
 #leftbarcontent {
 width: 200px;
-height: ;
+height: auto;
 padding-bottom: 10px;
 float: left;
 margin-top: 10px;
@@ -258,7 +260,7 @@ line-height: 15px;
 color: #000;
 }
 
-#leftbar: after {
+#leftbar:after {
 clear: both;
 content: "";
 display: block;
@@ -315,8 +317,8 @@ margin-top: 50px;
 
 */
 #loginwindow {
-width: ;
-height: ;
+width: auto;
+height: auto;
 background: #FFF;
 padding: 0;
 margin: 0;
@@ -367,8 +369,8 @@ color: #000;
 
 */
 #loginformcontainer {
-width: ;
-height: ;
+width: auto;
+height: auto;
 background: #FFF;
 padding: 0;
 margin-left: 30px;
@@ -383,8 +385,8 @@ float: left;
 
 */
 #loginputfieldcontainer {
-width: ;
-height: ;
+width: auto;
+height: auto;
 background: #FFF;
 padding: 0;
 margin-bottom: 30px;
@@ -397,8 +399,8 @@ float: left;
 
 */
 #loginsubmitcontainer {
-width: ;
-height: ;
+width: auto;
+height: auto;
 background: #FFF;
 padding: 0;
 margin-bottom: 30px;
@@ -412,9 +414,8 @@ float: right;
 */
 #loginmessagecontainer {
 width: 300px;
-height: ;
+height: auto;
 background: #FFF;
-padding-botom: 20px;
 margin: 0;
 font-family: Microsoft Tai le;
 font-weight: normal;
@@ -477,7 +478,7 @@ background-color: #FFFFFF;
 padding-top: 5px;
 padding-bottom: 5px;
 padding-left: 10px;
-margin-top: px;
+margin-top: 0;
 margin-left: 0;
 margin-right: 0;
 font-size: 16px;
@@ -494,7 +495,7 @@ background-color: #FFFFFF;
 padding-top: 5px;
 padding-bottom: 5px;
 padding-left: 10px;
-margin-top: px;
+margin-top: 0;
 margin-left: 0;
 margin-right: 0;
 font-size: 16px;
@@ -511,7 +512,7 @@ background-color: #e8e8e8;
 padding-top: 5px;
 padding-bottom: 5px;
 padding-left: 10px;
-margin-top: px;
+margin-top: 0;
 margin-left: 0;
 margin-right: 0;
 font-size: 16px;
@@ -529,7 +530,7 @@ padding-top: 5px;
 padding-bottom: 5px;
 padding-left: 10px;
 padding-right: 10px;
-margin-top: px;
+margin-top: 0;
 margin-left: 0;
 margin-right: 0;
 font-size: 16px;

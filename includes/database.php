@@ -121,10 +121,14 @@ class Database {
 	}
 	
 	/**
+	*Check if the provided password is correct.
+	*Verifies hashed passwords.
+	*Queries the Users database table.
 	*
+	*@param userName The userName
+	*@param passWord The password
 	*
-	*
-	*
+	*@return true if the password is correct, false otherwise.
 	*/
 	public function checkPassword($userName, $passWord){
 		$sql = "SELECT passWord FROM users WHERE userName = ?";
@@ -136,6 +140,20 @@ class Database {
 			return true;
 		}
 		return false;
+	}
+	
+	public function checkSuperUser($userName) {
+		$sql = "SELECT superUsers.id FROM users JOIN superUsers ON users.userName = superUsers.userName WHERE users.userName = ?";
+		$result = $this->executeQuery($sql, array($userName));
+		return count($result) == 1;
+		
+	}
+	
+	public function checkMaterialUser($userName) {
+		$sql = "SELECT materialAndRecipeUsers.id FROM users JOIN materialAndRecipeUsers ON users.userName = materialAndRecipeUsers.userName WHERE users.userName = ?";
+		$result = $this->executeQuery($sql, array($userName));
+		return count($result) == 1;
+		
 	}
 }
 ?>

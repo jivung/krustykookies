@@ -1,6 +1,7 @@
 <?php 
 require_once("includes/setup.php");
 require_once("includes/database.php");
+require_once("includes/mysql_connect_data.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,17 +9,17 @@ require_once("includes/database.php");
 		<title>
 			Krusty Kookies Database System
 		</title>
-		<meta charset="utf8"/>
+		<meta charset="utf-8" />
 		<link type="text/css" rel="stylesheet" href="includes/stylesheet.css" />
 	</head>
 	<body>
-		<!--<div id="toptopbanner">
-			<<div id="toptopcontainer">
+		<div id="toptopbanner">
+			<div id="toptopcontainer">
 				<div id="readmecontainer">
 					README - INFORMATION - SUPPORT
 				</div>
 			</div>
-		</div>-->
+		</div>
 		<div id="topbanner">
 			<div id="topcontainer">
 				<div id="logocontainer">

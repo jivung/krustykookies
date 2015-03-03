@@ -54,3 +54,31 @@ CREATE TABLE users (
 	passWord varchar(60),
 	PRIMARY KEY (username)
 );
+
+create table superusers (
+	id int NOT NULL AUTO_INCREMENT,
+	userName varchar(20),
+	PRIMARY KEY (id, userName),
+	FOREIGN KEY (userName) REFERENCES users(userName)
+);
+
+create table materialAndRecipeUsers (
+	id int AUTO_INCREMENT,
+	userName varchar(20),
+	PRIMARY KEY (id, userName),
+	FOREIGN KEY (userName) REFERENCES users(userName)
+);
+
+create table productionUsers (
+	id int AUTO_INCREMENT,
+	userName varchar(20),
+	PRIMARY KEY (id, userName),
+	FOREIGN KEY (userName) REFERENCES users(userName)
+);
+
+create table orderAndDeliveryUsers (
+	id int AUTO_INCREMENT,
+	userName varchar(20),
+	PRIMARY KEY (id, userName),
+	FOREIGN KEY (userName) REFERENCES users(userName)
+);

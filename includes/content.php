@@ -1,16 +1,41 @@
+<?php 
+require_once("includes/setup.php");
+require_once("includes/database.php");
+require_once("includes/mysql_connect_data.php");
+$db = new Database($host, $userName, $password, $database);
+?>
 <div id="maincontainer">
 	<div id="leftbar">
 		<div id="leftbarcontent">
 			<ul>
+			
+				<?php 
+					$db->openConnection();
+					if($db->checkSuperUser($_SESSION['username'])) {
+				?>
 				<li class="heading">Superuser</li>
-				<li class="link"><a href="">Create new user</a></li>
-				<li class="link"><a href="">Delete user</a></li>
-				<li class="heading">Materials & recipes</li>
-				<li class="heading">Pallets</li>
-				<li class="link"><a href="">Production</a></li>
-				<li class="link"><a href="">Blocking</a></li>
-				<li class="link"><a href="">Searching</a></li>
-				<li class="heading">Order & delivery</li>
+				<li class="link"><a href="?page=captainslog">Logg</a></li>
+				<li class="link"><a href="?page=createuser">Skapa ny användare</a></li>
+				<li class="link"><a href="?page=deleteuser">Radera användare</a></li>
+				<?php	
+					}
+					$db->closeConnection();
+				?>
+				<?php 
+					$db->openConnection();
+					if($db->checkMaterialUser($_SESSION['username']) || $db->checkSuperUser($_SESSION['username'])) {
+				?>
+				<li class="heading">Material & recept</li>
+				<?php	
+					}
+					$db->closeConnection();
+				?>
+				<li class="heading">Pallar</li>
+				<li class="link"><a href="?page=production">Produktion</a></li>
+				<li class="link"><a href="?page=blocking">Blockering</a></li>
+				<li class="link"><a href="?page=search">Sökning</a></li>
+				<li class="heading">Ordrar & leveranser</li>
+				
 			</ul>
 		</div>
 	</div>
