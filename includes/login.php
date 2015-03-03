@@ -18,13 +18,7 @@
 		header("Location: ../index.php?empty");
 		exit();
 	}
-	/*
-	if (!$db->userExists($user)) {
-		$db->closeConnection();
-		header("Location: ../index.php?false");
-		exit();
-	}
-	*/
+
 	if(!($db->checkPassword($user, $userPassword))) {
 		$db->closeConnection();
 		header("Location: ../index.php?false");
