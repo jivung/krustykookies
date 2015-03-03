@@ -30,12 +30,27 @@ $db = new Database($host, $userName, $password, $database);
 					}
 					$db->closeConnection();
 				?>
+				<?php 
+					$db->openConnection();
+					if($db->checkPalletUser($_SESSION['username']) || $db->checkSuperUser($_SESSION['username'])) {
+				?>
 				<li class="heading">Pallar</li>
 				<li class="link"><a href="?page=production">Produktion</a></li>
 				<li class="link"><a href="?page=blocking">Blockering</a></li>
 				<li class="link"><a href="?page=search">Sökning</a></li>
+				<?php	
+					}
+					$db->closeConnection();
+				?>
+				<?php 
+					$db->openConnection();
+					if($db->checkOrderAndDeliveryUser($_SESSION['username']) || $db->checkSuperUser($_SESSION['username'])) {
+				?>
 				<li class="heading">Ordrar & leveranser</li>
-				
+				<?php	
+					}
+					$db->closeConnection();
+				?>
 			</ul>
 		</div>
 	</div>
