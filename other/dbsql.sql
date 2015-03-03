@@ -7,6 +7,10 @@ DROP TABLE IF EXISTS ingredientsInRecipes;
 DROP TABLE IF EXISTS pallets;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS superUsers;
+DROP TABLE IF EXISTS materialAndRecipeUsers 
+DROP TABLE IF EXISTS productionUsers 
+DROP TABLE IF EXISTS orderAndDeliveryUsers 
 SET foreign_key_checks = 1;
 
 CREATE TABLE ingredients(
@@ -52,33 +56,33 @@ CREATE TABLE pallets(
 CREATE TABLE users (
 	userName varchar(20),
 	passWord varchar(60),
-	PRIMARY KEY (username)
+	PRIMARY KEY(username)
 );
 
 create table superusers (
 	id int NOT NULL AUTO_INCREMENT,
 	userName varchar(20),
-	PRIMARY KEY (id, userName),
-	FOREIGN KEY (userName) REFERENCES users(userName)
+	PRIMARY KEY(id, userName),
+	FOREIGN KEY(userName) REFERENCES users(userName)
 );
 
 create table materialAndRecipeUsers (
-	id int AUTO_INCREMENT,
+	id int NOT NULL AUTO_INCREMENT,
 	userName varchar(20),
-	PRIMARY KEY (id, userName),
-	FOREIGN KEY (userName) REFERENCES users(userName)
+	PRIMARY KEY(id, userName),
+	FOREIGN KEY(userName) REFERENCES users(userName)
 );
 
 create table productionUsers (
-	id int AUTO_INCREMENT,
+	id int NOT NULL AUTO_INCREMENT,
 	userName varchar(20),
-	PRIMARY KEY (id, userName),
-	FOREIGN KEY (userName) REFERENCES users(userName)
+	PRIMARY KEY(id, userName),
+	FOREIGN KEY(userName) REFERENCES users(userName)
 );
 
 create table orderAndDeliveryUsers (
-	id int AUTO_INCREMENT,
+	id int NOT NULL AUTO_INCREMENT,
 	userName varchar(20),
-	PRIMARY KEY (id, userName),
-	FOREIGN KEY (userName) REFERENCES users(userName)
+	PRIMARY KEY(id, userName),
+	FOREIGN KEY(userName) REFERENCES users(userName)
 );
