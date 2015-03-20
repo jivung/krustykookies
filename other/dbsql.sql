@@ -54,35 +54,12 @@ CREATE TABLE pallets(
 );
 
 CREATE TABLE users (
+	id int NOT NULL AUTO_INCREMENT,
 	userName varchar(20),
 	passWord varchar(60),
+	isSuperUser tinyint DEFAULT 0,
+	isMaterialUser tinyint DEFAULT 0,
+	isProductionUser tinyint DEFAULT 0,
+	isOrderUser tinyint DEFAULT 0,
 	PRIMARY KEY(username)
-);
-
-create table superusers (
-	id int NOT NULL AUTO_INCREMENT,
-	userName varchar(20),
-	PRIMARY KEY(id, userName),
-	FOREIGN KEY(userName) REFERENCES users(userName)
-);
-
-create table materialAndRecipeUsers (
-	id int NOT NULL AUTO_INCREMENT,
-	userName varchar(20),
-	PRIMARY KEY(id, userName),
-	FOREIGN KEY(userName) REFERENCES users(userName)
-);
-
-create table productionUsers (
-	id int NOT NULL AUTO_INCREMENT,
-	userName varchar(20),
-	PRIMARY KEY(id, userName),
-	FOREIGN KEY(userName) REFERENCES users(userName)
-);
-
-create table orderAndDeliveryUsers (
-	id int NOT NULL AUTO_INCREMENT,
-	userName varchar(20),
-	PRIMARY KEY(id, userName),
-	FOREIGN KEY(userName) REFERENCES users(userName)
 );
