@@ -55,11 +55,11 @@ CREATE TABLE pallets(
 
 CREATE TABLE users (
 	id int NOT NULL AUTO_INCREMENT,
-	userName varchar(20),
-	passWord varchar(60),
-	isSuperUser tinyint DEFAULT 0,
-	isMaterialUser tinyint DEFAULT 0,
-	isProductionUser tinyint DEFAULT 0,
-	isOrderUser tinyint DEFAULT 0,
+	userName VARCHAR(20),
+	passWord VARCHAR(60),
+	isSuperUser TINYINT DEFAULT 0,
+	isMaterialUser TINYINT DEFAULT 0,
+	isProductionUser TINYINT DEFAULT 0,
+	isOrderUser TINYINT DEFAULT 0,
 	PRIMARY KEY(username)
 );
