@@ -1,8 +1,9 @@
 <?php 
-require_once("includes/setup.php");
-require_once("includes/database.php");
-require_once("includes/mysql_connect_data.php");
+require_once("setup.php");
+require_once("database.php");
+require_once("mysql_connect_data.php");
 $db = new Database($host, $userName, $password, $database);
+$page = $_GET['page'];
 ?>
 <div id="maincontainer">
 	<div id="leftbar">
@@ -56,7 +57,30 @@ $db = new Database($host, $userName, $password, $database);
 	</div>
 	<div id="mainbar">
 		<?php
+			switch($page) {
+				case "captainslog":
+					include_once("captainslogg.php");
+					break;
+				case "createuser":
+					include_once("createuser");
+					break;
+				case "deleteuser":
+					include_once("deleteuser.php");
+					break;
 				
+				
+				case "production":
+					include_once("production.php");
+					break;
+				case "blocking":
+					include_once("blocking.php");
+					break;
+				case "search":
+					include_once("search.php");
+					break;
+				default: 
+					include_once("default.php");
+			} 	
 		?>
 	</div>
 </div>

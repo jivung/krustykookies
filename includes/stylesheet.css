@@ -23,7 +23,36 @@ color: #1f60ba;
 a:hover{
 text-decoration: underline;
 }
-
+/* HEADERS */
+h1{
+font-size: 20px;
+font-family: Microsoft Tai le;
+font-weight: bold;
+line-height: 22px;
+color: #000;
+}
+/* TEXT */
+.breadtext {
+font-size: 16px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 16px;
+color: #000;
+}
+.normaltext {
+font-size: 14px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 14px;
+color: #000;
+}
+.footnote {
+font-size: 11px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+line-height: 11px;
+color: #000;
+}
 
 /*
 
@@ -273,12 +302,32 @@ display: block;
 */
 #mainbar {
 width: 750px;
-height: 100px;
 background: #FFFFFF;
 padding: 0;
 float: right;
 margin-top: 30px;
 box-shadow: 3px 3px 3px #bdbdbd;
+}
+
+#mainbar:after {
+clear: both;
+content: "";
+display: block;
+}
+
+/*
+
+		MAIN BAR CONTENT TEST
+
+*/
+#mainbarcontenttest {
+width: 730px;
+background: #FFF;
+padding: 0;
+word-wrap: break-word;
+margin-top: 10px;
+margin-left: 10px;
+margin-bottom: 10px;
 }
 
 
