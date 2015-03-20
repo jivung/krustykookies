@@ -151,7 +151,7 @@ class Database {
 	*@return true if the user is a superuser.
 	*/
 	public function checkSuperUser($userName) {
-		$sql = "SELECT superUsers.id FROM users JOIN superUsers ON users.userName = superUsers.userName WHERE users.userName = ?";
+		$sql = "SELECT id FROM users WHERE isSuperUser = 1";
 		$result = $this->executeQuery($sql, array($userName));
 		return count($result) == 1;
 		
@@ -166,7 +166,7 @@ class Database {
 	*@return true if the user is a user in the material dept.
 	*/
 	public function checkMaterialUser($userName) {
-		$sql = "SELECT materialAndRecipeUsers.id FROM users JOIN materialAndRecipeUsers ON users.userName = materialAndRecipeUsers.userName WHERE users.userName = ?";
+		$sql = "SELECT id FROM users WHERE isMaterialUser = 1";
 		$result = $this->executeQuery($sql, array($userName));
 		return count($result) == 1;
 		
@@ -180,8 +180,8 @@ class Database {
 	*
 	*@return true if the user is a user in the pallet dept.
 	*/
-	public function checkPalletUser($userName) {
-		$sql = "SELECT productionUsers.id FROM users JOIN productionUsers ON users.userName = productionUsers.userName WHERE users.userName = ?";
+	public function checkProductionUser($userName) {
+		$sql = "SELECT id FROM users WHERE isProductionUser = 1";
 		$result = $this->executeQuery($sql, array($userName));
 		return count($result) == 1;
 		
@@ -196,7 +196,7 @@ class Database {
 	*@return true if the user is a user in the order and delivery dept.
 	*/
 	public function checkOrderAndDeliveryUser($userName) {
-		$sql = "SELECT orderAndDeliveryUsers.id FROM users JOIN orderAndDeliveryUsers ON users.userName = orderAndDeliveryUsers.userName WHERE users.userName = ?";
+		$sql = "SELECT id FROM users WHERE isOrderUser = 1";
 		$result = $this->executeQuery($sql, array($userName));
 		return count($result) == 1;
 		

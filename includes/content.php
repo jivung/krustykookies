@@ -32,7 +32,7 @@ $db = new Database($host, $userName, $password, $database);
 				?>
 				<?php 
 					$db->openConnection();
-					if($db->checkPalletUser($_SESSION['username']) || $db->checkSuperUser($_SESSION['username'])) {
+					if($db->checkProductionUser($_SESSION['username']) || $db->checkSuperUser($_SESSION['username'])) {
 				?>
 				<li class="heading">Pallar</li>
 				<li class="link"><a href="?page=production">Produktion</a></li>
