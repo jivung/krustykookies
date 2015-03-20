@@ -62,7 +62,7 @@ $page = $_GET['page'];
 					include_once("captainslogg.php");
 					break;
 				case "createuser":
-					include_once("createuser");
+					include_once("createuser.php");
 					break;
 				case "deleteuser":
 					include_once("deleteuser.php");
