@@ -153,8 +153,9 @@ class Database {
 	public function checkSuperUser($userName) {
 		$sql = "SELECT isSuperUser FROM users WHERE userName = ?";
 		$result = $this->executeQuery($sql, array($userName));
-		return $result;
-		
+		foreach($result as $res) {
+			return $res[0];
+		}
 	}
 		
 	/**
@@ -168,8 +169,9 @@ class Database {
 	public function checkMaterialUser($userName) {
 		$sql = "SELECT isMaterialUser FROM users WHERE userName= ?";
 		$result = $this->executeQuery($sql, array($userName));
-		return $result;
-		
+		foreach($result as $res) {
+			return $res[0];
+		}
 	}
 	
 	/**
@@ -183,8 +185,9 @@ class Database {
 	public function checkProductionUser($userName) {
 		$sql = "SELECT isProductionUser FROM users WHERE userName= ?";
 		$result = $this->executeQuery($sql, array($userName));
-		return $result;
-		
+		foreach($result as $res) {
+			return $res[0];
+		}
 	}
 	
 	/**
@@ -198,8 +201,9 @@ class Database {
 	public function checkOrderAndDeliveryUser($userName) {
 		$sql = "SELECT isOrderUser FROM users WHERE userName = ?";
 		$result = $this->executeQuery($sql, array($userName));
-		return $result;
-		
+		foreach($result as $res) {
+			return $res[0];
+		}
 	}
 	
 	public function createUser($userName, $password, $userType) {

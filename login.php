@@ -2,6 +2,7 @@
 require_once("includes/setup.php");
 require_once("includes/database.php");
 require_once("includes/mysql_connect_data.php");
+$error = null;
 	
 if(!empty($_POST)){
 
