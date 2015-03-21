@@ -17,23 +17,21 @@ if(!empty($_POST)){
 	
 	if (empty($user) || empty($userPassword)) {
 		$error = 'empty';
+	} else{
+		if(!($db->checkPassword($user, $userPassword))) {
+			$error = 'no_user';
+		}
 	}
-	
-	if(!($db->checkPassword($user, $userPassword))) {
-		$error = 'no_user';
-	}
-	
+
 	$db->closeConnection();
-	
-	$_SESSION['username'] = $user;
-	$_SESSION['db'] = $db;
 	
 	if(!$error){
 	
-		echo "vvaa";
+		$_SESSION['username'] = $user;
+		$_SESSION['db'] = $db;
 	
 		// success!
-		//header("Location: index.php");
+		header("Location: index.php");
 	
 	}
 
@@ -59,9 +57,8 @@ require_once("includes/header.php");
 				</div>
 				<div id="loginmessagecontainer">
 					<?php
-						if(isset($_GET['false'])) { echo "Fel användarnamn eller lösenord. Försök igen."; }
-						elseif(isset($_GET['empty'])) { echo "Användarnamn eller lösenord tomt. Försök igen."; }
-						elseif(isset($_GET['no_user'])) { echo "Användaren "; echo $_GET['no_user']; echo " existerar inte.<br />Försök igen."; }
+						if($error == 'no_user') { echo "Fel användarnamn eller lösenord. Försök igen."; }
+						else if($error == 'empty') { echo "Användarnamn eller lösenord tomt. Försök igen."; }
 					?>
 				</div>
 				<div id="loginsubmitcontainer">
