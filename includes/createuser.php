@@ -7,20 +7,21 @@ $page = $_GET['page'];
 ?>
 <div id="mainbarcontenttest">
 	<h1>Skapa användarkonto</h1>
-	<form id="createuser" method="POST">
-		<input type="text" class="input_field_login" name="krustyname" placeholder="användarnamn"/><br />
-		<input type="password" class="input_field_login" name="krustypassword" placeholder="lösenord"/>
-		<input type="password" class="input_field_login" name="krustypassword2" placeholder="upprepa lösenord"/>
-		<fieldset style="width: 300px;">
+	<form name="createuser "id="createuser" method="POST" action="includes/createuser_parse.php">
+		<input type="text" class="input_field_login" name="krustyname" placeholder="användarnamn"/><br /><br />
+		<input type="password" class="input_field_login" name="krustypassword" placeholder="lösenord"/><br /><br />
+		<input type="password" class="input_field_login" name="krustypassword2" placeholder="upprepa lösenord"/><br /><br />
+		<fieldset>
 		<legend>Kontotyp</legend>
-		<input type="radio" name="kontotyp" id="superuser" value="var" />
+		<input type="radio" name="kontotyp" id="superuser" value="superuser" />
 		<label for="superuser">SuperUser</label> <br />
-		<input type="radio" name="kontotyp" id="material" value="sommar" />
-		<label for="material">Material</label> <br />
-		<input type="radio" name="kontotyp" id="produktion" value="host" />
-		<label for="produktion">Produktion</label> <br />
-		<input type="radio" name="kontotyp" id="Ordrar" value="vinter" />
-		<label for="ordrar">Ordrar</label>
-		</fieldset>
+		<input type="radio" name="kontotyp" id="material" value="material" />
+		<label for="material">Material & Recept</label> <br />
+		<input type="radio" name="kontotyp" id="produktion" value="produktion" />
+		<label for="produktion">Pallar</label> <br />
+		<input type="radio" name="kontotyp" id="ordrar" value="ordrar" />
+		<label for="ordrar">Ordrar & Leveranser</label>
+		</fieldset><br />
+		<input type="submit" class="submit_button_login" style="float: right" name="submit" value="Skapa konto" />
 	</form>
 </div>
