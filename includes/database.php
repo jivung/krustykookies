@@ -151,9 +151,9 @@ class Database {
 	*@return true if the user is a superuser.
 	*/
 	public function checkSuperUser($userName) {
-		$sql = "SELECT id FROM users WHERE isSuperUser = 1";
+		$sql = "SELECT isSuperUser FROM users WHERE userName = ?";
 		$result = $this->executeQuery($sql, array($userName));
-		return count($result) == 1;
+		return $result;
 		
 	}
 		
@@ -166,9 +166,9 @@ class Database {
 	*@return true if the user is a user in the material dept.
 	*/
 	public function checkMaterialUser($userName) {
-		$sql = "SELECT id FROM users WHERE isMaterialUser = 1";
+		$sql = "SELECT isMaterialUser FROM users WHERE userName= ?";
 		$result = $this->executeQuery($sql, array($userName));
-		return count($result) == 1;
+		return $result;
 		
 	}
 	
@@ -181,13 +181,13 @@ class Database {
 	*@return true if the user is a user in the pallet dept.
 	*/
 	public function checkProductionUser($userName) {
-		$sql = "SELECT id FROM users WHERE isProductionUser = 1";
+		$sql = "SELECT isProductionUser FROM users WHERE userName= ?";
 		$result = $this->executeQuery($sql, array($userName));
-		return count($result) == 1;
+		return $result;
 		
 	}
 	
-		/**
+	/**
 	*Check if the user is a user in the order and delivery dept.
 	*Queries the users and the orderAndDeliveryUsers database tables.
 	*
@@ -196,10 +196,15 @@ class Database {
 	*@return true if the user is a user in the order and delivery dept.
 	*/
 	public function checkOrderAndDeliveryUser($userName) {
-		$sql = "SELECT id FROM users WHERE isOrderUser = 1";
+		$sql = "SELECT isOrderUser FROM users WHERE userName = ?";
 		$result = $this->executeQuery($sql, array($userName));
-		return count($result) == 1;
+		return $result;
 		
+	}
+	
+	public function createUser($userName, $password, $userType) {
+		$sql = "INSERT INTO users(userName, password, ".$userType.") VALUES(?, ?, '1')";
+		$result = $this->executeUpdate($sql, array($userName, $password));
 	}
 }
 ?>
