@@ -187,7 +187,7 @@ class Database {
 		
 	}
 	
-		/**
+	/**
 	*Check if the user is a user in the order and delivery dept.
 	*Queries the users and the orderAndDeliveryUsers database tables.
 	*
@@ -200,6 +200,11 @@ class Database {
 		$result = $this->executeQuery($sql, array($userName));
 		return $result;
 		
+	}
+	
+	public function createUser($userName, $password, $userType) {
+		$sql = "INSERT INTO users(userName, password, ".$userType.") VALUES(?, ?, '1')";
+		$result = $this->executeUpdate($sql, array($userName, $password));
 	}
 }
 ?>

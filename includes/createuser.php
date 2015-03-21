@@ -13,13 +13,13 @@ $page = $_GET['page'];
 		<input type="password" class="input_field_login" name="krustypassword2" placeholder="upprepa lösenord"/><br /><br />
 		<fieldset>
 		<legend>Kontotyp</legend>
-		<input type="radio" name="kontotyp" id="superuser" value="superuser" />
+		<input type="radio" name="kontotyp" id="superuser" value="isSuperUser" />
 		<label for="superuser">SuperUser</label> <br />
-		<input type="radio" name="kontotyp" id="material" value="material" />
+		<input type="radio" name="kontotyp" id="material" value="isMaterialUser" />
 		<label for="material">Material & Recept</label> <br />
-		<input type="radio" name="kontotyp" id="produktion" value="produktion" />
+		<input type="radio" name="kontotyp" id="produktion" value="isProductionUser" />
 		<label for="produktion">Pallar</label> <br />
-		<input type="radio" name="kontotyp" id="ordrar" value="ordrar" />
+		<input type="radio" name="kontotyp" id="ordrar" value="isOrderUser" />
 		<label for="ordrar">Ordrar & Leveranser</label>
 		</fieldset><br />
 		<input type="submit" class="submit_button_login" style="float: right" name="submit" value="Skapa konto" />
