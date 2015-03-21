@@ -3,6 +3,11 @@ require_once("includes/setup.php");
 require_once("includes/database.php");
 require_once("includes/mysql_connect_data.php");
 require_once("includes/header.php");
+$db = new Database($host, $userName, $password, $database);
+$db->openConnection();
+if(!$db->checkSuperUser($_SESSION['username'])) {
+	header("Location: index.php");
+}
 ?>
 
 <h1>Skapa användarkonto</h1>
