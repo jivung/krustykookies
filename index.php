@@ -1,48 +1,49 @@
-<?php 
+<?php
 require_once("includes/setup.php");
 require_once("includes/database.php");
 require_once("includes/mysql_connect_data.php");
+require_once("includes/header.php");
 ?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>
-			Krusty Kookies Database System
-		</title>
-		<meta charset="utf-8" />
-		<link type="text/css" rel="stylesheet" href="includes/stylesheet.css" />
-	</head>
-	<body>
-		<div id="toptopbanner">
-			<div id="toptopcontainer">
-				<div id="readmecontainer">
-					README - INFORMATION - SUPPORT
-				</div>
-			</div>
-		</div>
-		<div id="topbanner">
-			<div id="topcontainer">
-				<div id="logocontainer">
-					<a class="logo" href="index.php">KRUSTY KOOKIES DATABASE SYSTEM</a>
-				</div>
-				<?php 
-					//Display user info if logged in.
-					if(isset($_SESSION['username'])){
-						include_once("includes/userinfo.php");
-					}
-				?>
-			</div>
-		</div>
-		<?php 
-			//Display loginbox if not logged in, else show content appropriate to usertype.
-			if(!isset($_SESSION['username'])){
-				include_once("includes/loginbox.php");
-			} else {
-				include_once("includes/content.php");
-			}
-		?>
-		<?php
-		
-		?>
-	</body>
-</html>
+
+<h1>Hej och välkommen!</h1>
+
+<p class="breadtext">
+	Du är inloggad som <b><?php echo $_SESSION['username'] ?></b>, och har <i>
+	<?php 
+		$db->openConnection();
+		if($db->checkSuperUser($_SESSION['username'])) {
+	?>
+	alla 
+	<?php	
+		} else if($db->checkProductionUser($_SESSION['username'])) {
+	?>
+	produktions-
+	<?php	
+		} else if($db->checkMaterialUser($_SESSION['username'])) {
+	?>
+	material-
+	<?php	
+		} else if($db->checkOrderUser($_SESSION['username'])) {
+	?>
+	order-
+	<?php	
+		} else {
+	?>
+	inga 
+	<?php	
+		}
+		$db->closeConnection();
+	?>
+	</i>privilegier.
+</p>
+
+<p class="normaltext">
+	Använd menyn till vänster för att manövrera systemet. Vid eventuella frågor, alternativt support, hänvisas till valen högst upp till höger på sidan.<br/>
+</p>
+<p class="footnote">
+	Jobba på så chefen blir nöjd, och kom ihåg att ha en trevlig arbetsdag! (OBS! inga kaffepauser på arbetstid)
+</p>
+
+<?php
+require_once("includes/footer.php");
+?>

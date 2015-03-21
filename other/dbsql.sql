@@ -7,10 +7,6 @@ DROP TABLE IF EXISTS ingredientsInRecipes;
 DROP TABLE IF EXISTS pallets;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS superUsers;
-DROP TABLE IF EXISTS materialAndRecipeUsers 
-DROP TABLE IF EXISTS productionUsers 
-DROP TABLE IF EXISTS orderAndDeliveryUsers 
 SET foreign_key_checks = 1;
 
 CREATE TABLE ingredients(
