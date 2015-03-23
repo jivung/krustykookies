@@ -12,8 +12,6 @@ SET foreign_key_checks = 1;
 CREATE TABLE ingredients(
 	name VARCHAR(30),
 	amount INT,
-	lastDeliveryDate DATE,
-	lastDeliveryAmount INT,
 	PRIMARY KEY(name)
 );
 
@@ -59,3 +57,23 @@ CREATE TABLE users (
 	isOrderUser TINYINT(1) DEFAULT 0,
 	PRIMARY KEY(id)
 );
+
+INSERT INTO ingredients VALUES ("Flour", 100000);
+INSERT INTO ingredients VALUES ("Butter", 100000);
+INSERT INTO ingredients VALUES ("Icing sugar", 100000);
+INSERT INTO ingredients VALUES ("Roasted, chopped nuts", 100000);
+INSERT INTO ingredients VALUES ("Fine-ground nuts", 100000);
+INSERT INTO ingredients VALUES ("Ground, roasted nuts", 100000);
+INSERT INTO ingredients VALUES ("Bread crumbs", 100000);
+INSERT INTO ingredients VALUES ("Sugar", 100000);
+INSERT INTO ingredients VALUES ("Egg whites", 100000);
+INSERT INTO ingredients VALUES ("Chocolate", 100000);
+INSERT INTO ingredients VALUES ("Marzipan", 100000);
+INSERT INTO ingredients VALUES ("Eggs", 100000);
+INSERT INTO ingredients VALUES ("Potato starch", 100000);
+INSERT INTO ingredients VALUES ("Wheat flour", 100000);
+INSERT INTO ingredients VALUES ("Sodium bicarbonate", 100000);
+INSERT INTO ingredients VALUES ("Vanilla", 100000);
+INSERT INTO ingredients VALUES ("Chopped almonds", 100000);
+INSERT INTO ingredients VALUES ("Cinnamon", 100000);
+INSERT INTO ingredients VALUES ("Vanilla sugar", 100000);

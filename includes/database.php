@@ -210,5 +210,11 @@ class Database {
 		$sql = "INSERT INTO users(userName, password, ".$userType.") VALUES(?, ?, '1')";
 		$result = $this->executeUpdate($sql, array($userName, $password));
 	}
+	
+	public function getIngredients(){
+		$sql = "SELECT * FROM ingredients";
+		return $this->executeQuery($sql);
+	}
+	
 }
 ?>

@@ -62,6 +62,7 @@ if(!$isLogedIn && !$loginPage){
 							if($db->checkMaterialUser($_SESSION['username']) || $db->checkSuperUser($_SESSION['username'])) {
 						?>
 						<li class="heading">Material & recept</li>
+						<li class="link"><a href="materials.php">Material</a></li>
 						<?php	
 							}
 							$db->closeConnection();
