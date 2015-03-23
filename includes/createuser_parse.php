@@ -22,7 +22,7 @@
 	$krustypass2 = $_POST['krustypassword2'];
 	$userType = $_POST['kontotyp'];
 	
-	if(empty($user) || empty($krustypass1) || empty(krustypass2) || empty(usertype)) {
+	if(empty($user) || empty($krustypass1) || empty(krustypass2) || empty(usertype) || !isset($_POST['kontotyp'])) {
 		header("Location: ../create_user.php?empty");
 		exit();
 	}

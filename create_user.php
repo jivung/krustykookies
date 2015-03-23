@@ -43,6 +43,8 @@ $db->closeConnection();
 	<legend>Kontotyp</legend>
 	<input type="radio" name="kontotyp" id="superuser" value="isSuperUser" />
 	<label for="superuser">SuperUser</label> <br />
+	<input type="radio" name="kontotyp" id="kund" value="isCustomer" />
+	<label for="kund">Kundkonto</label> <br />
 	<input type="radio" name="kontotyp" id="material" value="isMaterialUser" />
 	<label for="material">Material & Recept</label> <br />
 	<input type="radio" name="kontotyp" id="produktion" value="isProductionUser" />

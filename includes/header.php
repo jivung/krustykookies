@@ -44,7 +44,19 @@ if(!$isLogedIn && !($loginPage || $readmePage)){
 			<div id="leftbar">
 				<div id="leftbarcontent">
 					<ul>
-					
+						
+						<?php 
+							$db->openConnection();
+							if($db->checkCustomer($_SESSION['username'])) {
+						?>
+						<li class="heading">Kund</li>
+						<li class="link"><a href="customer_order.php">Lägg ny beställning</a></li>
+						<li class="link"><a href="customer_orders.php">Mina beställningar</a></li>
+						
+						<?php	
+							}
+							$db->closeConnection();
+						?>
 						<?php 
 							$db->openConnection();
 							if($db->checkSuperUser($_SESSION['username'])) {

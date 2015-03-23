@@ -144,7 +144,7 @@ class Database {
 	
 	/**
 	*Check if the user is a superuser.
-	*Queries the users and the superusers database tables.
+	*Queries the users table in the database.
 	*
 	*@param userName The userName
 	*
@@ -160,7 +160,7 @@ class Database {
 		
 	/**
 	*Check if the user is a user in the material dept.
-	*Queries the users and the materialAndRecipeUsers database tables.
+	*Queries the users table in the database.
 	*
 	*@param userName The userName
 	*
@@ -176,7 +176,7 @@ class Database {
 	
 	/**
 	*Check if the user is a user in the pallet (production) dept.
-	*Queries the users and the productionUsers database tables.
+	*Queries the users table in the database.
 	*
 	*@param userName The userName
 	*
@@ -192,7 +192,7 @@ class Database {
 	
 	/**
 	*Check if the user is a user in the order and delivery dept.
-	*Queries the users and the orderAndDeliveryUsers database tables.
+	*Queries the users table in the database.
 	*
 	*@param userName The userName
 	*
@@ -200,6 +200,22 @@ class Database {
 	*/
 	public function checkOrderAndDeliveryUser($userName) {
 		$sql = "SELECT isOrderUser FROM users WHERE userName = ?";
+		$result = $this->executeQuery($sql, array($userName));
+		foreach($result as $res) {
+			return $res[0];
+		}
+	}
+	
+	/**
+	*Check if the user is a customer.
+	*Queries the users table in the database..
+	*
+	*@param userName The userName
+	*
+	*@return true if the user is a user in the order and delivery dept.
+	*/
+	public function checkCustomer($userName) {
+		$sql = "SELECT isCustomer FROM users WHERE userName = ?";
 		$result = $this->executeQuery($sql, array($userName));
 		foreach($result as $res) {
 			return $res[0];
@@ -231,7 +247,7 @@ class Database {
 	/**
 	*List all users in the system.
 	*
-	*@return all users with username and usertype.
+	*@return all users with username.
 	*/
 	public function listUsers() {
 		$sql = "SELECT userName FROM users ORDER BY userName";
@@ -242,10 +258,21 @@ class Database {
 	/**
 	*List all users who are NOT superusers in the system.
 	*
-	*@return all users with username and usertype.
+	*@return all users with username.
 	*/
 	public function listRegularUsers() {
 		$sql = "SELECT userName FROM users WHERE isSuperUser = '0' ORDER BY userName";
+		$result = $this->executeQuery($sql);
+		return $result;
+	}
+	
+	/**
+	*List all customers in the system.
+	*
+	*@return all customers with username.
+	*/
+	public function listCustomers() {
+		$sql = "SELECT userName FROM users WHERE isCustomer = '1' ORDER BY userName";
 		$result = $this->executeQuery($sql);
 		return $result;
 	}

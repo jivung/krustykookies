@@ -55,6 +55,7 @@ CREATE TABLE users (
 	isMaterialUser TINYINT(1) DEFAULT 0,
 	isProductionUser TINYINT(1) DEFAULT 0,
 	isOrderUser TINYINT(1) DEFAULT 0,
+	isCustomer TINYINT(1) DEFAULT 0,
 	PRIMARY KEY(id)
 );
 
