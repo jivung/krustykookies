@@ -1,0 +1,4 @@
+<h1>Support</h1>
+<p class="breadtext">Behöver du hjälp?</p>
+<p class="normaltext">Ring Poolia, vettja.</p>
+<p class="footnote">- The Krusty Kookies Dev. Team</p>

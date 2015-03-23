@@ -81,6 +81,31 @@ text-decoration: none;
 
 /*
 
+		WZUPLINK
+
+*/
+a.wzup {
+color: #adadad;
+text-decoration: none;
+}
+
+a.wzup:visited {
+color: #adadad;
+text-decoration: none;
+}
+
+a.wzup:active {
+color: #adadad;
+text-decoration: none;
+}
+
+a.wzup:hover {
+color: #adadad;
+text-decoration: underline;
+}
+
+/*
+
 		TOPTOP BANNER
 
 */
@@ -260,7 +285,6 @@ color: #000;
 		LEFT BAR CONTENT
 
 */
-
 ul li{
 margin: 0 0 5px 0;
 }
@@ -335,6 +359,48 @@ clear: both;
 content: "";
 display: block;
 }
+
+/*
+
+		UNLOGGED BOX
+
+*/
+#unloggedbox {
+width: 750px;
+background: #FFFFFF;
+padding: 0;
+float: left;
+margin-top: 30px;
+box-shadow: 3px 3px 3px #bdbdbd;
+}
+
+#unloggedbox:after {
+clear: both;
+content: "";
+display: block;
+}
+
+/*
+
+		UNLOGGED BOX CONTENT
+
+*/
+#unloggedboxcontent {
+width: 730px;
+background: #FFF;
+padding: 0;
+word-wrap: break-word;
+margin-top: 10px;
+margin-left: 10px;
+margin-bottom: 10px;
+}
+
+#unloggedboxcontent:after {
+clear: both;
+content: "";
+display: block;
+}
+
 
 
 /*
@@ -696,4 +762,33 @@ font-size: 18px;
 color: #000;
 letter-spacing: 3px; 
 margin-left: 50px;
+}
+
+/*
+
+		DELETE USERS
+
+*/
+ul li.users {
+font-family: Microsoft Tai le;
+font-weight: normal;
+font-size: 18px;
+color: #000;
+}
+
+.alignleft {
+	float: left;
+}
+.alignleft:after  {
+clear: both;
+content: "";
+display: block;
+}
+.alignright {
+	float: right;
+}
+.alignright:after  {
+clear: both;
+content: "";
+display: block;
 }

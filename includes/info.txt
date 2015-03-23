@@ -1,0 +1,4 @@
+<h1>Info</h1>
+<p class="breadtext">Vad är meningen med livet, varför existerar vi?</p>
+<p class="normaltext">Inte fan vet jag.</p>
+<p class="footnote">- Michael Jivung, Lund 2014</p>

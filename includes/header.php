@@ -1,7 +1,7 @@
 <?php 
 $db = new Database($host, $userName, $password, $database);
 $isLogedIn = isset($_SESSION['username']);
-if(!$isLogedIn && !$loginPage){
+if(!$isLogedIn && !($loginPage || $readmePage)){
 	header("Location: login.php");
 }
 ?>
@@ -18,7 +18,7 @@ if(!$isLogedIn && !$loginPage){
 		<div id="toptopbanner">
 			<div id="toptopcontainer">
 				<div id="readmecontainer">
-					README - INFORMATION - SUPPORT
+					<a href="readme.php" class="wzup">README</a> - <a href="info.php" class="wzup">INFORMATION</a> - <a href="support.php" class="wzup">SUPPORT</a>
 				</div>
 			</div>
 		</div>

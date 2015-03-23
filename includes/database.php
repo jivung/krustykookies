@@ -206,9 +206,68 @@ class Database {
 		}
 	}
 	
+	/**
+	*Create a new user.
+	*
+	*@param userName the name of the new user.
+	*@param password the users password.
+	*@userType the type of the user.
+	*
+	**/
 	public function createUser($userName, $password, $userType) {
 		$sql = "INSERT INTO users(userName, password, ".$userType.") VALUES(?, ?, '1')";
 		$result = $this->executeUpdate($sql, array($userName, $password));
+	}
+	
+	/**
+	*Delete a user.
+	*
+	**/
+	public function deleteUser($userName) {
+		$sql = "DELETE FROM users WHERE userName = ?";
+		$result = $this->executeUpdate($sql, array($userName));
+	}
+	
+	/**
+	*List all users in the system.
+	*
+	*@return all users with username and usertype.
+	*/
+	public function listUsers() {
+		$sql = "SELECT userName FROM users ORDER BY userName";
+		$result = $this->executeQuery($sql);
+		return $result;
+	}
+	
+	/**
+	*List all users who are NOT superusers in the system.
+	*
+	*@return all users with username and usertype.
+	*/
+	public function listRegularUsers() {
+		$sql = "SELECT userName FROM users WHERE isSuperUser = '0' ORDER BY userName";
+		$result = $this->executeQuery($sql);
+		return $result;
+	}
+	
+	
+	/**
+	*Get the user type of a specific user.
+	*
+	*@param userName name of the user.
+	*
+	*@return the type of the user.
+	*/
+	public function getUserType($userName) {
+		if ($this->checkSuperUser($userName)) {
+			echo "Superuser";
+		} else if ($this->checkMaterialUser($userName)) {
+			echo "Material Department";
+		} else if ($this->checkProductionUser($userName)) {
+			echo "Pallet/production Department";
+		} else if ($this->checkOrderAndDeliveryUser($userName)) {
+			echo "Order/delivery department";
+		} 
 	}
 	
 	public function getIngredients(){
