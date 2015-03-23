@@ -23,7 +23,7 @@ require_once("includes/header.php");
 	?>
 	material-
 	<?php	
-		} else if($db->checkOrderUser($_SESSION['username'])) {
+		} else if($db->checkOrderAndDeliveryUser($_SESSION['username'])) {
 	?>
 	order-
 	<?php	
