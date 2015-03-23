@@ -6,6 +6,7 @@ require_once("includes/header.php");
 $db = new Database($host, $userName, $password, $database);
 $db->openConnection();
 if(!$db->checkSuperUser($_SESSION['username'])) {
+	$db->closeConnection();
 	header("Location: index.php");
 }
 ?>
