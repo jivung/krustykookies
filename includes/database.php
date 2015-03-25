@@ -301,6 +301,7 @@ class Database {
 	*Increase the stored amount of chosen material.
 	*
 	*@param material the material to be increased.
+	*@param amount the amount by which to increase.
 	*
 	*/
 	public function addMaterialAmount($material, $amount) {
