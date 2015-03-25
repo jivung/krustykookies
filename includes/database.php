@@ -352,5 +352,16 @@ class Database {
 		return $result;
 	}
 	
+	public function editCustomer($userName, $fullName, $address) {
+		$sql = "INSERT INTO customerInfo(userName, fullName, address) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE fullName = ?, address = ?";
+		$result = $this->executeUpdate($sql, array($userName, $fullName, $address, $fullName, $address));
+	}
+	
+	public function getCustomerInfo($userName) {
+		$sql = "SELECT fullName, address FROM customerInfo WHERE userName = ?";
+		$result = $this->executeQuery($sql, array($userName));
+		return $result;
+	}
+	
 }
 ?>

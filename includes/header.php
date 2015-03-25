@@ -52,7 +52,8 @@ if(!$isLogedIn && !($loginPage || $readmePage)){
 						<li class="heading">Kund</li>
 						<li class="link"><a href="customer_order.php">Lägg ny beställning</a></li>
 						<li class="link"><a href="customer_orders.php">Mina beställningar</a></li>
-						
+						<hr>
+						<li class="link"><a href="customer_edit.php">Mina uppgifter</a></li>
 						<?php	
 							}
 							$db->closeConnection();

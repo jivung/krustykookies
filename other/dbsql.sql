@@ -72,12 +72,11 @@ CREATE TABLE users(
 );
 
 CREATE TABLE customerInfo(
-	id INT NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
 	userName VARCHAR(20) NOT NULL UNIQUE,
 	fullName VARCHAR(30) NOT NULL UNIQUE,
 	address VARCHAR(30) NOT NULL,
-	PRIMARY KEY(id),
-	FOREIGN KEY(id) REFERENCES users(id),
+	PRIMARY KEY(id, userName),
 	FOREIGN KEY(userName) REFERENCES users(userName)
 );
 
