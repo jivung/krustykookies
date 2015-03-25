@@ -76,6 +76,7 @@ if(!$isLogedIn && !($loginPage || $readmePage)){
 						?>
 						<li class="heading">Material & recept</li>
 						<li class="link"><a href="materials.php">Material</a></li>
+						<li class="link"><a href="recipes.php">Recept</a></li>
 						<?php	
 							}
 							$db->closeConnection();

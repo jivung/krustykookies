@@ -17,11 +17,20 @@
 		header("Location: ../index.php");
 		exit();
 	}
-	if(!empty($_POST['material'])) {
-		foreach($_POST['material'] as $selectedMaterial) {
-			$db->addMaterialAmount($selectedMaterial, $_POST['amount']);
+	
+	$recipe = $_POST['recipename'];
+	$ingredients = $db->getIngredients();
+	
+	if(isset($recipe)) {
+		$db->addRecipe($recipe);
+	foreach($ingredients as $ingredient) {
+		$amount = $_POST[$ingredient['name']];
+		if(!isset($amount)) {
+			$amount = '0';
 		}
+		$db->addRecipeIngredient($recipe, $ingredient['name'], $amount);
+	}
 	}
 	$db->closeConnection();
-	header("Location: ../materials.php?success");
+	header("Location: ../create_recipe.php?success");
 ?>

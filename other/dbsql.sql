@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS customerInfo;
 SET foreign_key_checks = 1;
 
 CREATE TABLE ingredients(
+	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(30),
 	amount INT,
 	PRIMARY KEY(name)
@@ -19,11 +20,12 @@ CREATE TABLE ingredients(
 
 CREATE TABLE ingredientDelivery(
 	id INT NOT NULL AUTO_INCREMENT,
+	ingredientId INT NOT NULL,
 	name VARCHAR(30),
 	amount INT,
 	deliveryTime INT(11) NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(name) REFERENCES ingredients(name)
+	FOREIGN KEY(id, name) REFERENCES ingredients(id, name)
 );
 
 CREATE TABLE recipes(

@@ -774,6 +774,30 @@ margin-left: 50px;
 
 /*
 
+		CREATE RECIPE FORM
+
+*/
+#createrecipe fieldset {
+width: 600px;
+padding: 0; 
+border: 1px solid #cecece; 
+font-family: Microsoft Tai le;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+}
+
+#createrecipe  legend {
+font-family: Microsoft Tai le;
+font-weight: normal;
+font-size: 18px;
+color: #000;
+letter-spacing: 3px; 
+margin-left: 50px;
+}
+
+/*
+
 		DELETE USERS
 
 */
@@ -863,6 +887,16 @@ text-decoration: underline;
 
 .input_field_amount {
 float: right;
+width: ;
+height: 30px;
+border: 1px solid #cecece; 
+padding: 5px; 
+font-size: 14px; 
+letter-spacing: 2px; 
+background-color: #FFFFFF;
+}
+
+.input_field_ingredient {
 width: ;
 height: 30px;
 border: 1px solid #cecece; 

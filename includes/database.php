@@ -352,6 +352,27 @@ class Database {
 		return $result;
 	}
 	
+	public function getRecipes() {
+		$sql = "SELECT * from recipes ORDER BY name";
+		return $this->executeQuery($sql);
+		
+	}
+	
+	public function addRecipe($recipeName) {
+		$sql = "INSERT INTO recipes(name) VALUES(?)";
+		$result = $this->executeUpdate($sql, array($recipeName));
+	}
+	
+	public function addRecipeIngredient($recipeName, $ingredientName, $amount) {
+		$sql = "INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES (?, ?, ?)";
+		$result = $this->executeUpdate($sql, array($recipeName, $ingredientName, $amount));
+	}
+	
+	public function getRecipeIngredients($recipeName) {
+		$sql = "SELECT * FROM ingredientsInRecipes WHERE recipeName = ? AND amount!=0";
+		return $this->executeQuery($sql, array($recipeName));
+	}
+	
 	public function editCustomer($userName, $fullName, $address) {
 		$sql = "INSERT INTO customerInfo(userName, fullName, address) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE fullName = ?, address = ?";
 		$result = $this->executeUpdate($sql, array($userName, $fullName, $address, $fullName, $address));

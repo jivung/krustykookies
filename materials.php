@@ -4,6 +4,10 @@ require_once("includes/database.php");
 require_once("includes/mysql_connect_data.php");
 require_once("includes/header.php");
 $db->openConnection();
+if(!($db->checkSuperUser($_SESSION['username']) == "1" || $db->checkMaterialUser($_SESSION['username']) == '1')) {
+	$db->closeConnection();
+	header("Location: index.php");
+}
 $ingredients = $db->getIngredients();
 $db->closeConnection();
 
@@ -61,7 +65,7 @@ if (isset($_GET['success'])) {
 		}
 		?>
 		</td>
-		<td style="background-color: #FFF"><input type="checkbox" name="material[ ]" value="<?php echo $ingredient['name']; ?>"/></d>
+		<td style="background-color: #FFF"><input type="checkbox" name="material[ ]" value="<?php echo $ingredient['name']; ?>"/></td>
 		
 		<!-- <td style="background-color: #FFF"><a href="includes/add_material_parse.php?mat=<?php echo $ingredient['name']; ?>">Lägg till</a></td> -->
 	</tr>
