@@ -303,9 +303,9 @@ class Database {
 	*@param material the material to be increased.
 	*
 	*/
-	public function addMaterialAmount($material) {
-		$sql = "UPDATE ingredients SET amount= amount+1000 WHERE name = ?";
-		$result = $this->executeUpdate($sql, array($material));
+	public function addMaterialAmount($material, $amount) {
+		$sql = "UPDATE ingredients SET amount = amount+? WHERE name = ?";
+		$result = $this->executeUpdate($sql, array($amount, $material));
 	}
 	
 	/**
@@ -314,7 +314,7 @@ class Database {
 	*@return all ingredients with name and amount.
 	*/
 	public function getIngredients(){
-		$sql = "SELECT * FROM ingredients";
+		$sql = "SELECT * FROM ingredients ORDER BY name";
 		return $this->executeQuery($sql);
 	}
 	

@@ -17,12 +17,11 @@
 		header("Location: ../index.php");
 		exit();
 	}
-	$material = $_GET['mat'];
-	
-	if(!isset($material)) {
-		header("Location: materials.php?false");
+	if(!empty($_POST['material'])) {
+		foreach($_POST['material'] as $selectedMaterial) {
+			$db->addMaterialAmount($selectedMaterial, $_POST['amount']);
+		}
 	}
-	$db->addMaterialAmount($material);
 	$db->closeConnection();
 	header("Location: ../materials.php?success");
 ?>

@@ -814,7 +814,7 @@ display: block;
 #materialtable {
 padding: 0;
 border-collapse:collapse;
-width: 700px;
+width: 730px;
 font-family: Microsoft Tai le;
 font-weight: normal;
 font-size: 16px;
@@ -839,4 +839,15 @@ background: #b8d1f3;
 /*  Define the background color for all the EVEN background rows  */
 #materialtable tr:nth-child(even){
 background: #dae5f4;
+}
+
+.input_field_amount {
+float: right;
+width: ;
+height: 30px;
+border: 1px solid #cecece; 
+padding: 5px; 
+font-size: 14px; 
+letter-spacing: 2px; 
+background-color: #FFFFFF;
 }
