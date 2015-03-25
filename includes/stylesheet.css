@@ -784,6 +784,11 @@ font-size: 18px;
 color: #000;
 }
 
+/*
+
+		SIMPLE ALIGNS
+
+*/
 .alignleft {
 	float: left;
 }
@@ -799,4 +804,39 @@ display: block;
 clear: both;
 content: "";
 display: block;
+}
+
+/*
+
+		MATERIAL TABLE
+
+*/
+#materialtable {
+padding: 0;
+border-collapse:collapse;
+width: 700px;
+font-family: Microsoft Tai le;
+font-weight: normal;
+font-size: 16px;
+color: #000;
+}
+
+#materialtable td{ 
+padding: 10px; 
+border: #FFF 1px solid;
+}
+
+/* provide some minimal visual accomodation for IE8 and below */
+#materialtable tr{
+background: #b8d1f3;
+border-top: 1px dotted #003366;
+border-bottom: 1px dotted #003366; 
+}
+/*  Define the background color for all the ODD background rows  */
+#materialtable tr:nth-child(odd){ 
+background: #b8d1f3;
+}
+/*  Define the background color for all the EVEN background rows  */
+#materialtable tr:nth-child(even){
+background: #dae5f4;
 }
