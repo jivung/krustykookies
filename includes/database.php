@@ -157,6 +157,22 @@ class Database {
 			return $res[0];
 		}
 	}
+	
+	/**
+	*Check if the user is an admin.
+	*Queries the users table in the database.
+	*
+	*@param userName The userName
+	*
+	*@return true if the user is a superuser.
+	*/
+	public function checkAdmin($userName) {
+		$sql = "SELECT isAdmin FROM users WHERE userName = ?";
+		$result = $this->executeQuery($sql, array($userName));
+		foreach($result as $res) {
+			return $res[0];
+		}
+	}
 		
 	/**
 	*Check if the user is a user in the material dept.
@@ -288,6 +304,10 @@ class Database {
 	public function getUserType($userName) {
 		if ($this->checkSuperUser($userName)) {
 			echo "Superuser";
+		} else if ($this->checkAdmin($userName)) {
+			echo "Administration";
+		} else if ($this->checkCustomer($userName)) {
+			echo "Kund";
 		} else if ($this->checkMaterialUser($userName)) {
 			echo "Material Department";
 		} else if ($this->checkProductionUser($userName)) {
@@ -307,6 +327,13 @@ class Database {
 	public function addMaterialAmount($material, $amount) {
 		$sql = "UPDATE ingredients SET amount = amount+? WHERE name = ?";
 		$result = $this->executeUpdate($sql, array($amount, $material));
+		$this->updateMaterialDelivery($material, $amount);
+	}
+	
+	private function updateMaterialDelivery($material, $amount) {
+		$sql = "INSERT INTO ingredientDelivery(name, amount, deliveryTime) VALUES(?, ?, UNIX_TIMESTAMP(now()))";
+		$result = $this->executeUpdate($sql, array($material, $amount));
+	
 	}
 	
 	/**
@@ -317,6 +344,12 @@ class Database {
 	public function getIngredients(){
 		$sql = "SELECT * FROM ingredients ORDER BY name";
 		return $this->executeQuery($sql);
+	}
+	
+	public function getLastDelivery($material) {
+		$sql = "SELECT amount, FROM_UNIXTIME(deliveryTime, '%Y-%m-%d, %H:%i') AS time FROM ingredientDelivery WHERE name = ? ORDER BY deliveryTime DESC LIMIT 1";
+		$result = $this->executeQuery($sql, array($material));
+		return $result;
 	}
 	
 }

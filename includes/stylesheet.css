@@ -841,6 +841,26 @@ background: #b8d1f3;
 background: #dae5f4;
 }
 
+a.material {
+color: #000;
+text-decoration: none;
+}
+
+a.material:visited {
+color: #000;
+text-decoration: none;
+}
+
+a.material:active {
+color: #000;
+text-decoration: none;
+}
+
+a.material:hover {
+color: #000;
+text-decoration: underline;
+}
+
 .input_field_amount {
 float: right;
 width: ;
@@ -850,4 +870,15 @@ padding: 5px;
 font-size: 14px; 
 letter-spacing: 2px; 
 background-color: #FFFFFF;
+}
+
+.lastDelivery{
+font-family: Microsoft Tai le;
+font-weight: normal;
+font-size: 16px;
+color: #000;
+}
+
+.lastDelivery.time {
+font-size: 12px;
 }

@@ -47,7 +47,7 @@ if(!$isLogedIn && !($loginPage || $readmePage)){
 						
 						<?php 
 							$db->openConnection();
-							if($db->checkCustomer($_SESSION['username'])) {
+							if($db->checkCustomer($_SESSION['username']) || $db->checkAdmin($_SESSION['username'])) {
 						?>
 						<li class="heading">Kund</li>
 						<li class="link"><a href="customer_order.php">Lägg ny beställning</a></li>

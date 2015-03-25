@@ -3,16 +3,27 @@ use krustyKookies;
 SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS ingredients;
 DROP TABLE IF EXISTS recipes;
+DROP TABLE IF EXISTS ingredientDelivery;
 DROP TABLE IF EXISTS ingredientsInRecipes;
 DROP TABLE IF EXISTS pallets;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS customerInfo;
 SET foreign_key_checks = 1;
 
 CREATE TABLE ingredients(
 	name VARCHAR(30),
 	amount INT,
 	PRIMARY KEY(name)
+);
+
+CREATE TABLE ingredientDelivery(
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(30),
+	amount INT,
+	deliveryTime INT(11) NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY(name) REFERENCES ingredients(name)
 );
 
 CREATE TABLE recipes(
@@ -47,16 +58,27 @@ CREATE TABLE pallets(
 	FOREIGN KEY(customerName) REFERENCES customers(name)
 );
 
-CREATE TABLE users (
-	id int NOT NULL AUTO_INCREMENT,
+CREATE TABLE users(
+	id INT NOT NULL AUTO_INCREMENT,
 	userName VARCHAR(20) NOT NULL UNIQUE,
 	passWord VARCHAR(60) NOT NULL,
 	isSuperUser TINYINT(1) DEFAULT 0,
+	isAdmin TINYINT(1) DEFAULT 0,
 	isMaterialUser TINYINT(1) DEFAULT 0,
 	isProductionUser TINYINT(1) DEFAULT 0,
 	isOrderUser TINYINT(1) DEFAULT 0,
 	isCustomer TINYINT(1) DEFAULT 0,
 	PRIMARY KEY(id)
+);
+
+CREATE TABLE customerInfo(
+	id INT NOT NULL,
+	userName VARCHAR(20) NOT NULL UNIQUE,
+	fullName VARCHAR(30) NOT NULL UNIQUE,
+	address VARCHAR(30) NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY(id) REFERENCES users(id),
+	FOREIGN KEY(userName) REFERENCES users(userName)
 );
 
 INSERT INTO ingredients VALUES ("Flour", 100000);

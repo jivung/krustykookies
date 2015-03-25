@@ -67,7 +67,8 @@ if(!$db->checkCustomer($_SESSION['username'])) {
 	<i>Det är så vi arbetar, helt enkelt.</i>
 </p>
 <p class="normaltext">
-- Michael Jivung, VD
+- Per Holm, VD<br /><br />
+<img src="includes/perholm.jpeg" />
 </p>
 <?php } ?>
 <?php $db->openConnection(); if(!$db->checkCustomer($_SESSION['username'])) { ?>
