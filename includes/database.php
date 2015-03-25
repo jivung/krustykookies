@@ -293,10 +293,26 @@ class Database {
 		} else if ($this->checkProductionUser($userName)) {
 			echo "Pallet/production Department";
 		} else if ($this->checkOrderAndDeliveryUser($userName)) {
-			echo "Order/delivery department";
+			echo "Order/delivery Department";
 		} 
 	}
 	
+	/**
+	*Increase the stored amount of chosen material.
+	*
+	*@param material the material to be increased.
+	*
+	*/
+	public function addMaterialAmount($material) {
+		$sql = "UPDATE ingredients SET amount= amount+1000 WHERE name = ?";
+		$result = $this->executeUpdate($sql, array($material));
+	}
+	
+	/**
+	*List all available ingredients and their properties.
+	*
+	*@return all ingredients with name and amount.
+	*/
 	public function getIngredients(){
 		$sql = "SELECT * FROM ingredients";
 		return $this->executeQuery($sql);
