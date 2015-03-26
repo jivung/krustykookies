@@ -4,6 +4,7 @@ $isLogedIn = isset($_SESSION['username']);
 if(!$isLogedIn && !($loginPage || $readmePage)){
 	header("Location: login.php");
 }
+$user = $_SESSION['user'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +34,7 @@ if(!$isLogedIn && !($loginPage || $readmePage)){
 						<input type="submit" class="submit_button_logout" name="submit" value="Logga ut" />
 					</form>
 				</div>
-				<div id="statuscontainer"> Du är inloggad som <b><?php echo $_SESSION['username']; ?></b></div>
+				<div id="statuscontainer"> Du är inloggad som <b><?php echo $user->getUsername(); ?></b></div>
 				<?php } ?>
 			</div>
 		</div>
@@ -45,61 +46,35 @@ if(!$isLogedIn && !($loginPage || $readmePage)){
 				<div id="leftbarcontent">
 					<ul>
 						
-						<?php 
-							$db->openConnection();
-							if($db->checkCustomer($_SESSION['username'])) {
-						?>
+						<?php if($user->isCustomerUser()) { ?>
 						<li class="heading">Kund</li>
 						<li class="link"><a href="customer_order.php">Lägg ny beställning</a></li>
 						<li class="link"><a href="customer_orders.php">Mina beställningar</a></li>
+						<?php } ?>
 						
-						<?php	
-							}
-							$db->closeConnection();
-						?>
-						<?php 
-							$db->openConnection();
-							if($db->checkSuperUser($_SESSION['username'])) {
-						?>
+						<?php if($user->isSuperUser()) { ?>
 						<li class="heading">Superuser</li>
 						<li class="link"><a href="log.php">Logg</a></li>
 						<li class="link"><a href="create_user.php">Skapa ny användare</a></li>
 						<li class="link"><a href="delete_user.php">Radera användare</a></li>
-						<?php	
-							}
-							$db->closeConnection();
-						?>
-						<?php 
-							$db->openConnection();
-							if($db->checkMaterialUser($_SESSION['username']) || $db->checkSuperUser($_SESSION['username'])) {
-						?>
+						<?php } ?>
+						
+						<?php if($user->isSuperUser() || $user->isMaterialUser()) { ?>
 						<li class="heading">Material & recept</li>
 						<li class="link"><a href="materials.php">Material</a></li>
-						<?php	
-							}
-							$db->closeConnection();
-						?>
-						<?php 
-							$db->openConnection();
-							if($db->checkProductionUser($_SESSION['username']) || $db->checkSuperUser($_SESSION['username'])) {
-						?>
+						<?php } ?>
+						
+						<?php if($user->isSuperUser() || $user->isProductionUser()) { ?>
 						<li class="heading">Pallar</li>
 						<li class="link"><a href="production.php">Produktion</a></li>
 						<li class="link"><a href="blocking.php">Blockering</a></li>
 						<li class="link"><a href="search.php">Sökning</a></li>
-						<?php	
-							}
-							$db->closeConnection();
-						?>
-						<?php 
-							$db->openConnection();
-							if($db->checkOrderAndDeliveryUser($_SESSION['username']) || $db->checkSuperUser($_SESSION['username'])) {
-						?>
+						<?php } ?>
+						
+						<?php if($user->isSuperUser() || $user->isOrderUser()) { ?>
 						<li class="heading">Ordrar & leveranser</li>
-						<?php	
-							}
-							$db->closeConnection();
-						?>
+						<?php } ?>
+						
 					</ul>
 				</div>
 			</div>

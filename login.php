@@ -1,6 +1,7 @@
 <?php
-require_once("includes/setup.php");
 require_once("includes/database.php");
+require_once("includes/user.php");
+require_once("includes/setup.php");
 require_once("includes/mysql_connect_data.php");
 $error = null;
 	
@@ -30,6 +31,7 @@ if(!empty($_POST)){
 	
 		$_SESSION['username'] = $user;
 		$_SESSION['db'] = $db;
+		$_SESSION['user'] = new User($user, $db->getUserType($user));
 	
 		// success!
 		header("Location: index.php");

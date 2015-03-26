@@ -285,7 +285,7 @@ class Database {
 	*
 	*@return the type of the user.
 	*/
-	public function getUserType($userName) {
+	public function printUserType($userName) {
 		if ($this->checkSuperUser($userName)) {
 			echo "Superuser";
 		} else if ($this->checkMaterialUser($userName)) {
@@ -295,6 +295,28 @@ class Database {
 		} else if ($this->checkOrderAndDeliveryUser($userName)) {
 			echo "Order/delivery department";
 		} 
+	}
+	
+	public function getUserType($username){
+		$this->openConnection();
+		$sql = "SELECT isSuperUser, isMaterialUser, isProductionUser, isOrderUser, isCustomer FROM users WHERE userName= ?";
+		$result = $this->executeQuery($sql, array($username));
+		$this->closeConnection();
+		if($result[0]['isSuperUser']){
+			return "super";
+		}
+		if($result[0]['isMaterialUser']){
+			return "material";
+		}
+		if($result[0]['isProductionUser']){
+			return "production";
+		}
+		if($result[0]['isOrderUser']){
+			return "order";
+		}
+		if($result[0]['isCustomer']){
+			return "customer";
+		}
 	}
 	
 	public function getIngredients(){
