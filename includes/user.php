@@ -14,6 +14,13 @@ class User {
 		return $this->username;
 	}	
 	
+	public function isAdmin(){
+		if($this->userType == 'admin'){
+			return true;
+		}
+		return false;
+	}
+	
 	public function isSuperUser(){
 		if($this->userType == 'super'){
 			return true;
@@ -52,19 +59,21 @@ class User {
 	public function echoUserType(){
 		if($this->isSuperUser()){
 			echo "Superuser";
-		} else if($){
+		} else if(1==1){
 			
 		}
 	}
 	
-	public function printUserType($userName) {
-		if ($this->checkSuperUser($userName)) {
+	public function printUserType() {
+		if ($this->isAdmin()) {
+			echo "Administratör";
+		} else if ($this->isSuperUser()) {
 			echo "Superuser";
-		} else if ($this->checkMaterialUser($userName)) {
+		} else if ($this->isMaterialUser()) {
 			echo "Material Department";
-		} else if ($this->checkProductionUser($userName)) {
+		} else if ($this->isProductionUser()) {
 			echo "Pallet/production Department";
-		} else if ($this->checkOrderAndDeliveryUser($userName)) {
+		} else if ($this->isOrderUser()) {
 			echo "Order/delivery department";
 		} 
 	}

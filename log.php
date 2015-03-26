@@ -1,15 +1,12 @@
 <?php
-require_once("includes/setup.php");
 require_once("includes/database.php");
+require_once("includes/user.php");
+require_once("includes/setup.php");
 require_once("includes/mysql_connect_data.php");
-require_once("includes/header.php");
-$db = new Database($host, $userName, $password, $database);
-$db->openConnection();
-if(!$db->checkSuperUser($_SESSION['username'])) {
-	$db->closeConnection();
+if(!$_SESSION['user']->isSuperUser()){
 	header("Location: index.php");
 }
-$db->closeConnection();
+require_once("includes/header.php");
 ?>
 
 <h1>Logg</h1>

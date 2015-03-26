@@ -54,15 +54,6 @@ class Database {
 		$this->conn = null;
 		unset($this->conn);
 	}
-
-	/**
-	 * Checks if the connection to the database has been established.
-	 *
-	 * @return true if the connection has been established
-	 */
-	public function isConnected() {
-		return isset($this->conn);
-	}
 	
 	/**
 	 * Execute a database query (select).
@@ -72,6 +63,7 @@ class Database {
 	 * @return The result set
 	 */
 	private function executeQuery($query, $param = null) {
+		$this->openConnection();
 		try {
 			$stmt = $this->conn->prepare($query);
 			$stmt->execute($param);
@@ -80,6 +72,7 @@ class Database {
 			$error = "*** Internal error: " . $e->getMessage() . "<p>" . $query;
 			die($error);
 		}
+		$this->closeConnection();
 		return $result;
 	}
 	
@@ -91,7 +84,7 @@ class Database {
 	 * @return The number of affected rows
 	 */
 	private function executeUpdate($query, $param = null) {
-		
+		$this->openConnection();
 		try {
 			$stmt = $this->conn->prepare($query);
 			$i=1;
@@ -104,6 +97,7 @@ class Database {
 			$error = "*** Internal error: " . $e->getMessage() . "<p>" . $query;
 			die($error);
 		}
+		$this->closeConnection();
 		return $result;
 	}
 	
@@ -136,106 +130,11 @@ class Database {
 		foreach($result as $pass){
 			$result = $pass[0];
 		}
+		
 		if (password_verify($passWord, $result)) {
 			return true;
 		}
 		return false;
-	}
-	
-	/**
-	*Check if the user is a superuser.
-	*Queries the users table in the database.
-	*
-	*@param userName The userName
-	*
-	*@return true if the user is a superuser.
-	*/
-	public function checkSuperUser($userName) {
-		$sql = "SELECT isSuperUser FROM users WHERE userName = ?";
-		$result = $this->executeQuery($sql, array($userName));
-		foreach($result as $res) {
-			return $res[0];
-		}
-	}
-	
-	/**
-	*Check if the user is an admin.
-	*Queries the users table in the database.
-	*
-	*@param userName The userName
-	*
-	*@return true if the user is a superuser.
-	*/
-	public function checkAdmin($userName) {
-		$sql = "SELECT isAdmin FROM users WHERE userName = ?";
-		$result = $this->executeQuery($sql, array($userName));
-		foreach($result as $res) {
-			return $res[0];
-		}
-	}
-		
-	/**
-	*Check if the user is a user in the material dept.
-	*Queries the users table in the database.
-	*
-	*@param userName The userName
-	*
-	*@return true if the user is a user in the material dept.
-	*/
-	public function checkMaterialUser($userName) {
-		$sql = "SELECT isMaterialUser FROM users WHERE userName= ?";
-		$result = $this->executeQuery($sql, array($userName));
-		foreach($result as $res) {
-			return $res[0];
-		}
-	}
-	
-	/**
-	*Check if the user is a user in the pallet (production) dept.
-	*Queries the users table in the database.
-	*
-	*@param userName The userName
-	*
-	*@return true if the user is a user in the pallet dept.
-	*/
-	public function checkProductionUser($userName) {
-		$sql = "SELECT isProductionUser FROM users WHERE userName= ?";
-		$result = $this->executeQuery($sql, array($userName));
-		foreach($result as $res) {
-			return $res[0];
-		}
-	}
-	
-	/**
-	*Check if the user is a user in the order and delivery dept.
-	*Queries the users table in the database.
-	*
-	*@param userName The userName
-	*
-	*@return true if the user is a user in the order and delivery dept.
-	*/
-	public function checkOrderAndDeliveryUser($userName) {
-		$sql = "SELECT isOrderUser FROM users WHERE userName = ?";
-		$result = $this->executeQuery($sql, array($userName));
-		foreach($result as $res) {
-			return $res[0];
-		}
-	}
-	
-	/**
-	*Check if the user is a customer.
-	*Queries the users table in the database..
-	*
-	*@param userName The userName
-	*
-	*@return true if the user is a user in the order and delivery dept.
-	*/
-	public function checkCustomer($userName) {
-		$sql = "SELECT isCustomer FROM users WHERE userName = ?";
-		$result = $this->executeQuery($sql, array($userName));
-		foreach($result as $res) {
-			return $res[0];
-		}
 	}
 	
 	/**
@@ -293,35 +192,12 @@ class Database {
 		return $result;
 	}
 	
-	
-	/**
-	*Get the user type of a specific user.
-	*
-	*@param userName name of the user.
-	*
-	*@return the type of the user.
-	*/
-	public function printUserType($userName) {
-		if ($this->checkSuperUser($userName)) {
-			echo "Superuser";
-		} else if ($this->checkAdmin($userName)) {
-			echo "Administration";
-		} else if ($this->checkCustomer($userName)) {
-			echo "Kund";
-		} else if ($this->checkMaterialUser($userName)) {
-			echo "Material Department";
-		} else if ($this->checkProductionUser($userName)) {
-			echo "Pallet/production Department";
-		} else if ($this->checkOrderAndDeliveryUser($userName)) {
-			echo "Order/delivery Department";
-		} 
-	}
-	
 	public function getUserType($username){
-		$this->openConnection();
 		$sql = "SELECT isSuperUser, isMaterialUser, isProductionUser, isOrderUser, isCustomer FROM users WHERE userName= ?";
 		$result = $this->executeQuery($sql, array($username));
-		$this->closeConnection();
+		if ($result[0]['isAdmin']) {
+			return "admin";
+		}
 		if($result[0]['isSuperUser']){
 			return "super";
 		}

@@ -1,18 +1,16 @@
 <?php
-require_once("includes/setup.php");
 require_once("includes/database.php");
+require_once("includes/user.php");
+require_once("includes/setup.php");
 require_once("includes/mysql_connect_data.php");
-require_once("includes/header.php");
-$db->openConnection();
-if(!($db->checkSuperUser($_SESSION['username']) == "1" || $db->checkMaterialUser($_SESSION['username']) == '1')) {
-	$db->closeConnection();
+if(!$_SESSION['user']->isSuperUser() && !$_SESSION['user']->isMaterialUser()){
 	header("Location: index.php");
 }
+require_once("includes/header.php");
 $recipe = $_GET['r'];
 $ingredients = $db->getRecipeIngredients($recipe);
-$db->closeConnection();
-
 ?>
+
 <h1><?php if(isset($_GET['r'])) { echo str_replace('_', ' ', $_GET['r']); } ?></h1>
 <p class="breadtext">
 	<a href="update_recipe.php">Uppdatera recept</a>

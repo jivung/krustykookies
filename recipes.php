@@ -1,17 +1,15 @@
 <?php
-require_once("includes/setup.php");
 require_once("includes/database.php");
+require_once("includes/user.php");
+require_once("includes/setup.php");
 require_once("includes/mysql_connect_data.php");
-require_once("includes/header.php");
-$db->openConnection();
-if(!($db->checkSuperUser($_SESSION['username']) == "1" || $db->checkMaterialUser($_SESSION['username']) == '1')) {
-	$db->closeConnection();
+if(!$_SESSION['user']->isSuperUser() && !$_SESSION['user']->isMaterialUser()){
 	header("Location: index.php");
 }
+require_once("includes/header.php");
 $recepies = $db->getRecipes();
-$db->closeConnection();
-
 ?>
+
 <h1>Recept</h1>
 <p class="breadtext">
 	<a href="create_recipe.php">Lägg till recept</a>

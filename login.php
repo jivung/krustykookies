@@ -8,11 +8,6 @@ $error = null;
 if(!empty($_POST)){
 
 	$db = new Database($host, $userName, $password, $database);
-	$db->openConnection();
-	
-	if (!$db->isConnected()) {
-		$error = 'connect';
-	}
 	
 	$user = str_replace(' ', '_', $_POST['krustyname']);
 	$userPassword = $_POST['krustypassword'];
@@ -24,8 +19,8 @@ if(!empty($_POST)){
 			$error = 'no_user';
 		}
 	}
-
-	$db->closeConnection();
+	
+	echo $error;
 	
 	if(!$error){
 	

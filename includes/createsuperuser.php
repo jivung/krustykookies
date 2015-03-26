@@ -11,10 +11,6 @@
 
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-	} 
 	$password = password_hash("password", PASSWORD_DEFAULT);
 
 	$sql = "INSERT INTO users (userName, passWord, isSuperUser) VALUES ('superuser', '".$password."', 1)";

@@ -1,15 +1,12 @@
 <?php
-require_once("includes/setup.php");
 require_once("includes/database.php");
+require_once("includes/user.php");
+require_once("includes/setup.php");
 require_once("includes/mysql_connect_data.php");
-require_once("includes/header.php");
-$db = new Database($host, $userName, $password, $database);
-$db->openConnection();
-if(!$db->checkCustomer($_SESSION['username'])) {
-	$db->closeConnection();
+if(!$_SESSION['user']->isCustomerUser()){
 	header("Location: index.php");
 }
-$db->closeConnection();
+require_once("includes/header.php");
 ?>
 
 <h1>Mina uppgifter</h1>
@@ -31,9 +28,7 @@ $db->closeConnection();
 </p>
 <p class="normaltext">
 <?php 
-$db->openConnection();
 $customer = $db->getCustomerInfo($_SESSION['username']);
-$db->closeConnection();
 foreach($customer as $cust) {
 ?>
 <b>Företagsnamn: </b><?php echo str_replace('_', ' ', $cust['fullName']); ?><br />

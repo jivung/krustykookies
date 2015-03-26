@@ -1,19 +1,15 @@
 <?php
-	require_once("setup.php");
 	require_once("database.php");
+	require_once("user.php");
+	require_once("setup.php");
 	require_once("mysql_connect_data.php");
 	$db = new Database($host, $userName, $password, $database);
-	$db->openConnection();
 
-	if (!$db->isConnected()) {
-		header("Location: ../login.php?connect_error");
-		exit();
-	}
 	if (!isset($_SESSION['username'])) {
 		header("Location: ../login.php");
 		exit();
 	}
-	if(!$db->checkCustomer($_SESSION['username']) == "1") {
+	if(!$_SESSION['user']->isCustomerUser()){
 		header("Location: ../index.php");
 		exit();
 	}
@@ -27,6 +23,5 @@
 	}
 	
 	$db->editCustomer($user, $fullname, $address);
-	$db->closeConnection();
 	header("Location: ../customer_edit.php?success");
 ?>

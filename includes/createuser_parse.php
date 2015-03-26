@@ -1,20 +1,16 @@
 <?php
-	require_once("setup.php");
 	require_once("database.php");
+	require_once("user.php");
+	require_once("setup.php");
 	require_once("mysql_connect_data.php");
 	$db = new Database($host, $userName, $password, $database);
-	$db->openConnection();
 
-	if (!$db->isConnected()) {
-		header("Location: ../login.php?connect_error");
-		exit();
-	}
 	if (!isset($_SESSION['username'])) {
 		header("Location: ../login.php");
 		exit();
 	}
-	if(!$db->checkSuperUser($_SESSION['username']) == "1") {
-		header("Location: ../index.php");
+	if(!$_SESSION['user']->isSuperUser()){
+		header("Location: index.php");
 		exit();
 	}
 	$user = str_replace(' ', '_', $_POST['krustyname']);
@@ -33,6 +29,5 @@
 	}
 	$password = password_hash($krustypass1, PASSWORD_DEFAULT);
 	$db->createUser($user, $password, $userType);
-	$db->closeConnection();
 	header("Location: ../create_user.php?success");
 ?>

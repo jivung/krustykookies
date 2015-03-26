@@ -95,7 +95,7 @@ CREATE TABLE numPallets(
 	orderId INT NOT NULL,
 	recipeName VARCHAR(30),
 	numPallets INT(11) DEFAULT 0,
-	PRIMARY KEY(id),
+	PRIMARY KEY(orderId),
 	FOREIGN KEY(orderId) REFERENCES orders(id),
 	FOREIGN KEY(recipeName) REFERENCES recipes(name)
 );

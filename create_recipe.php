@@ -1,16 +1,13 @@
 <?php
-require_once("includes/setup.php");
 require_once("includes/database.php");
+require_once("includes/user.php");
+require_once("includes/setup.php");
 require_once("includes/mysql_connect_data.php");
-require_once("includes/header.php");
-$db = new Database($host, $userName, $password, $database);
-$db->openConnection();
-if(!($db->checkSuperUser($_SESSION['username']) == "1" || $db->checkMaterialUser($_SESSION['username']) == '1')) {
-	$db->closeConnection();
+if(!$_SESSION['user']->isSuperUser() && !$_SESSION['user']->isMaterialUser()){
 	header("Location: index.php");
 }
+require_once("includes/header.php");
 $ingredients = $db->getIngredients();
-$db->closeConnection();
 ?>
 
 <h1>Lägg till recept</h1>
