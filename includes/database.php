@@ -157,6 +157,22 @@ class Database {
 			return $res[0];
 		}
 	}
+	
+	/**
+	*Check if the user is an admin.
+	*Queries the users table in the database.
+	*
+	*@param userName The userName
+	*
+	*@return true if the user is a superuser.
+	*/
+	public function checkAdmin($userName) {
+		$sql = "SELECT isAdmin FROM users WHERE userName = ?";
+		$result = $this->executeQuery($sql, array($userName));
+		foreach($result as $res) {
+			return $res[0];
+		}
+	}
 		
 	/**
 	*Check if the user is a user in the material dept.
@@ -288,12 +304,16 @@ class Database {
 	public function printUserType($userName) {
 		if ($this->checkSuperUser($userName)) {
 			echo "Superuser";
+		} else if ($this->checkAdmin($userName)) {
+			echo "Administration";
+		} else if ($this->checkCustomer($userName)) {
+			echo "Kund";
 		} else if ($this->checkMaterialUser($userName)) {
 			echo "Material Department";
 		} else if ($this->checkProductionUser($userName)) {
 			echo "Pallet/production Department";
 		} else if ($this->checkOrderAndDeliveryUser($userName)) {
-			echo "Order/delivery department";
+			echo "Order/delivery Department";
 		} 
 	}
 	
@@ -319,10 +339,82 @@ class Database {
 		}
 	}
 	
+	/**
+	*Increase the stored amount of chosen material.
+	*
+	*@param material the material to be increased.
+	*@param amount the amount by which to increase.
+	*
+	*/
+	public function addMaterialAmount($material, $amount) {
+		$sql = "UPDATE ingredients SET amount = amount+? WHERE name = ?";
+		$result = $this->executeUpdate($sql, array($amount, $material));
+		$this->updateMaterialDelivery($material, $amount);
+	}
+	
+	private function updateMaterialDelivery($material, $amount) {
+		$sql = "INSERT INTO ingredientDelivery(name, amount, deliveryTime) VALUES(?, ?, UNIX_TIMESTAMP(now()))";
+		$result = $this->executeUpdate($sql, array($material, $amount));
+	
+	}
+	
+	/**
+	*List all available ingredients and their properties.
+	*
+	*@return all ingredients with name and amount.
+	*/
 	public function getIngredients(){
-		$sql = "SELECT * FROM ingredients";
+		$sql = "SELECT * FROM ingredients ORDER BY name";
 		return $this->executeQuery($sql);
 	}
 	
+	public function getLastDelivery($material) {
+		$sql = "SELECT amount, FROM_UNIXTIME(deliveryTime, '%Y-%m-%d, %H:%i') AS time FROM ingredientDelivery WHERE name = ? ORDER BY deliveryTime DESC LIMIT 1";
+		$result = $this->executeQuery($sql, array($material));
+		return $result;
+	}
+	
+	public function getRecipes() {
+		$sql = "SELECT * from recipes ORDER BY name";
+		return $this->executeQuery($sql);
+		
+	}
+	
+	public function addRecipe($recipeName) {
+		$sql = "INSERT INTO recipes(name) VALUES(?)";
+		$result = $this->executeUpdate($sql, array($recipeName));
+	}
+	
+	public function addRecipeIngredient($recipeName, $ingredientName, $amount) {
+		$sql = "INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES (?, ?, ?)";
+		$result = $this->executeUpdate($sql, array($recipeName, $ingredientName, $amount));
+	}
+	
+	public function getRecipeIngredients($recipeName) {
+		$sql = "SELECT * FROM ingredientsInRecipes WHERE recipeName = ? AND amount!=0";
+		return $this->executeQuery($sql, array($recipeName));
+	}
+	
+	public function editCustomer($userName, $fullName, $address) {
+		$sql = "INSERT INTO customerInfo(userName, fullName, address) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE fullName = ?, address = ?";
+		$result = $this->executeUpdate($sql, array($userName, $fullName, $address, $fullName, $address));
+	}
+	
+	public function getCustomerInfo($userName) {
+		$sql = "SELECT fullName, address FROM customerInfo WHERE userName = ?";
+		$result = $this->executeQuery($sql, array($userName));
+		return $result;
+	}
+	
+	public function addOrder($customer) {
+		$sql = "INSERT INTO orders(customer, orderTime) VALUES(?, UNIX_TIMESTAMP(now()))";
+		$result = $this->executeUpdate($sql, array($customer));
+		
+	}
+	
+	public function addOrderPallets($order, $cookie, $amount) {
+		$sql = "INSERT INTO numPallets(orderId, recipeName, numPallets) values(?, ?, ?)";
+		$result = $this->executeUpdate($sql, array($order, $cookie, $amount));
+	}
 }
 ?>

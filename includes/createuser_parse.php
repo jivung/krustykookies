@@ -17,7 +17,7 @@
 		header("Location: ../index.php");
 		exit();
 	}
-	$user = $_POST['krustyname'];
+	$user = str_replace(' ', '_', $_POST['krustyname']);
 	$krustypass1 = $_POST['krustypassword'];
 	$krustypass2 = $_POST['krustypassword2'];
 	$userType = $_POST['kontotyp'];

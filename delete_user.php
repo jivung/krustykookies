@@ -9,7 +9,18 @@ if(!$db->checkSuperUser($_SESSION['username'])) {
 	$db->closeConnection();
 	header("Location: index.php");
 }
+$users = $db->listRegularUsers();
+$usersLength = count($users);
 ?>
+
+<script language="JavaScript">
+function toggle(source) {
+  checkboxes = document.getElementsByName('user[ ]');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    checkboxes[i].checked = source.checked;
+  }
+}
+</script>
 
 <h1>Radera användarkonto</h1>
 <?php
@@ -21,26 +32,31 @@ if(!$db->checkSuperUser($_SESSION['username'])) {
 <?php
 	}
 ?>
-<form name="deleteuser "id="deleteuser" method="POST" action="includes/deleteuser_parse.php">
-<label for="select">
-<p class="breadtext">Välj en eller flera (ctrl/shift+klick) användare att radera:</p>
-</label>
-<?php
-	$users = $db->listRegularUsers();
-	$usersLength = count($users);
-?>
-<select name="user[ ]" id="user" size="<?php echo $usersLength; ?>" multiple="multiple">
-<?php
-	foreach($users as $user => $u) {
-?>
-<option value="<?php echo $u['userName']; ?>"><?php echo $u['userName']; ?> - <?php $db->getUserType($u['userName']); ?></option>
-<?php
-	}
-?>
-</select>
-<br />
-<input type="submit" class="submit_button_login" style="float: right" name="submit" value="Radera användare" />
-</form>
+
+<table id="materialtable">
+	<tr>
+		<td style="background-color: #FFF"><b>Användarnamn</b></td>
+		<td style="background-color: #FFF"><b>Kontotyp</b></td>
+		<td style="background-color: #FFF"><input type="checkbox" onClick="toggle(this)" />Välj alla<br/></td>
+	</tr>
+	<form name="deleteuser "id="deleteuser" method="POST" action="includes/deleteuser_parse.php">
+	<?php foreach($users as $user){ ?>
+	<tr> 
+		<td><?php echo str_replace('_', ' ', $user['userName']); ?></td>
+		<td><?php $db->getUserType($user['userName']); ?></td>
+		
+		<td style="background-color: #FFF"><input type="checkbox" name="user[ ]" value="<?php echo $user['userName']; ?>"/></d>
+		
+		<!-- <td style="background-color: #FFF"><a href="includes/add_material_parse.php?mat=<?php echo $ingredient['name']; ?>">Lägg till</a></td> -->
+	</tr>
+	<?php } ?>
+	<tr>
+		<td style="background-color: #FFF"></td>
+		<td style="background-color: #FFF; padding-right: 0;"></td>
+		<td style="background-color: #FFF"><input type="submit" class="submit_button_login"" name="submit" value="Radera" /></td>
+	</tr>
+	</form>
+</table>
 <?php
 require_once("includes/footer.php");
 ?>

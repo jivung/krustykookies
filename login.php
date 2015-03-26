@@ -14,7 +14,7 @@ if(!empty($_POST)){
 		$error = 'connect';
 	}
 	
-	$user = $_POST['krustyname'];
+	$user = str_replace(' ', '_', $_POST['krustyname']);
 	$userPassword = $_POST['krustypassword'];
 	
 	if (empty($user) || empty($userPassword)) {
