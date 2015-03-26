@@ -17,6 +17,9 @@ $db->closeConnection();
 <p class="breadtext">
 	<a href="update_recipe.php">Uppdatera recept</a>
 </p>
+<p class="normaltext">
+Recept för 100 kakor.
+</P>
 <table id="materialtable">
 	<tr>
 		<td style="background-color: #FFF"><b>Ingrediens</b></td>

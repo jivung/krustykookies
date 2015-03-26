@@ -384,5 +384,10 @@ class Database {
 		return $result;
 	}
 	
+	public function addOrder($customer) {
+		
+		
+	}
+	
 }
 ?>

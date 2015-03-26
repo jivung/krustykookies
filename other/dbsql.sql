@@ -9,10 +9,11 @@ DROP TABLE IF EXISTS pallets;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS customerInfo;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS numPallets;
 SET foreign_key_checks = 1;
 
 CREATE TABLE ingredients(
-	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(30),
 	amount INT,
 	PRIMARY KEY(name)
@@ -20,12 +21,11 @@ CREATE TABLE ingredients(
 
 CREATE TABLE ingredientDelivery(
 	id INT NOT NULL AUTO_INCREMENT,
-	ingredientId INT NOT NULL,
 	name VARCHAR(30),
 	amount INT,
 	deliveryTime INT(11) NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(id, name) REFERENCES ingredients(id, name)
+	FOREIGN KEY(name) REFERENCES ingredients(name)
 );
 
 CREATE TABLE recipes(
@@ -53,7 +53,7 @@ CREATE TABLE pallets(
 	recipeName VARCHAR(30),
 	location VARCHAR(30),
 	isBlocked TINYINT(1),
-	deliveryDate DATE,
+	deliveryDate INT(11) NOT NULL,
 	customerName VARCHAR(30),
 	PRIMARY KEY(id),
 	FOREIGN KEY(recipeName) REFERENCES recipes(name),
@@ -80,6 +80,22 @@ CREATE TABLE customerInfo(
 	address VARCHAR(30) NOT NULL,
 	PRIMARY KEY(id, userName),
 	FOREIGN KEY(userName) REFERENCES users(userName)
+);
+
+CREATE TABLE orders(
+	id INT NOT NULL AUTO_INCREMENT,
+	orderTime INT(11) NOT NULL,
+	deliveryDate INT(11) NOT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE numPallets(
+	id INT NOT NULL,
+	recipeName VARCHAR(30),
+	numPallets INT(11) DEFAULT 0,
+	PRIMARY KEY(id),
+	FOREIGN KEY(id) REFERENCES orders(id),
+	FOREIGN KEY(recipeName) REFERENCES recipes(name)
 );
 
 INSERT INTO ingredients VALUES ("Flour", 100000);
