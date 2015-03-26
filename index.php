@@ -12,7 +12,7 @@ $db->openConnection();
 if(!$db->checkCustomer($_SESSION['username'])) {
 ?>
 <p class="breadtext">
-	Du är inloggad som <b><?php echo $_SESSION['username'] ?></b>, och har <i>
+	Du är inloggad som <b><?php echo str_replace('_', ' ', $_SESSION['username']); ?></b>, och har <i>
 	<?php 
 		$db->openConnection();
 		if($db->checkSuperUser($_SESSION['username'])) {

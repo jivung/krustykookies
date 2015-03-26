@@ -42,7 +42,7 @@ function toggle(source) {
 	<form name="deleteuser "id="deleteuser" method="POST" action="includes/deleteuser_parse.php">
 	<?php foreach($users as $user){ ?>
 	<tr> 
-		<td><?php echo $user['userName']; ?></td>
+		<td><?php echo str_replace('_', ' ', $user['userName']); ?></td>
 		<td><?php $db->getUserType($user['userName']); ?></td>
 		
 		<td style="background-color: #FFF"><input type="checkbox" name="user[ ]" value="<?php echo $user['userName']; ?>"/></d>

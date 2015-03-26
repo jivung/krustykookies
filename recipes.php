@@ -20,8 +20,8 @@ $db->closeConnection();
 	<?php
 	foreach($recepies as $recipe){ ?>
 	<tr> 
-		<td><a href="recipe.php?r=<?php echo $recipe['name']; ?>" class="material"><?php echo $recipe['name']; ?></a></td>	
-		<!-- <td style="background-color: #FFF"><a href="includes/add_material_parse.php?mat=<?php echo $ingredient['name']; ?>">Lägg till</a></td> -->
+		<td><a href="recipe.php?r=<?php echo $recipe['name']; ?>" class="material"><?php echo str_replace('_', ' ', $recipe['name']); ?></a></td>	
+		
 	</tr>
 	<?php } ?>
 </table>

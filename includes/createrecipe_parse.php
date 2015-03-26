@@ -18,18 +18,16 @@
 		exit();
 	}
 	
-	$recipe = $_POST['recipename'];
+	$recipe = str_replace(' ', '_', $_POST['recipename']);
+	$amount = 0;
 	$ingredients = $db->getIngredients();
 	
 	if(isset($recipe)) {
 		$db->addRecipe($recipe);
-	foreach($ingredients as $ingredient) {
-		$amount = $_POST[$ingredient['name']];
-		if(!isset($amount)) {
-			$amount = '0';
+		foreach($ingredients as $ingredient) {
+			if(isset($_POST[$ingredient['name']])) { $amount = $_POST[$ingredient['name']]; }
+			$db->addRecipeIngredient($recipe, $ingredient['name'], $amount);
 		}
-		$db->addRecipeIngredient($recipe, $ingredient['name'], $amount);
-	}
 	}
 	$db->closeConnection();
 	header("Location: ../create_recipe.php?success");

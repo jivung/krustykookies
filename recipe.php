@@ -13,7 +13,7 @@ $ingredients = $db->getRecipeIngredients($recipe);
 $db->closeConnection();
 
 ?>
-<h1><?php if(isset($_GET['r'])) { echo $_GET['r']; } ?></h1>
+<h1><?php if(isset($_GET['r'])) { echo str_replace('_', ' ', $_GET['r']); } ?></h1>
 <p class="breadtext">
 	<a href="update_recipe.php">Uppdatera recept</a>
 </p>
@@ -25,7 +25,7 @@ $db->closeConnection();
 	<?php
 	foreach($ingredients as $ingredient){ ?>
 	<tr> 
-		<td><?php echo $ingredient['ingredientName']; ?></td>	
+		<td><?php echo str_replace('_', ' ', $ingredient['ingredientName']); ?></td>	
 		<td><?php echo $ingredient['amount']; ?></td>
 	</tr>
 	<?php } ?>

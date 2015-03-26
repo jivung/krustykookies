@@ -17,9 +17,9 @@
 		header("Location: ../index.php");
 		exit();
 	}
-	$user = $_POST['userName'];
-	$fullname = $_POST['fullName'];
-	$address = $_POST['address'];
+	$user = str_replace(' ', ' ', $_POST['userName']);
+	$fullname = str_replace(' ', '_', $_POST['fullName']);
+	$address = str_replace(' ', '_', $_POST['address']);
 	
 	if(empty($user) || empty($fullname) || empty($address)) {
 		header("Location: ../customer_edit.php?empty");

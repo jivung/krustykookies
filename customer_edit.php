@@ -36,8 +36,8 @@ $customer = $db->getCustomerInfo($_SESSION['username']);
 $db->closeConnection();
 foreach($customer as $cust) {
 ?>
-<b>Företagsnamn: </b><?php echo $cust['fullName']; ?><br />
-<b>Address: </b><?php echo $cust['address']; ?></br >
+<b>Företagsnamn: </b><?php echo str_replace('_', ' ', $cust['fullName']); ?><br />
+<b>Address: </b><?php echo str_replace('_', ' ', $cust['address']); ?></br >
 <?php
 }
 ?>

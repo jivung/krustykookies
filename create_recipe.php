@@ -39,8 +39,8 @@ $db->closeConnection();
 		<?php
 		foreach($ingredients as $ingredient){ ?>
 			<tr> 
-				<td><?php echo $ingredient['name'] ?></td>	
-				<td><input type="text" class="input_field_ingredient" name="<?php echo $ingredient['name'] ?>" placeholder="mängd (g)"/></td>
+				<td><?php echo str_replace('_', ' ', $ingredient['name']); ?></td>	
+				<td><input type="text" class="input_field_ingredient" name="<?php echo $ingredient['name']; ?>" placeholder="mängd (g)"/></td>
 			</tr>
 		<?php } ?>
 		<tr>

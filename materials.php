@@ -46,7 +46,7 @@ if (isset($_GET['success'])) {
 	$db->closeConnection();
 	?>
 	<tr> 
-		<td><a href="material.php?<?php echo $ingredient['name']; ?>" class="material"><?php echo $ingredient['name']; ?></a></td>
+		<td><a href="material.php?<?php echo $ingredient['name']; ?>" class="material"><?php echo str_replace('_', ' ', $ingredient['name']); ?></a></td>
 		<td><?php echo $ingredient['amount']; ?></td>
 		<td>
 		<span class="lastDelivery">

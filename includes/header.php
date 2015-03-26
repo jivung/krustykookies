@@ -33,7 +33,7 @@ if(!$isLogedIn && !($loginPage || $readmePage)){
 						<input type="submit" class="submit_button_logout" name="submit" value="Logga ut" />
 					</form>
 				</div>
-				<div id="statuscontainer"> Du är inloggad som <b><?php echo $_SESSION['username']; ?></b></div>
+				<div id="statuscontainer"> Du är inloggad som <b><?php echo str_replace('_', ' ', $_SESSION['username']); ?></b></div>
 				<?php } ?>
 			</div>
 		</div>
