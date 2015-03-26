@@ -84,17 +84,19 @@ CREATE TABLE customerInfo(
 
 CREATE TABLE orders(
 	id INT NOT NULL AUTO_INCREMENT,
+	customer VARCHAR(20),
 	orderTime INT(11) NOT NULL,
 	deliveryDate INT(11) NOT NULL,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	FOREIGN KEY(customer) references customerInfo(userName)
 );
 
 CREATE TABLE numPallets(
-	id INT NOT NULL,
+	orderId INT NOT NULL,
 	recipeName VARCHAR(30),
 	numPallets INT(11) DEFAULT 0,
 	PRIMARY KEY(id),
-	FOREIGN KEY(id) REFERENCES orders(id),
+	FOREIGN KEY(orderId) REFERENCES orders(id),
 	FOREIGN KEY(recipeName) REFERENCES recipes(name)
 );
 

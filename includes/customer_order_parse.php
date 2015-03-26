@@ -26,7 +26,7 @@
 		$db->addOrder($customer);
 		foreach($cookies as $cookie) {
 			if(isset($_POST[$cookie['name']])) { $amount = $_POST[$cookie['name']]; }
-			$db->addOrderPallet($customer, $cookie['name'], $amount);
+			$db->addOrderPallets($order, $cookie['name'], $amount);
 		}
 	}
 	$db->closeConnection();

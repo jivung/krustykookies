@@ -385,9 +385,14 @@ class Database {
 	}
 	
 	public function addOrder($customer) {
-		
+		$sql = "INSERT INTO orders(customer, orderTime) VALUES(?, UNIX_TIMESTAMP(now()))";
+		$result = $this->executeUpdate($sql, array($customer));
 		
 	}
 	
+	public function addOrderPallets($order, $cookie, $amount) {
+		$sql = "INSERT INTO numPallets(orderId, recipeName, numPallets) values(?, ?, ?)";
+		$result = $this->executeUpdate($sql, array($order, $cookie, $amount));
+	}
 }
 ?>
