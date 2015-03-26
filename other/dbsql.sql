@@ -119,3 +119,48 @@ INSERT INTO ingredients VALUES ("Vanilla", 100000);
 INSERT INTO ingredients VALUES ("Chopped_almonds", 100000);
 INSERT INTO ingredients VALUES ("Cinnamon", 100000);
 INSERT INTO ingredients VALUES ("Vanilla_sugar", 100000);
+
+INSERT INTO recipes(name) VALUES("Nut Ring");
+INSERT INTO recipes(name) VALUES("Nut Cookie");
+INSERT INTO recipes(name) VALUES("Amneris");
+INSERT INTO recipes(name) VALUES("Tango");
+INSERT INTO recipes(name) VALUES("Almond delight");
+INSERT INTO recipes(name) VALUES("Berliner");
+
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Nut Ring", "Flour", 450);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Nut Ring", "Butter", 450);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Nut Ring", "Icing_sugar", 190);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Nut Ring", "Roasted_chopped_nuts", 225);
+
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Nut cookie", "Fine-ground_nuts", 750);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Nut cookie", "Ground_roasted_nuts", 625);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Nut cookie", "Bread_crumbs", 125);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Nut cookie", "Sugar", 375);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Nut cookie", "Egg_whites", 350);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Nut cookie", "Chocolate", 50);
+
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Amneris", "Marzipan", 750);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Amneris", "Butter", 250);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Amneris", "Eggs", 250);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Amneris", "Potato_starch", 25);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Amneris", "Wheat_flour", 25);
+
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Tango", "Butter", 200);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Tango", "Sugar", 270);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Tango", "Flour", 300);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Tango", "Sodium_bicarbonate", 4);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Tango", "Vanilla", 2);
+
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Almond delight", "Butter", 400);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Almond delight", "Sugar", 270);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Almond delight", "Chopped_almonds", 279);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Almond delight", "Flour", 400);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Almond delight", "Cinnamon", 10);
+
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Flour", 350);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Butter", 250);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Icing_sugar", 100);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Eggs", 50);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Vanilla_sugar", 5);
+INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Chocolate", 50);
+

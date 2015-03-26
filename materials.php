@@ -17,7 +17,7 @@ function toggle(source) {
     checkboxes[i].checked = source.checked;
   }
 }
-</script>
+</script>      
 <h1>Material</h1>
 <?php
 if (isset($_GET['success'])) {

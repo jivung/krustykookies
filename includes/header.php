@@ -50,6 +50,8 @@ $user = $_SESSION['user'];
 						<li class="heading">Kund</li>
 						<li class="link"><a href="customer_order.php">Lägg ny beställning</a></li>
 						<li class="link"><a href="customer_orders.php">Mina beställningar</a></li>
+						<hr>
+						<li class="link"><a href="customer_edit.php">Mina uppgifter</a></li>
 						<?php } ?>
 						
 						<?php if($user->isSuperUser()) { ?>
@@ -62,6 +64,7 @@ $user = $_SESSION['user'];
 						<?php if($user->isSuperUser() || $user->isMaterialUser()) { ?>
 						<li class="heading">Material & recept</li>
 						<li class="link"><a href="materials.php">Material</a></li>
+						<li class="link"><a href="recipes.php">Recept</a></li>
 						<?php } ?>
 						
 						<?php if($user->isSuperUser() || $user->isProductionUser()) { ?>
