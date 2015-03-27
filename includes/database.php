@@ -292,5 +292,54 @@ class Database {
 		$sql = "INSERT INTO numPallets(orderId, recipeName, numPallets) values(?, ?, ?)";
 		$result = $this->executeUpdate($sql, array($order, $cookie, $amount));
 	}
+	
+	public function checkRecipeIngredients($recipeName){
+		$numIngredients = count($this->getRecipeIngredients($recipeName));
+		$sql = "SELECT count(*) FROM ingredients JOIN ingredientsInRecipes ON ingredients.name=ingredientsInRecipes.ingredientName WHERE recipeName=? AND ingredients.amount>=ingredientsInRecipes.amount";
+		$result = $this->executeQuery($sql, array($recipeName));
+		if($result[0][0] == $numIngredients){
+			return true;
+		}
+		return false;
+	}
+	
+	public function addPallet($recipeName){
+		$sql = "INSERT INTO pallets(recipeName, location, isBlocked, deliveryDate, customerName) VALUE (?, 'Freeze storage', 0, null, null)";
+		$result = $this->executeUpdate($sql, array($recipeName));
+		if($result){
+			$ingredients = $this->getRecipeIngredients($recipeName);
+			foreach($ingredients as $ingredient){
+				$sql = "UPDATE ingredients SET amount = amount-? WHERE name=?";
+				$this->executeUpdate($sql, array($ingredient['amount'], $ingredient['ingredientName']));
+			}
+		}
+	}
+	
+	public function getPallets(){
+		$sql = "SELECT * FROM pallets";
+		$result = $this->executeQuery($sql);
+		$pallets = array();
+		foreach($result as $res){
+			$pallets[] = new Pallet($res['id'], $res['recipeName'], $res['location'], $res['deliveryDate'], $res['isBlocked'], $res['customerName']);
+		}
+		return $pallets;
+	}
+	
+	public function getPallet($id){
+		$sql = "SELECT * FROM pallets WHERE id=?";
+		$result = $this->executeQuery($sql, array($id));
+		if(count($result)){
+			return new Pallet($result[0]['id'], $result[0]['recipeName'], $result[0]['location'], $result[0]['deliveryDate'], $result[0]['isBlocked'], $result[0]['customerName']);
+		}
+		return null;
+	}
+	
 }
+
+function echo_array($array){
+	echo "<pre>";
+	print_r($array);
+	echo "</pre>";
+}
+
 ?>

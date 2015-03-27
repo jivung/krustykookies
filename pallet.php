@@ -6,11 +6,7 @@ require_once("includes/mysql_connect_data.php");
 require_once("includes/header.php");
 ?>
 
-<h1>Produktion</h1>
-
-<form>
-	
-</form>
+<h1>Pall</h1>
 
 <?php
 require_once("includes/footer.php");

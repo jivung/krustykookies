@@ -68,10 +68,8 @@ $user = $_SESSION['user'];
 						<?php } ?>
 						
 						<?php if($user->isSuperUser() || $user->isProductionUser()) { ?>
-						<li class="heading">Pallar</li>
-						<li class="link"><a href="production.php">Produktion</a></li>
-						<li class="link"><a href="blocking.php">Blockering</a></li>
-						<li class="link"><a href="search.php">Sökning</a></li>
+						<li class="heading">Produktion</li>
+						<li class="link"><a href="pallets.php">Pallar</a></li>
 						<?php } ?>
 						
 						<?php if($user->isSuperUser() || $user->isOrderUser()) { ?>

@@ -18,28 +18,37 @@ class Pallet{
 		$this->customerName = $customerName;
 	}
 	
-	public getId(){
+	public function getId(){
 		return $this->id;
 	}
 	
-	public getRecipeName(){
+	public function getRecipeName(){
 		return $this->recipeName;
 	}
 	
-	public getLocation(){
+	public function getLocation(){
 		return $this->location;
 	}
 	
-	public getDeliveryDate(){
-		return $this->deliveryDate;
+	public function getDeliveryDate(){
+		if($this->deliveryDate != null){
+			return $this->deliveryDate;
+		}
+		return "-";
 	}
 	
-	public isBlocked(){
-		return $this->isBlocked;
+	public function isBlocked(){
+		if($this->isBlocked){
+			return "Ja";
+		}
+		return "Nej";
 	}
 	
-	public getCustomerName(){
-		return $this->customerName;
+	public function getCustomerName(){
+		if($this->customerName != null){
+			return $this->customerName;
+		}
+		return "-";
 	}
 	
 }
