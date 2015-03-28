@@ -295,7 +295,7 @@ class Database {
 	
 	public function checkRecipeIngredients($recipeName){
 		$numIngredients = count($this->getRecipeIngredients($recipeName));
-		$sql = "SELECT count(*) FROM ingredients JOIN ingredientsInRecipes ON ingredients.name=ingredientsInRecipes.ingredientName WHERE recipeName=? AND ingredients.amount>=ingredientsInRecipes.amount";
+		$sql = "SELECT count(*) FROM ingredients JOIN ingredientsInRecipes ON ingredients.name=ingredientsInRecipes.ingredientName WHERE recipeName=? AND ingredients.amount>=ingredientsInRecipes.amount*54";
 		$result = $this->executeQuery($sql, array($recipeName));
 		if($result[0][0] == $numIngredients){
 			return true;
@@ -304,36 +304,56 @@ class Database {
 	}
 	
 	public function addPallet($recipeName){
-		$sql = "INSERT INTO pallets(recipeName, location, isBlocked, deliveryDate, customerName) VALUE (?, 'Freeze storage', 0, null, null)";
+		$sql = "INSERT INTO pallets(recipeName, location, isBlocked, productionTime, deliveryTime, customerName) VALUE (?, 'Freeze storage', 0, UNIX_TIMESTAMP(now()), null, null)";
 		$result = $this->executeUpdate($sql, array($recipeName));
 		if($result){
 			$ingredients = $this->getRecipeIngredients($recipeName);
 			foreach($ingredients as $ingredient){
-				$sql = "UPDATE ingredients SET amount = amount-? WHERE name=?";
+				$sql = "UPDATE ingredients SET amount = amount-?*54 WHERE name=?";
 				$this->executeUpdate($sql, array($ingredient['amount'], $ingredient['ingredientName']));
 			}
 		}
 	}
 	
-	public function getPallets(){
+	public function getPallets($id = NULL, $recipeName, $fromTime = NULL, $toTime = NULL){
+		
 		$sql = "SELECT * FROM pallets";
-		$result = $this->executeQuery($sql);
+		$params = array();
+		if($id || ($recipeName && $recipeName!="all") || $fromTime || $toTime){
+			$sql .= " WHERE ";
+			if($id){
+				$sql .= "id=?";
+				$params[] = $id;
+			}
+			if($recipeName && $recipeName!="all"){
+				if(count($params)){
+					$sql .= " AND ";
+				}
+				$sql .= "recipeName=?";
+				$params[] = $recipeName;
+			}
+			if($fromTime){
+				if(count($params)){
+					$sql .= " AND ";
+				}
+				$sql .= "productionTime>=?";
+				$params[] = $fromTime;
+			}
+			if($toTime){
+				if(count($params)){
+					$sql .= " AND ";
+				}
+				$sql .= "productionTime<=?";
+				$params[] = $toTime;
+			}
+		}
+		$result = $this->executeQuery($sql, $params);
 		$pallets = array();
 		foreach($result as $res){
-			$pallets[] = new Pallet($res['id'], $res['recipeName'], $res['location'], $res['deliveryDate'], $res['isBlocked'], $res['customerName']);
+			$pallets[] = new Pallet($res['id'], $res['recipeName'], $res['location'], $res['productionTime'], $res['deliveryTime'], $res['isBlocked'], $res['customerName']);
 		}
 		return $pallets;
 	}
-	
-	public function getPallet($id){
-		$sql = "SELECT * FROM pallets WHERE id=?";
-		$result = $this->executeQuery($sql, array($id));
-		if(count($result)){
-			return new Pallet($result[0]['id'], $result[0]['recipeName'], $result[0]['location'], $result[0]['deliveryDate'], $result[0]['isBlocked'], $result[0]['customerName']);
-		}
-		return null;
-	}
-	
 }
 
 function echo_array($array){
