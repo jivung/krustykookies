@@ -55,7 +55,7 @@ $user = $_SESSION['user'];
 						<?php } ?>
 						
 						<?php if($user->isSuperUser()) { ?>
-						<li class="heading">Superuser</li>
+						<li class="heading">Administration</li>
 						<li class="link"><a href="log.php">Logg</a></li>
 						<li class="link"><a href="create_user.php">Skapa ny användare</a></li>
 						<li class="link"><a href="delete_user.php">Radera användare</a></li>
@@ -69,7 +69,8 @@ $user = $_SESSION['user'];
 						
 						<?php if($user->isSuperUser() || $user->isProductionUser()) { ?>
 						<li class="heading">Produktion</li>
-						<li class="link"><a href="pallets.php">Pallar</a></li>
+						<li class="link"><a href="pallets.php">Producera/sök pallar</a></li>
+						<li class="link"><a href="blocking.php">Blockera pallar</a></li>
 						<?php } ?>
 						
 						<?php if($user->isSuperUser() || $user->isOrderUser()) { ?>

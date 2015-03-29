@@ -165,3 +165,13 @@ INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Be
 INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Vanilla_sugar", 5);
 INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Chocolate", 50);
 
+INSERT INTO customers(name, address) VALUES ("Finkakor AB", "Helsingborg");
+INSERT INTO customers(name, address) VALUES ("Småbröd AB", "Malmö");
+INSERT INTO customers(name, address) VALUES ("Kaffebröd AB", "Landskrona");
+INSERT INTO customers(name, address) VALUES ("Bjudkakor AB", "Ystad");
+INSERT INTO customers(name, address) VALUES ("Kalaskakor AB", "Trelleborg");
+INSERT INTO customers(name, address) VALUES ("Partykakor AB", "Kristianstad");
+INSERT INTO customers(name, address) VALUES ("Gästkakor AB", "Hässleholm");
+INSERT INTO customers(name, address) VALUES ("Skånekakor AB", "Perstorp");
+
+

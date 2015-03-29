@@ -38,7 +38,7 @@ class Pallet{
 	
 	public function getDeliveryTime(){
 		if($this->deliveryTime != null){
-			return $this->deliveryTime;
+			return date("Y-m-d H:i", $this->productionTime);
 		}
 		return "-";
 	}
@@ -52,7 +52,7 @@ class Pallet{
 	
 	public function getCustomerName(){
 		if($this->customerName != null){
-			return date("Y-n-j", $this->customerName);
+			return $this->customerName;
 		}
 		return "-";
 	}

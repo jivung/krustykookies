@@ -5,11 +5,6 @@ require_once("includes/user.php");
 require_once("includes/setup.php");
 require_once("includes/mysql_connect_data.php");
 
-function validateDate($date){
-    $d = DateTime::createFromFormat("Y-m-d H:i", $date);
-    return $d && $d->format("Y-m-d H:i") == $date;
-}
-
 $db = new Database($host, $userName, $password, $database);
 
 // Skapar ny pall
@@ -42,7 +37,7 @@ if(!empty($_POST['toTime'])){
 }
 
 // Hämtar sökta pallar
-$pallets = $db->getPallets($_POST['id'], $_POST['recipeName'], $fromTime, $toTime);
+$pallets = $db->getPallets($_POST['id'], $_POST['recipeName'], $fromTime, $toTime, $_POST['isBlocked'], $_POST['customerName']);
 
 require_once("includes/header.php");
 ?>
@@ -84,7 +79,6 @@ if($insufficientIngredients){
 			<td>Recept</td>
 			<td>Tidigaste produktionstid</td>
 			<td>Senaste produktionstid</td>
-			<td></td>
 		</tr>
 		<tr>
 			<td>
@@ -112,11 +106,38 @@ if($insufficientIngredients){
 			<td>
 				<input type="text" name="toTime" placeholder="ÅÅÅÅ-MM-DD TT:MM" value="<?php if($_POST['toTime']){ echo $_POST['toTime']; } ?>" />
 			</td>
+		</tr>
+		<tr>
+			<td>Är blockerad</td>
+			<td>Levererad till</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" name="isBlocked" <?php if($_POST['isBlocked']){ echo "checked"; } ?>/>
+			</td>
+			<?php $db->getCustomers(); ?>
+			<td>
+				<select name="customerName">
+				<option value="all">Alla kunder</option>
+				<?php 
+				$customers = $db->getCustomers();
+				foreach($customers as $customer){
+					if($_POST['customerName'] == $customer['name']){
+						echo "<option selected>"; 
+					} else{
+						echo "<option>";
+					}
+					echo $customer['name'] . "</option>";
+				} 
+				?>
+				</select>
+			</td>
+		</tr>
+		<tr>
 			<td>
 				<input type="submit" name="search" value="Sök" />
 			</td>
 		</tr>
-		
 	</table>
 
 </form>
@@ -142,7 +163,7 @@ if($toTimeError){
 		<td style="background-color: #FFF"><b>Recept</b></td>
 		<td style="background-color: #FFF"><b>Plats</b></td>
 		<td style="background-color: #FFF"><b>Produktionstid</b></td>
-		<td style="background-color: #FFF"><b>Är blockerad</b></td>
+		<td style="background-color: #FFF"><b>Blockerad</b></td>
 		<td style="background-color: #FFF"><b>Kund</b></td>
 		<td style="background-color: #FFF"><b>Leveranstid</b></td>
 	</tr>

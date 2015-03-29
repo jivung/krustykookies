@@ -35,7 +35,7 @@ class Database {
 	 */
 	public function openConnection() {
 		try {
-			$this->conn = new PDO("mysql:host=$this->host;dbname=$this->database", 
+			$this->conn = new PDO("mysql:host=$this->host;dbname=$this->database;charset=utf8", 
 					$this->userName,  $this->password);
 			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
@@ -98,7 +98,7 @@ class Database {
 			die($error);
 		}
 		$this->closeConnection();
-		return $result;
+		return $stmt->rowCount();
 	}
 	
 	/**
@@ -276,6 +276,12 @@ class Database {
 		$result = $this->executeUpdate($sql, array($userName, $fullName, $address, $fullName, $address));
 	}
 	
+	public function getCustomers() {
+		$sql = "SELECT * FROM customers";
+		$result = $this->executeQuery($sql);
+		return $result;
+	}
+	
 	public function getCustomerInfo($userName) {
 		$sql = "SELECT fullName, address FROM customerInfo WHERE userName = ?";
 		$result = $this->executeQuery($sql, array($userName));
@@ -304,7 +310,7 @@ class Database {
 	}
 	
 	public function addPallet($recipeName){
-		$sql = "INSERT INTO pallets(recipeName, location, isBlocked, productionTime, deliveryTime, customerName) VALUE (?, 'Freeze storage', 0, UNIX_TIMESTAMP(now()), null, null)";
+		$sql = "INSERT INTO pallets(recipeName, location, isBlocked, productionTime, deliveryTime, customerName) VALUE (?, 'Frysrum', 0, UNIX_TIMESTAMP(now()), null, null)";
 		$result = $this->executeUpdate($sql, array($recipeName));
 		if($result){
 			$ingredients = $this->getRecipeIngredients($recipeName);
@@ -315,11 +321,10 @@ class Database {
 		}
 	}
 	
-	public function getPallets($id = NULL, $recipeName, $fromTime = NULL, $toTime = NULL){
-		
+	public function getPallets($id = NULL, $recipeName, $fromTime = NULL, $toTime = NULL, $isBlocked, $customerName){
 		$sql = "SELECT * FROM pallets";
 		$params = array();
-		if($id || ($recipeName && $recipeName!="all") || $fromTime || $toTime){
+		if($id || ($recipeName && $recipeName!="all") || $fromTime || $toTime || $isBlocked || ($customerName && $customerName!="all")){
 			$sql .= " WHERE ";
 			if($id){
 				$sql .= "id=?";
@@ -346,6 +351,19 @@ class Database {
 				$sql .= "productionTime<=?";
 				$params[] = $toTime;
 			}
+			if($customerName && $customerName!="all"){
+				if(count($params)){
+					$sql .= " AND ";
+				}
+				$sql .= "customerName=?";
+				$params[] = $customerName;
+			}
+			if($isBlocked){
+				if(count($params)){
+					$sql .= " AND ";
+				}
+				$sql .= "isBlocked=1";
+			}
 		}
 		$result = $this->executeQuery($sql, $params);
 		$pallets = array();
@@ -354,12 +372,35 @@ class Database {
 		}
 		return $pallets;
 	}
+	
+	
+	public function blockPallets($recipeName, $fromTime = NULL, $toTime = NULL){
+		$sql = "UPDATE pallets SET isBlocked=1 WHERE isBlocked != 1 AND recipeName=?";
+		$params = array($recipeName);
+		if($fromTime || $toTime){
+			if($fromTime){
+				$sql .= " AND productionTime>=?";
+				$params[] = $fromTime;
+			}
+			if($toTime){
+				$sql .= " AND productionTime<=?";
+				$params[] = $toTime;
+			}
+		}
+		return $this->executeUpdate($sql, $params);
+	}
+	
 }
 
 function echo_array($array){
 	echo "<pre>";
 	print_r($array);
 	echo "</pre>";
+}
+
+function validateDate($date){
+    $d = DateTime::createFromFormat("Y-m-d H:i", $date);
+    return $d && $d->format("Y-m-d H:i") == $date;
 }
 
 ?>
