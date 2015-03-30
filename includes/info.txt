@@ -1,4 +1,20 @@
 <h1>Info</h1>
-<p class="breadtext">Vad är meningen med livet, varför existerar vi?</p>
-<p class="normaltext">Inte fan vet jag.</p>
-<p class="footnote">- Michael Jivung, Lund 2014</p>
+<p class="breadtext">
+As part of our studies at the Information- and Communication-technology program at Lunds Tekniska Högskola (Lund), we have attended the mandatory course Database Technology (EDA216, 7,5 HP) in year two. 
+</p>
+<p class="breadtext">
+During the span of this course we had a compulsory project. The project consisted of the following three parts; database modeling, database implementation, and development of the user interface.
+</p>
+<p class="breadtext">
+The database modeling consists of a complete E/R-diagram, as well as a relation model. 
+</p>
+<p class="breadtext">
+Implementation of the database is complete, although some functions are only to be simulated (or excluded) in the system for convenient testing (production times etc). The database management system to be used is free of choice.
+</p>
+<p class="breadtext">
+The language of the graphical user interface, in other words the program itself, is also free of choice.
+</p>
+<p class="breadtext">
+The system we were to develop in this project is a database system ordered by the imaginary cookie company Krusty Kookies Sweden AB, for the production, and handling of orders, of their products - cookies.  
+</p>
+<p class="normaltext">- Johan Andersson & Michael Jivung, Lund 2014</p>
