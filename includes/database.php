@@ -484,10 +484,14 @@ function echo_array($array){
 	echo "</pre>";
 }
 
-function validateDate($date){
+function validateTime($date){
     $d = DateTime::createFromFormat("Y-m-d H:i", $date);
     return $d && $d->format("Y-m-d H:i") == $date;
 }
 
+function validateDate($date){
+    $d = DateTime::createFromFormat("Y-m-d", $date);
+    return $d && $d->format("Y-m-d") == $date;
+}
 
 ?>

@@ -13,7 +13,14 @@
 		header("Location: ../index.php");
 		exit();
 	}
-	$db->openConnection();
+	if(empty($_POST['wanted'])){
+		header("Location: ../customer_order.php?emptyDate");
+		exit();
+	}
+	if(!validateDate($_POST['wanted'])){
+		header("Location: ../customer_order.php?wrongFormat");
+		exit();
+	}
 	$customer = str_replace(' ', '_', $_POST['customer']);
 	$wanted = $_POST['wanted'];
 	$amount = 0;
@@ -22,10 +29,15 @@
 	if(isset($customer)) {
 		$orderId = $db->addOrder($customer, $wanted);
 		foreach($cookies as $cookie) {
-			if(isset($_POST[$cookie['name']])) { $amount = $_POST[$cookie['name']]; }
-			$db->addOrderPallets($orderId, $cookie['name'], $amount);
+			if($_POST[$cookie['name']] > 0) { 
+				$amount = $_POST[$cookie['name']]; 
+				$db->addOrderPallets($orderId, $cookie['name'], $amount);
+			}
 		}
 	}
-	$db->closeConnection();
-	header("Location: ../customer_order.php?success");
+	if($amount){
+		header("Location: ../customer_order.php?success");
+	} else{
+		header("Location: ../customer_order.php?empty");
+	}
 ?>

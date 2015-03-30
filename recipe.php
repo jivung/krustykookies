@@ -12,9 +12,6 @@ $ingredients = $db->getRecipeIngredients($recipe);
 ?>
 
 <h1><?php if(isset($_GET['r'])) { echo str_replace('_', ' ', $_GET['r']); } ?></h1>
-<p class="breadtext">
-	<a href="update_recipe.php">Uppdatera recept</a>
-</p>
 <p class="normaltext">
 Recept för 100 kakor.
 </P>

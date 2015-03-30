@@ -11,21 +11,23 @@ $cookies = $db->getRecipes();
 ?>
 
 <h1>Lägg ny beställning</h1>
-<?php
-	if(isset($_GET['empty'])) {
-?>
+<?php if(isset($_GET['empty'])) { ?>
 		<p class ="breadtext" style="color: red";>
-		Något fält lämnades tomt, försök igen.
+		Du måste välja någon kaka.
 		</p>
-<?php
-	} else if(isset($_GET['success'])) {
-?>
+<?php } else if(isset($_GET['success'])) { ?>
 		<p class ="breadtext" style="color: green";>
 		Beställningen lades framgångsrikt! :)
 		</p>
-<?php
-	}
-?>
+<?php } else if(isset($_GET['emptyDate'])) { ?>
+		<p class ="breadtext" style="color: red";>
+		Du måste välja önskat leveransdatum.
+		</p>
+<?php } else if(isset($_GET['wrongFormat'])) { ?>
+		<p class ="breadtext" style="color: red";>
+		Önskat leveransdatum är av fel format. Det ska vara t.ex. 2015-05-02
+		</p>
+<?php } ?>
 </p>
 <form name="placeorder "id="placeorder" method="POST" action="includes/customer_order_parse.php">
 	<input type="hidden" name="customer" value="<?php echo $_SESSION['username'] ?>"/>

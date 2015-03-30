@@ -10,7 +10,7 @@ if(isset($_POST['block'])){
 	// Hämtar sökt tidgaste produktionstid
 	if(!empty($_POST['fromTime'])){
 		$_POST["fromTime"] = trim($_POST["fromTime"]);
-		if(validateDate($_POST['fromTime'])){
+		if(validateTime($_POST['fromTime'])){
 			$fromTime = strtotime($_POST['fromTime']);
 		} else{
 			$fromTimeError = true;
@@ -20,7 +20,7 @@ if(isset($_POST['block'])){
 	// Hämtar sökt senaste produktionstid
 	if(!empty($_POST['toTime'])){
 		$_POST["toTime"] = trim($_POST["toTime"]);
-		if(validateDate($_POST['toTime'])){
+		if(validateTime($_POST['toTime'])){
 			$toTime = strtotime($_POST['toTime']) + 59;
 		} else{
 			$toTimeError = true;
