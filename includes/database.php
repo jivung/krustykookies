@@ -65,10 +65,13 @@ class Database {
 	private function executeQuery($query, $param = null) {
 		$this->openConnection();
 		try {
+			$this->conn->beginTransaction();
 			$stmt = $this->conn->prepare($query);
 			$stmt->execute($param);
 			$result = $stmt->fetchAll();
-		} catch (PDOException $e) {
+			$this->conn->commit();
+		} catch (Exception $e) {
+			$this->conn->rollBack();
 			$error = "*** Internal error: " . $e->getMessage() . "<p>" . $query;
 			die($error);
 		}
@@ -86,6 +89,7 @@ class Database {
 	private function executeUpdate($query, $param = null) {
 		$this->openConnection();
 		try {
+			$this->conn->beginTransaction();
 			$stmt = $this->conn->prepare($query);
 			$i=1;
 			foreach($param as &$par){
@@ -93,7 +97,9 @@ class Database {
 				$i++;
 			}
 			$result = $stmt->execute();
-		} catch (PDOException $e) {
+			$this->conn->commit();
+		} catch (Exception $e) {
+			$this->conn->rollBack();
 			$error = "*** Internal error: " . $e->getMessage() . "<p>" . $query;
 			die($error);
 		}
