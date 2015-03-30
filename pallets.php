@@ -127,9 +127,10 @@ if($insufficientIngredients){
 					if($_POST['customerName'] == $customer['fullName']){
 						echo "<option selected>"; 
 					} else{
-						echo "<option>";
+						echo "<option";
 					}
-					echo $customer['fullName'] . "</option>";
+					echo " value='{$customer['fullName']}'>";
+					echo str_replace('_', ' ', $customer['fullName']) . "</option>";
 				} 
 				?>
 				</select>
@@ -182,7 +183,7 @@ $db->getPalletCustomerName($pallets[0]->getOrderId());
 		<td><?php echo $pallet->getLocation(); ?></td>
 		<td><?php echo $pallet->getProductionTime(); ?></td>
 		<td><?php echo $pallet->isBlocked(); ?></td>
-		<td><?php echo $db->getPalletCustomerName($pallet->getOrderId()); ?></td>
+		<td><?php echo str_replace('_', ' ', $db->getPalletCustomerName($pallet->getOrderId())); ?></td>
 		<td><?php echo $pallet->getDeliveryTime(); ?></td>
 	</tr>
 	<?php } ?>
