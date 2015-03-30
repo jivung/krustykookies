@@ -3,14 +3,13 @@ use krustyKookies;
 SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS ingredients;
 DROP TABLE IF EXISTS recipes;
-DROP TABLE IF EXISTS ingredientDelivery;
+DROP TABLE IF EXISTS ingredientDeliveries;
 DROP TABLE IF EXISTS ingredientsInRecipes;
 DROP TABLE IF EXISTS pallets;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS customerInfo;
 DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS numPallets;
+DROP TABLE IF EXISTS recipesInOrders;
 SET foreign_key_checks = 1;
 
 CREATE TABLE ingredients(
@@ -19,7 +18,7 @@ CREATE TABLE ingredients(
 	PRIMARY KEY(name)
 );
 
-CREATE TABLE ingredientDelivery(
+CREATE TABLE ingredientDeliveries(
 	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(30),
 	amount INT,
@@ -42,25 +41,6 @@ CREATE TABLE ingredientsInRecipes(
 	FOREIGN KEY(ingredientName) REFERENCES ingredients(name)
 );
 
-CREATE TABLE customers(
-	name VARCHAR(30),
-	address VARCHAR(30),
-	PRIMARY KEY(name)
-);
-
-CREATE TABLE pallets(
-	id INT NOT NULL AUTO_INCREMENT,
-	recipeName VARCHAR(30),
-	location VARCHAR(30),
-	isBlocked TINYINT(1),
-	productionTime INT(11),
-	deliveryTime INT(11),
-	customerName VARCHAR(30),
-	PRIMARY KEY(id),
-	FOREIGN KEY(recipeName) REFERENCES recipes(name),
-	FOREIGN KEY(customerName) REFERENCES customers(name)
-);
-
 CREATE TABLE users(
 	id INT NOT NULL AUTO_INCREMENT,
 	userName VARCHAR(20) NOT NULL UNIQUE,
@@ -74,25 +54,37 @@ CREATE TABLE users(
 	PRIMARY KEY(id)
 );
 
-CREATE TABLE customerInfo(
-	id INT NOT NULL AUTO_INCREMENT,
-	userName VARCHAR(20) NOT NULL UNIQUE,
+CREATE TABLE customers(
+	userName VARCHAR(20) NOT NULL,
 	fullName VARCHAR(30) NOT NULL UNIQUE,
 	address VARCHAR(30) NOT NULL,
-	PRIMARY KEY(id, userName),
+	PRIMARY KEY(userName),
 	FOREIGN KEY(userName) REFERENCES users(userName)
 );
 
 CREATE TABLE orders(
 	id INT NOT NULL AUTO_INCREMENT,
-	customer VARCHAR(20),
+	userName VARCHAR(20),
 	orderTime INT(11) NOT NULL,
 	deliveryDate INT(11) NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(customer) references customerInfo(userName)
+	FOREIGN KEY(userName) references customers(userName)
 );
 
-CREATE TABLE numPallets(
+CREATE TABLE pallets(
+	id INT NOT NULL AUTO_INCREMENT,
+	recipeName VARCHAR(30),
+	location VARCHAR(30),
+	isBlocked TINYINT(1),
+	productionTime INT(11),
+	deliveryTime INT(11),
+	orderId INT(11),
+	PRIMARY KEY(id),
+	FOREIGN KEY(recipeName) REFERENCES recipes(name),
+	FOREIGN KEY(orderId) REFERENCES orders(id)
+);
+
+CREATE TABLE recipesInOrders(
 	orderId INT NOT NULL,
 	recipeName VARCHAR(30),
 	numPallets INT(11) DEFAULT 0,
@@ -164,14 +156,3 @@ INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Be
 INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Eggs", 50);
 INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Vanilla_sugar", 5);
 INSERT INTO ingredientsInRecipes(recipeName, ingredientName, amount) VALUES ("Berliner", "Chocolate", 50);
-
-INSERT INTO customers(name, address) VALUES ("Finkakor AB", "Helsingborg");
-INSERT INTO customers(name, address) VALUES ("Småbröd AB", "Malmö");
-INSERT INTO customers(name, address) VALUES ("Kaffebröd AB", "Landskrona");
-INSERT INTO customers(name, address) VALUES ("Bjudkakor AB", "Ystad");
-INSERT INTO customers(name, address) VALUES ("Kalaskakor AB", "Trelleborg");
-INSERT INTO customers(name, address) VALUES ("Partykakor AB", "Kristianstad");
-INSERT INTO customers(name, address) VALUES ("Gästkakor AB", "Hässleholm");
-INSERT INTO customers(name, address) VALUES ("Skånekakor AB", "Perstorp");
-
-

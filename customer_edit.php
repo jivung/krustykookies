@@ -28,7 +28,7 @@ require_once("includes/header.php");
 </p>
 <p class="normaltext">
 <?php 
-$customer = $db->getCustomerInfo($_SESSION['username']);
+$customer = $db->getCustomer($_SESSION['username']);
 foreach($customer as $cust) {
 ?>
 <b>Företagsnamn: </b><?php echo str_replace('_', ' ', $cust['fullName']); ?><br />
