@@ -291,12 +291,30 @@ class Database {
 	public function addOrder($customer) {
 		$sql = "INSERT INTO orders(userName, orderTime) VALUES(?, UNIX_TIMESTAMP(now()))";
 		$result = $this->executeUpdate($sql, array($customer));
-		
+		$id = $this->lastOrderId();
+		return $id;
+	}
+	
+	private function lastOrderId() {
+		$sql = "SELECT MAX(id) FROM orders";
+		$result =$this->executeQuery($sql);
+		foreach($result as $id) {
+			return $id[0]; 
+		}
 	}
 	
 	public function addOrderPallets($order, $cookie, $amount) {
+<<<<<<< HEAD
+		$sql = "INSERT INTO recipesInOrders(orderId, recipeName, numPallets) values(?, ?, ?)";
+=======
 		$sql = "INSERT INTO recipesInOrders(orderId, recipeName, recipesInOrders) values(?, ?, ?)";
+>>>>>>> d8709f3325b76002776f4a7863d299b457e6f2f2
 		$result = $this->executeUpdate($sql, array($order, $cookie, $amount));
+	}
+	
+	public function getCustomerOrders($name) {
+		$sql = "SELECT * FROM orders WHERE usernam"
+		
 	}
 	
 	public function checkRecipeIngredients($recipeName){

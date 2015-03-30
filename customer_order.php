@@ -28,7 +28,7 @@ $cookies = $db->getRecipes();
 ?>
 </p>
 <form name="placeorder "id="placeorder" method="POST" action="includes/customer_order_parse.php">
-	<input type="hidden" name="customer"/>
+	<input type="hidden" name="customer" value="<?php echo $_SESSION['username'] ?>"/>
 	<table id="materialtable">	
 		<tr>
 			<td style="background-color: #FFF"><b>Kaka</b></td>
