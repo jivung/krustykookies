@@ -75,7 +75,7 @@ if($insufficientIngredients){
 
 <form action="pallets.php" method="POST">
 	
-	<table>
+	<table id="pallettable">
 		<tr>
 			<td>Id</td>
 			<td>Recept</td>
@@ -156,7 +156,7 @@ if($toTimeError){
 
 <?php if(count($pallets)){ ?>
 
-<p><?php echo count($pallets); ?> träffar</p>
+<p class="breadtext"><?php echo count($pallets); ?> träffar</p>
 
 <table id="materialtable">
 	<tr>

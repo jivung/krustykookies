@@ -322,7 +322,7 @@ class Database {
 	}
 	
 	private function updatePalletLocation($order) {
-		$sql = "UPDATE pallets SET location = 'customer' WHERE orderId = ?";
+		$sql = "UPDATE pallets SET location = 'kund' WHERE orderId = ?";
 		$result = $this->executeUpdate($sql, array($order));
 	}
 	
