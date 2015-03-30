@@ -14,10 +14,18 @@ $orders = $db->getOrders();
 if (isset($_GET['success'])) {
 ?>
 <p class="breadtext" style="color: green">
-	Ökningen lyckades! :)
+	Sändningen/leveransen lyckades! :)
 </p>
 <?php
 }
+if (isset($_GET['false'])) {
+?>
+<p class="breadtext" style="color: green">
+	För få pallar av ett eller flera recept. Vänligen åtgärda innan ordern kan skickas.
+</p>
+<?php
+}
+
 ?>
 <table id="materialtable">
 	<tr>
@@ -59,7 +67,7 @@ if (isset($_GET['success'])) {
 		</td>
 		<td style="background-color: #FFF"></td>
 		
-		<!-- <td style="background-color: #FFF"><a href="includes/add_material_parse.php?mat=<?php echo $ingredient['name']; ?>">Lägg till</a></td> -->
+		
 	</tr>
 	<?php } ?>
 

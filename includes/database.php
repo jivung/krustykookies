@@ -432,7 +432,9 @@ class Database {
 		$sql = "SELECT recipeName, numPallets FROM recipesInOrders WHERE orderId = ?";
 		$result = $this->executeQuery($sql, array($orderid));
 		foreach($result as $res) {
+			echo $res['numPallets'];
 			$available = $this->getRecipePallets($res['recipeName']);
+			echo var_dump($available);
 			if($available < $res['numPallets']) {
 				return false;
 			}
