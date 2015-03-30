@@ -75,7 +75,7 @@ if($insufficientIngredients){
 
 <form action="pallets.php" method="POST">
 	
-	<table>
+	<table id="pallettable">
 		<tr>
 			<td>Id</td>
 			<td>Recept</td>
@@ -93,10 +93,11 @@ if($insufficientIngredients){
 				$recipes = $db->getRecipes();
 				foreach($recipes as $recipe){
 					if($_POST['recipeName'] == $recipe['name']){
-						echo "<option selected>"; 
+						echo "<option selected"; 
 					} else{
-						echo "<option>";
+						echo "<option";
 					}
+					echo " value='{$recipe['name']}'>";
 					echo str_replace("_", " ", $recipe['name']) . "</option>";
 				} 
 				?>
@@ -154,7 +155,10 @@ if($toTimeError){
 
 <br/>
 
-<?php if(count($pallets)){ ?>
+<?php if(count($pallets)){
+	
+$db->getPalletCustomerName($pallets[0]->getOrderId());	
+?>
 
 <p><?php echo count($pallets); ?> träffar</p>
 
@@ -178,7 +182,7 @@ if($toTimeError){
 		<td><?php echo $pallet->getLocation(); ?></td>
 		<td><?php echo $pallet->getProductionTime(); ?></td>
 		<td><?php echo $pallet->isBlocked(); ?></td>
-		<td><?php echo $pallet->getOrderId(); ?></td>
+		<td><?php echo $db->getPalletCustomerName($pallet->getOrderId()); ?></td>
 		<td><?php echo $pallet->getDeliveryTime(); ?></td>
 	</tr>
 	<?php } ?>
@@ -187,11 +191,11 @@ if($toTimeError){
 
 <?php } else if($_POST['search']){ ?>
 
-<p>Hittade ingen pall med sökta kriterier.</p>
+<p class="breadtext">Hittade ingen pall med sökta kriterier.</p>
 
 <?php } else{ ?>
 
-<p>Det finns inga pallar. Klicka på Skapa pall här ovanför.</p>
+<p class="breadtext">Det finns inga pallar. Klicka på Skapa pall här ovanför.</p>
 
 <?php } ?>
 
