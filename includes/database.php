@@ -288,9 +288,9 @@ class Database {
 		return $result;
 	}
 	
-	public function addOrder($customer) {
-		$sql = "INSERT INTO orders(userName, orderTime) VALUES(?, UNIX_TIMESTAMP(now()))";
-		$result = $this->executeUpdate($sql, array($customer));
+	public function addOrder($customer, $wanted) {
+		$sql = "INSERT INTO orders(userName, wantedDate, orderTime) VALUES(?, ?, UNIX_TIMESTAMP(now()))";
+		$result = $this->executeUpdate($sql, array($customer, $wanted));
 		$id = $this->lastOrderId();
 		return $id;
 	}
@@ -309,7 +309,7 @@ class Database {
 	}
 	
 	public function getCustomerOrders($name) {
-		$sql = "SELECT id, FROM_UNIXTIME(orderTime, '%Y-%m-%d, %H:%i') AS orderTime, FROM_UNIXTIME(sendTime, '%Y-%m-%d, %H:%i') AS sendTime, FROM_UNIXTIME(deliveryDate, '%Y-%m-%d, %H:%i') AS deliveryTime FROM orders WHERE username = ?";
+		$sql = "SELECT id, FROM_UNIXTIME(orderTime, '%Y-%m-%d, %H:%i') AS orderTime, FROM_UNIXTIME(sendTime, '%Y-%m-%d, %H:%i') AS sendTime, FROM_UNIXTIME(deliveryTime, '%Y-%m-%d, %H:%i') AS deliveryTime FROM orders WHERE username = ?";
 		$result = $this->executeQuery($sql, array($name));
 		return $result;
 	}

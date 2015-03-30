@@ -42,8 +42,11 @@ $cookies = $db->getRecipes();
 			</tr>
 		<?php } ?>
 		<tr>
-			<td style="background-color: #FFF"></td>
-			<td style="background-color: #FFF"><input type="submit" class="submit_button_login" style="float: right" name="submit" value="Lägg beställning" /></td>
+			<td style="background-color: #FFF">Önskat leveransdatum: </td>
+			<td style="background-color: #FFF">
+				<input type="submit" class="submit_button_login" style="float: right" name="submit" value="Lägg beställning" />
+				<input type="text" class="input_field_ingredient" style="float: left; width: 200px; margin-right:10px" name="wanted" placeholder="ÅÅÅÅ-MM-DD"/>
+				</td>
 		</tr>
 	</table>
 </form>

@@ -24,7 +24,7 @@ CREATE TABLE ingredientDeliveries(
 	amount INT,
 	deliveryTime INT(11) NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(ingredientName) REFERENCES ingredients(name)
+	FOREIGN KEY(ingredientName) REFERENCES ingredients(ingredientName)
 );
 
 CREATE TABLE recipes(
@@ -38,7 +38,7 @@ CREATE TABLE ingredientsInRecipes(
 	amount INT,
 	PRIMARY KEY(recipeName, ingredientName),
 	FOREIGN KEY(recipeName) REFERENCES recipes(name),
-	FOREIGN KEY(ingredientName) REFERENCES ingredients(name)
+	FOREIGN KEY(ingredientName) REFERENCES ingredients(ingredientName)
 );
 
 CREATE TABLE users(
@@ -65,6 +65,7 @@ CREATE TABLE orders(
 	id INT NOT NULL AUTO_INCREMENT,
 	userName VARCHAR(20),
 	orderTime INT(11) NOT NULL,
+	wantedDate DATE,
 	sendTime INT(11), 
 	deliveryTime INT(11),
 	PRIMARY KEY(id),

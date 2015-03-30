@@ -15,11 +15,12 @@
 	}
 	$db->openConnection();
 	$customer = str_replace(' ', '_', $_POST['customer']);
+	$wanted = $_POST['wanted'];
 	$amount = 0;
 	$cookies = $db->getRecipes();
 	
 	if(isset($customer)) {
-		$orderId = $db->addOrder($customer);
+		$orderId = $db->addOrder($customer, $wanted);
 		foreach($cookies as $cookie) {
 			if(isset($_POST[$cookie['name']])) { $amount = $_POST[$cookie['name']]; }
 			$db->addOrderPallets($orderId, $cookie['name'], $amount);

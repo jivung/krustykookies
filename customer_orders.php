@@ -10,9 +10,9 @@ require_once("includes/header.php");
 $orders = $db->getCustomerOrders($_SESSION['username']);
 ?>
 
-<h1>Recept</h1>
+<h1>Mina beställningar</h1>
 <p class="breadtext">
-	<a href="create_recipe.php">Lägg till recept</a>
+	
 </p>
 <table id="materialtable">	
 	<tr>
