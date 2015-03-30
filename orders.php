@@ -21,7 +21,7 @@ if (isset($_GET['success'])) {
 }
 if (isset($_GET['false'])) {
 ?>
-<p class="breadtext" style="color: green">
+<p class="breadtext" style="color: red">
 	För få pallar av ett eller flera recept. Vänligen åtgärda innan ordern kan skickas.
 </p>
 <?php

@@ -17,4 +17,4 @@ The language of the graphical user interface, in other words the program itself,
 <p class="breadtext">
 The system we were to develop in this project is a database system ordered by the imaginary cookie company Krusty Kookies Sweden AB, for the production, and handling of orders, of their products - cookies.  
 </p>
-<p class="normaltext">- Johan Andersson & Michael Jivung, Lund 2014</p>
+<p class="normaltext">- Johan Andersson & Michael Jivung, Lund 2015</p>

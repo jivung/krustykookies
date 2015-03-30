@@ -318,6 +318,12 @@ class Database {
 	public function deliverOrder($order) {
 		$sql = "UPDATE orders SET deliveryTime = UNIX_TIMESTAMP(now()) WHERE id = ?";
 		$result = $this->executeUpdate($sql, array($order));
+		$this->updatePalletLocation($order);
+	}
+	
+	private function updatePalletLocation($order) {
+		$sql = "UPDATE pallets SET location = 'kund' WHERE orderId = ?";
+		$result = $this->executeUpdate($sql, array($order));
 	}
 	
 	public function addOrder($customer, $wanted) {

@@ -160,7 +160,7 @@ if($toTimeError){
 $db->getPalletCustomerName($pallets[0]->getOrderId());	
 ?>
 
-<p><?php echo count($pallets); ?> träffar</p>
+<p class="breadtext"><?php echo count($pallets); ?> träffar</p>
 
 <table id="materialtable">
 	<tr>
