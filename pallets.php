@@ -51,12 +51,14 @@ require_once("includes/header.php");
 		<?php 
 		$recipes = $db->getRecipes();
 		foreach($recipes as $recipe){
+			
 			if($_POST['createRecipeName'] == $recipe['name']){
-				echo "<option selected>"; 
+				echo "<option selected"; 
 			} else{
-				echo "<option>";
+				echo "<option";
 			}
-			echo $recipe['name'] . "</option>";
+			echo " value='{$recipe['name']}'>";
+			echo str_replace("_", " ", $recipe['name']) . "</option>";
 		} 
 		?>
 	</select>
@@ -95,7 +97,7 @@ if($insufficientIngredients){
 					} else{
 						echo "<option>";
 					}
-					echo $recipe['name'] . "</option>";
+					echo str_replace("_", " ", $recipe['name']) . "</option>";
 				} 
 				?>
 				</select>
@@ -172,7 +174,7 @@ if($toTimeError){
 	?>
 	<tr> 
 		<td><?php echo $pallet->getId(); ?></td>
-		<td><a href="pallet.php?id=<?php echo $pallet->getId(); ?>" class="material"><?php echo $pallet->getRecipeName(); ?></a></td>
+		<td><?php echo str_replace("_", " ", $pallet->getRecipeName()); ?></td>
 		<td><?php echo $pallet->getLocation(); ?></td>
 		<td><?php echo $pallet->getProductionTime(); ?></td>
 		<td><?php echo $pallet->isBlocked(); ?></td>

@@ -339,9 +339,9 @@ class Database {
 	
 	public function checkRecipeIngredients($recipeName){
 		$numIngredients = count($this->getRecipeIngredients($recipeName));
-		$sql = "SELECT count(*) FROM ingredients NATURAL JOIN ingredientsInRecipes WHERE recipeName=? AND ingredients.amount>=ingredientsInRecipes.amount*54";
+		$sql = "SELECT * FROM ingredientsInRecipes JOIN ingredients ON ingredients.ingredientName=ingredientsInRecipes.ingredientName WHERE recipeName=? AND ingredients.amount>=ingredientsInRecipes.amount*54";
 		$result = $this->executeQuery($sql, array($recipeName));
-		if($result[0][0] == $numIngredients){
+		if(count($result) == $numIngredients){
 			return true;
 		}
 		return false;
