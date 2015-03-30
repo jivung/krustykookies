@@ -40,7 +40,7 @@ if(isset($_POST['block'])){
 <h1>Blockera pallar</h1>
 
 <form action="blocking.php" method="post">
-	<table>
+	<table id="pallettable">
 		<tr>
 			<td>Recept</td>
 			<td>Tidigaste produktionstid</td>
@@ -75,13 +75,13 @@ if(isset($_POST['block'])){
 		</tr>
 	</table>
 </form>
-
+<span class="breadtext">
 <?php 
 if(isset($_POST['block'])){
 	 echo "<p>" . $numBlocked . " st pallar blockerades.</p>"; 
 }
 ?>
-
+</span>
 <?php
 require_once("includes/footer.php");
 ?>
