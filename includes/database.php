@@ -229,7 +229,7 @@ class Database {
 	}
 	
 	private function updateMaterialDelivery($material, $amount) {
-		$sql = "INSERT INTO ingredientDelivery(name, amount, deliveryTime) VALUES(?, ?, UNIX_TIMESTAMP(now()))";
+		$sql = "INSERT INTO ingredientDeliveries(name, amount, deliveryTime) VALUES(?, ?, UNIX_TIMESTAMP(now()))";
 		$result = $this->executeUpdate($sql, array($material, $amount));
 	
 	}
@@ -245,7 +245,7 @@ class Database {
 	}
 	
 	public function getLastDelivery($material) {
-		$sql = "SELECT amount, FROM_UNIXTIME(deliveryTime, '%Y-%m-%d, %H:%i') AS time FROM ingredientDelivery WHERE name = ? ORDER BY deliveryTime DESC LIMIT 1";
+		$sql = "SELECT amount, FROM_UNIXTIME(deliveryTime, '%Y-%m-%d, %H:%i') AS time FROM ingredientDeliveries WHERE name = ? ORDER BY deliveryTime DESC LIMIT 1";
 		$result = $this->executeQuery($sql, array($material));
 		return $result;
 	}
@@ -272,7 +272,7 @@ class Database {
 	}
 	
 	public function editCustomer($userName, $fullName, $address) {
-		$sql = "INSERT INTO customerInfo(userName, fullName, address) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE fullName = ?, address = ?";
+		$sql = "INSERT INTO customers(userName, fullName, address) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE fullName = ?, address = ?";
 		$result = $this->executeUpdate($sql, array($userName, $fullName, $address, $fullName, $address));
 	}
 	
@@ -282,20 +282,20 @@ class Database {
 		return $result;
 	}
 	
-	public function getCustomerInfo($userName) {
-		$sql = "SELECT fullName, address FROM customerInfo WHERE userName = ?";
+	public function getCustomer($userName) {
+		$sql = "SELECT fullName, address FROM customers WHERE userName = ?";
 		$result = $this->executeQuery($sql, array($userName));
 		return $result;
 	}
 	
 	public function addOrder($customer) {
-		$sql = "INSERT INTO orders(customer, orderTime) VALUES(?, UNIX_TIMESTAMP(now()))";
+		$sql = "INSERT INTO orders(userName, orderTime) VALUES(?, UNIX_TIMESTAMP(now()))";
 		$result = $this->executeUpdate($sql, array($customer));
 		
 	}
 	
 	public function addOrderPallets($order, $cookie, $amount) {
-		$sql = "INSERT INTO numPallets(orderId, recipeName, numPallets) values(?, ?, ?)";
+		$sql = "INSERT INTO recipesInOrders(orderId, recipeName, recipesInOrders) values(?, ?, ?)";
 		$result = $this->executeUpdate($sql, array($order, $cookie, $amount));
 	}
 	
@@ -310,7 +310,7 @@ class Database {
 	}
 	
 	public function addPallet($recipeName){
-		$sql = "INSERT INTO pallets(recipeName, location, isBlocked, productionTime, deliveryTime, customerName) VALUE (?, 'Frysrum', 0, UNIX_TIMESTAMP(now()), null, null)";
+		$sql = "INSERT INTO pallets(recipeName, location, isBlocked, productionTime, deliveryTime, orderId) VALUE (?, 'Frysrum', 0, UNIX_TIMESTAMP(now()), null, null)";
 		$result = $this->executeUpdate($sql, array($recipeName));
 		if($result){
 			$ingredients = $this->getRecipeIngredients($recipeName);

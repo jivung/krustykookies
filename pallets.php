@@ -115,19 +115,18 @@ if($insufficientIngredients){
 			<td>
 				<input type="checkbox" name="isBlocked" <?php if($_POST['isBlocked']){ echo "checked"; } ?>/>
 			</td>
-			<?php $db->getCustomers(); ?>
 			<td>
 				<select name="customerName">
 				<option value="all">Alla kunder</option>
 				<?php 
 				$customers = $db->getCustomers();
 				foreach($customers as $customer){
-					if($_POST['customerName'] == $customer['name']){
+					if($_POST['customerName'] == $customer['fullName']){
 						echo "<option selected>"; 
 					} else{
 						echo "<option>";
 					}
-					echo $customer['name'] . "</option>";
+					echo $customer['fullName'] . "</option>";
 				} 
 				?>
 				</select>
