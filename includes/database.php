@@ -288,6 +288,29 @@ class Database {
 		return $result;
 	}
 	
+	public function getOrders() {
+		$sql = "SELECT id, userName, FROM_UNIXTIME(orderTime, '%Y-%m-%d, %H:%i') AS orderTime, wantedDate, FROM_UNIXTIME(sendTime, '%Y-%m-%d, %H:%i') AS sendTime, FROM_UNIXTIME(deliveryTime, '%Y-%m-%d, %H:%i') AS deliveryTime FROM orders";
+		return $this->executeQuery($sql);
+	}
+	
+	public function getCompany($username) {
+		$sql = "SELECT fullName from customers WHERE userName = ?";
+		$result = $this->executeQuery($sql, array($username));
+		foreach($result as $res) {
+			return $res[0];
+		}
+	}
+	
+	public function sendOrder($order) {
+		$sql = "UPDATE orders SET sendTime = UNIX_TIMESTAMP(now()) WHERE id = ?";
+		$result = $this->executeUpdate($sql, array($order));
+	}
+	
+	public function deliverOrder($order) {
+		$sql = "UPDATE orders SET deliveryTime = UNIX_TIMESTAMP(now()) WHERE id = ?";
+		$result = $this->executeUpdate($sql, array($order));
+	}
+	
 	public function addOrder($customer, $wanted) {
 		$sql = "INSERT INTO orders(userName, wantedDate, orderTime) VALUES(?, ?, UNIX_TIMESTAMP(now()))";
 		$result = $this->executeUpdate($sql, array($customer, $wanted));
@@ -405,6 +428,23 @@ class Database {
 		return $this->executeUpdate($sql, $params);
 	}
 	
+	public function checkPallets($orderid) {
+		$sql = "SELECT recipeName, numPallets FROM recipesInOrders WHERE orderId = ?";
+		$result = $this->executeQuery($sql, array($orderid));
+		foreach($result as $res) {
+			$available = $this->getRecipePallets($res['recipeName']);
+			if($available < $res['numPallets']) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private function getRecipePallets($recipe) {
+		$sql = "SELECT count(*) FROM pallets WHERE orderId IS NULL AND recipeName = ?";
+		return $this->executeQuery($sql, array($recipe));
+	}
+	
 }
 
 function echo_array($array){
@@ -417,5 +457,6 @@ function validateDate($date){
     $d = DateTime::createFromFormat("Y-m-d H:i", $date);
     return $d && $d->format("Y-m-d H:i") == $date;
 }
+
 
 ?>
