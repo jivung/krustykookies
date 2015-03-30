@@ -61,9 +61,9 @@ if (isset($_GET['success'])) {
 		}
 		?>
 		</td>
-		<td style="background-color: #FFF"><input type="checkbox" name="material[ ]" value="<?php echo $ingredient['name']; ?>"/></td>
+		<td style="background-color: #FFF"><input type="checkbox" name="material[ ]" value="<?php echo $ingredient['ingredientName']; ?>"/></td>
 		
-		<!-- <td style="background-color: #FFF"><a href="includes/add_material_parse.php?mat=<?php echo $ingredient['name']; ?>">Lägg till</a></td> -->
+		<!-- <td style="background-color: #FFF"><a href="includes/add_material_parse.php?mat=<?php echo $ingredient['ingredientName']; ?>">Lägg till</a></td> -->
 	</tr>
 	<?php } ?>
 	<tr>
