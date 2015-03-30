@@ -9,20 +9,22 @@
 		header("Location: ../login.php");
 		exit();
 	}
-	if(!$_SESSION['user']->isSuperUser() && !$_SESSION['user']->isMaterialUser()){
+	if(!($_SESSION['user']->isCustomerUser())){
 		header("Location: ../index.php");
 		exit();
 	}
+	$db->openConnection();
 	$customer = str_replace(' ', '_', $_POST['customer']);
 	$amount = 0;
 	$cookies = $db->getRecipes();
 	
 	if(isset($customer)) {
-		$db->addOrder($customer);
+		$orderId = $db->addOrder($customer);
 		foreach($cookies as $cookie) {
 			if(isset($_POST[$cookie['name']])) { $amount = $_POST[$cookie['name']]; }
-			$db->addOrderPallets($order, $cookie['name'], $amount);
+			$db->addOrderPallets($orderId, $cookie['name'], $amount);
 		}
 	}
+	$db->closeConnection();
 	header("Location: ../customer_order.php?success");
 ?>
