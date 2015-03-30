@@ -42,8 +42,7 @@ CREATE TABLE ingredientsInRecipes(
 );
 
 CREATE TABLE users(
-	id INT NOT NULL AUTO_INCREMENT,
-	userName VARCHAR(20) NOT NULL UNIQUE,
+	userName VARCHAR(20),
 	passWord VARCHAR(60) NOT NULL,
 	isSuperUser TINYINT(1) DEFAULT 0,
 	isAdmin TINYINT(1) DEFAULT 0,
@@ -51,7 +50,7 @@ CREATE TABLE users(
 	isProductionUser TINYINT(1) DEFAULT 0,
 	isOrderUser TINYINT(1) DEFAULT 0,
 	isCustomer TINYINT(1) DEFAULT 0,
-	PRIMARY KEY(id)
+	PRIMARY KEY(userName)
 );
 
 CREATE TABLE customers(
