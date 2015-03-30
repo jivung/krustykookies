@@ -436,6 +436,7 @@ class Database {
 			$available = $this->getRecipePallets($res['recipeName']);
 			echo var_dump($available);
 			if($available < $res['numPallets']) {
+				echo "hej";
 				return false;
 			}
 		}

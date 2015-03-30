@@ -54,7 +54,8 @@ require_once("includes/header.php");
 		<i>Det är så vi arbetar, helt enkelt.</i>
 	</p>
 	<p class="normaltext">
-	- Michael Jivung, VD
+	- Per Holm, VD <br /><br />
+	<img src="includes/perholm.jpeg" />
 	</p>
 	
 <?php } ?>
