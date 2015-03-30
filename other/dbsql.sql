@@ -13,18 +13,18 @@ DROP TABLE IF EXISTS recipesInOrders;
 SET foreign_key_checks = 1;
 
 CREATE TABLE ingredients(
-	name VARCHAR(30),
+	ingredientName VARCHAR(30),
 	amount INT,
-	PRIMARY KEY(name)
+	PRIMARY KEY(ingredientName)
 );
 
 CREATE TABLE ingredientDeliveries(
-	id INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(30),
+	id INT AUTO_INCREMENT,
+	ingredientName VARCHAR(30),
 	amount INT,
 	deliveryTime INT(11) NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(name) REFERENCES ingredients(name)
+	FOREIGN KEY(ingredientName) REFERENCES ingredients(name)
 );
 
 CREATE TABLE recipes(
@@ -65,7 +65,8 @@ CREATE TABLE orders(
 	id INT NOT NULL AUTO_INCREMENT,
 	userName VARCHAR(20),
 	orderTime INT(11) NOT NULL,
-	deliveryDate INT(11) NOT NULL,
+	sendTime INT(11), 
+	deliveryTime INT(11),
 	PRIMARY KEY(id),
 	FOREIGN KEY(userName) references customers(userName)
 );
@@ -87,7 +88,7 @@ CREATE TABLE recipesInOrders(
 	orderId INT NOT NULL,
 	recipeName VARCHAR(30),
 	numPallets INT(11) DEFAULT 0,
-	PRIMARY KEY(orderId),
+	PRIMARY KEY(orderId, recipeName),
 	FOREIGN KEY(orderId) REFERENCES orders(id),
 	FOREIGN KEY(recipeName) REFERENCES recipes(name)
 );

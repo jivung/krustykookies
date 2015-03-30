@@ -223,13 +223,13 @@ class Database {
 	*
 	*/
 	public function addMaterialAmount($material, $amount) {
-		$sql = "UPDATE ingredients SET amount = amount+? WHERE name = ?";
+		$sql = "UPDATE ingredients SET amount = amount+? WHERE ingredientName = ?";
 		$result = $this->executeUpdate($sql, array($amount, $material));
 		$this->updateMaterialDelivery($material, $amount);
 	}
 	
 	private function updateMaterialDelivery($material, $amount) {
-		$sql = "INSERT INTO ingredientDeliveries(name, amount, deliveryTime) VALUES(?, ?, UNIX_TIMESTAMP(now()))";
+		$sql = "INSERT INTO ingredientDeliveries(ingredientName, amount, deliveryTime) VALUES(?, ?, UNIX_TIMESTAMP(now()))";
 		$result = $this->executeUpdate($sql, array($material, $amount));
 	
 	}
@@ -240,12 +240,12 @@ class Database {
 	*@return all ingredients with name and amount.
 	*/
 	public function getIngredients(){
-		$sql = "SELECT * FROM ingredients ORDER BY name";
+		$sql = "SELECT * FROM ingredients ORDER BY ingredientName";
 		return $this->executeQuery($sql);
 	}
 	
 	public function getLastDelivery($material) {
-		$sql = "SELECT amount, FROM_UNIXTIME(deliveryTime, '%Y-%m-%d, %H:%i') AS time FROM ingredientDeliveries WHERE name = ? ORDER BY deliveryTime DESC LIMIT 1";
+		$sql = "SELECT amount, FROM_UNIXTIME(deliveryTime, '%Y-%m-%d, %H:%i') AS time FROM ingredientDeliveries WHERE ingredientName = ? ORDER BY deliveryTime DESC LIMIT 1";
 		$result = $this->executeQuery($sql, array($material));
 		return $result;
 	}
@@ -304,22 +304,17 @@ class Database {
 	}
 	
 	public function addOrderPallets($order, $cookie, $amount) {
-<<<<<<< HEAD
 		$sql = "INSERT INTO recipesInOrders(orderId, recipeName, numPallets) values(?, ?, ?)";
-=======
-		$sql = "INSERT INTO recipesInOrders(orderId, recipeName, recipesInOrders) values(?, ?, ?)";
->>>>>>> d8709f3325b76002776f4a7863d299b457e6f2f2
 		$result = $this->executeUpdate($sql, array($order, $cookie, $amount));
 	}
 	
 	public function getCustomerOrders($name) {
-		$sql = "SELECT * FROM orders WHERE usernam"
-		
+		$sql = "SELECT * FROM orders WHERE username";
 	}
 	
 	public function checkRecipeIngredients($recipeName){
 		$numIngredients = count($this->getRecipeIngredients($recipeName));
-		$sql = "SELECT count(*) FROM ingredients JOIN ingredientsInRecipes ON ingredients.name=ingredientsInRecipes.ingredientName WHERE recipeName=? AND ingredients.amount>=ingredientsInRecipes.amount*54";
+		$sql = "SELECT count(*) FROM ingredients NATURAL JOIN ingredientsInRecipes WHERE recipeName=? AND ingredients.amount>=ingredientsInRecipes.amount*54";
 		$result = $this->executeQuery($sql, array($recipeName));
 		if($result[0][0] == $numIngredients){
 			return true;
@@ -333,7 +328,7 @@ class Database {
 		if($result){
 			$ingredients = $this->getRecipeIngredients($recipeName);
 			foreach($ingredients as $ingredient){
-				$sql = "UPDATE ingredients SET amount = amount-?*54 WHERE name=?";
+				$sql = "UPDATE ingredients SET amount = amount-?*54 WHERE ingredientName=?";
 				$this->executeUpdate($sql, array($ingredient['amount'], $ingredient['ingredientName']));
 			}
 		}
