@@ -8,6 +8,7 @@ if(!$_SESSION['user']->isSuperUser() && !$_SESSION['user']->isMaterialUser()){
 }
 require_once("includes/header.php");
 $orders = $db->getOrders();
+
 ?>   
 <h1>Ordrar</h1>
 <?php
@@ -37,7 +38,6 @@ if (isset($_GET['false'])) {
 	<?php
 	foreach($orders as $order){ 
 	$company = $db->getCompany($order['userName']);
-	$db->checkPallets($order['id']);
 	?>
 	
 	<tr> 

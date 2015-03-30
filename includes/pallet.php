@@ -6,18 +6,18 @@ class Pallet{
 	private $recipeName;
 	private $location;
 	private $productionTime;
-	private $deliveryTime;
 	private $isBlocked;
-	private $customerName;
+	private $orderId;
+	private $deliveryTime;
 	
-	public function __construct($id, $recipeName, $location, $productionTime, $deliveryTime, $isBlocked, $customerName){
+	public function __construct($id, $recipeName, $location, $productionTime, $isBlocked, $orderId, $deliveryTime){
 		$this->id = $id;
 		$this->recipeName = $recipeName;
 		$this->location = $location;
 		$this->productionTime = $productionTime;
-		$this->deliveryTime = $deliveryTime;
 		$this->isBlocked = $isBlocked;
-		$this->customerName = $customerName;
+		$this->orderId = $orderId;
+		$this->deliveryTime = $deliveryTime;
 	}
 	
 	public function getId(){
@@ -36,13 +36,6 @@ class Pallet{
 		return date("Y-m-d H:i", $this->productionTime);
 	}
 	
-	public function getDeliveryTime(){
-		if($this->deliveryTime != null){
-			return date("Y-m-d H:i", $this->productionTime);
-		}
-		return "-";
-	}
-	
 	public function isBlocked(){
 		if($this->isBlocked){
 			return "Ja";
@@ -50,10 +43,18 @@ class Pallet{
 		return "Nej";
 	}
 	
-	public function getCustomerName(){
-		if($this->customerName != null){
-			return $this->customerName;
+	public function getOrderId(){
+		if($this->orderId != null){
+			return $this->orderId;
+			
 		}
+		return "-";
+	}
+	
+	public function getDeliveryTime(){
+		if($this->deliveryTime != null){
+			return date("Y-m-d H:i", $this->deliveryTime);
+		} 
 		return "-";
 	}
 	

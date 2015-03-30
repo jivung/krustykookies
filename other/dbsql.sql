@@ -78,7 +78,6 @@ CREATE TABLE pallets(
 	location VARCHAR(30),
 	isBlocked TINYINT(1),
 	productionTime INT(11),
-	deliveryTime INT(11),
 	orderId INT(11),
 	PRIMARY KEY(id),
 	FOREIGN KEY(recipeName) REFERENCES recipes(name),

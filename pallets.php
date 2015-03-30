@@ -178,7 +178,7 @@ if($toTimeError){
 		<td><?php echo $pallet->getLocation(); ?></td>
 		<td><?php echo $pallet->getProductionTime(); ?></td>
 		<td><?php echo $pallet->isBlocked(); ?></td>
-		<td><?php echo $pallet->getCustomerName(); ?></td>
+		<td><?php echo $pallet->getOrderId(); ?></td>
 		<td><?php echo $pallet->getDeliveryTime(); ?></td>
 	</tr>
 	<?php } ?>

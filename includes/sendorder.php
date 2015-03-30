@@ -13,13 +13,16 @@
 		header("Location: ../index.php");
 		exit();
 	}
-	$db->openConnection();
+	
 	$order = $_POST['orderid'];
+	
 	if (!$db->checkPallets($order) === true) {
-	header("Location: ../orders.php?false");
-	exit();
+		header("Location: ../orders.php?false");
+		exit();
 	}
+	
 	$db->sendOrder($order);
-	$db->closeConnection();
+	
 	header("Location: ../orders.php?success");
+	
 ?>

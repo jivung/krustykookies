@@ -303,7 +303,16 @@ class Database {
 	
 	public function sendOrder($order) {
 		$sql = "UPDATE orders SET sendTime = UNIX_TIMESTAMP(now()) WHERE id = ?";
-		$result = $this->executeUpdate($sql, array($order));
+		if($this->executeUpdate($sql, array($order))){
+			$sql = "SELECT recipeName, numPallets FROM recipesInOrders WHERE orderId = ?";
+			$result = $this->executeQuery($sql, array($order));
+			foreach($result as $res) {
+				if($res['numPallets']){
+					$sql = "UPDATE pallets SET orderId=? WHERE recipeName=? AND orderId IS NULL LIMIT " . $res['numPallets'];
+					$this->executeUpdate($sql, array($order, $res['recipeName']));
+				}
+			}
+		}
 	}
 	
 	public function deliverOrder($order) {
@@ -348,7 +357,7 @@ class Database {
 	}
 	
 	public function addPallet($recipeName){
-		$sql = "INSERT INTO pallets(recipeName, location, isBlocked, productionTime, deliveryTime, orderId) VALUE (?, 'Frysrum', 0, UNIX_TIMESTAMP(now()), null, null)";
+		$sql = "INSERT INTO pallets(recipeName, location, isBlocked, productionTime, orderId) VALUE (?, 'Frysrum', 0, UNIX_TIMESTAMP(now()), null)";
 		$result = $this->executeUpdate($sql, array($recipeName));
 		if($result){
 			$ingredients = $this->getRecipeIngredients($recipeName);
@@ -359,11 +368,17 @@ class Database {
 		}
 	}
 	
+	public function getPalletDeliveryTime($palletId){
+		$sql = "SELECT deliveryTime FROM orders JOIN pallets ON orders.id=pallets.orderId WHERE pallets.id=?";
+		$result = $this->executeQuery($sql, array($palletId));
+		return $result[0][0];
+	}
+	
 	public function getPallets($id = NULL, $recipeName, $fromTime = NULL, $toTime = NULL, $isBlocked, $customerName){
 		$sql = "SELECT * FROM pallets";
 		$params = array();
 		if($id || ($recipeName && $recipeName!="all") || $fromTime || $toTime || $isBlocked || ($customerName && $customerName!="all")){
-			$sql .= " WHERE ";
+			//$sql .= " WHERE ";
 			if($id){
 				$sql .= "id=?";
 				$params[] = $id;
@@ -390,11 +405,13 @@ class Database {
 				$params[] = $toTime;
 			}
 			if($customerName && $customerName!="all"){
-				if(count($params)){
-					$sql .= " AND ";
-				}
-				$sql .= "customerName=?";
-				$params[] = $customerName;
+				//if(count($params)){
+				//	$sql .= " AND ";
+				//}
+				echo $customerName;
+				//$sql .= "orderId IN(SELECT id FROM orders WHERE username=)";
+				$sqlet = "SELECT * FROM pallets JOIN orders ON pallets.orderId=orders.id NATURAL JOIN customers WHERE fullName";
+				echo_array($this->executeQuery($sqlet));
 			}
 			if($isBlocked){
 				if(count($params)){
@@ -406,7 +423,8 @@ class Database {
 		$result = $this->executeQuery($sql, $params);
 		$pallets = array();
 		foreach($result as $res){
-			$pallets[] = new Pallet($res['id'], $res['recipeName'], $res['location'], $res['productionTime'], $res['deliveryTime'], $res['isBlocked'], $res['customerName']);
+			$deliveryTime = $this->getPalletDeliveryTime($res['id']);
+			$pallets[] = new Pallet($res['id'], $res['recipeName'], $res['location'], $res['productionTime'], $res['isBlocked'], $res['orderId'], $deliveryTime);
 		}
 		return $pallets;
 	}
@@ -432,10 +450,8 @@ class Database {
 		$sql = "SELECT recipeName, numPallets FROM recipesInOrders WHERE orderId = ?";
 		$result = $this->executeQuery($sql, array($orderid));
 		foreach($result as $res) {
-			echo $res['numPallets'];
-			$available = $this->getRecipePallets($res['recipeName']);
-			echo var_dump($available);
-			if($available < $res['numPallets']) {
+			$num_avaliable = $this->getRecipePallets($res['recipeName']);
+			if($num_avaliable < $res['numPallets']) {
 				return false;
 			}
 		}
@@ -444,7 +460,7 @@ class Database {
 	
 	private function getRecipePallets($recipe) {
 		$sql = "SELECT count(*) FROM pallets WHERE orderId IS NULL AND recipeName = ?";
-		return $this->executeQuery($sql, array($recipe));
+		return $this->executeQuery($sql, array($recipe))[0][0];
 	}
 	
 }
