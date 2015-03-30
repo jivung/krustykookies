@@ -73,6 +73,8 @@ Användare av ordergränssnittet kan se kunders lagda beställningar, samt simul
 <h2><b>2.6 Material & Recept</b></h2>
 <p class="breadtext">
 Användare av material/receptgränssnittet kan se tillgängliga ingredienser, mängden i lager av varje ingrediens, samt senaste inleverans av en ingrediens (mängd och datum). Dessa användare kan även simulera inleverans av valda ingredienser.
+<br /><br />
+Material/recept-användare kan även lista alla recept inlagda i databasen, klicka på ett recept för att se dess ingredienser, samt lägga till nya recept.
 </p>
 <h2><b>3. Viktig information</b></h2>
 <p class="breadtext">
