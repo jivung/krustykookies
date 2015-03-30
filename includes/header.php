@@ -75,6 +75,7 @@ $user = $_SESSION['user'];
 						
 						<?php if($user->isSuperUser() || $user->isOrderUser()) { ?>
 						<li class="heading">Ordrar & leveranser</li>
+						<li class="link"><a href="orders.php">Ordrar</a></li>
 						<?php } ?>
 						
 					</ul>

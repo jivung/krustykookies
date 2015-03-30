@@ -304,17 +304,14 @@ class Database {
 	}
 	
 	public function addOrderPallets($order, $cookie, $amount) {
-<<<<<<< HEAD
 		$sql = "INSERT INTO recipesInOrders(orderId, recipeName, numPallets) values(?, ?, ?)";
-=======
-		$sql = "INSERT INTO recipesInOrders(orderId, recipeName, recipesInOrders) values(?, ?, ?)";
->>>>>>> d8709f3325b76002776f4a7863d299b457e6f2f2
 		$result = $this->executeUpdate($sql, array($order, $cookie, $amount));
 	}
 	
 	public function getCustomerOrders($name) {
-		$sql = "SELECT * FROM orders WHERE usernam"
-		
+		$sql = "SELECT id, FROM_UNIXTIME(orderTime, '%Y-%m-%d, %H:%i') AS orderTime, FROM_UNIXTIME(sendTime, '%Y-%m-%d, %H:%i') AS sendTime, FROM_UNIXTIME(deliveryDate, '%Y-%m-%d, %H:%i') AS deliveryTime FROM orders WHERE username = ?";
+		$result = $this->executeQuery($sql, array($name));
+		return $result;
 	}
 	
 	public function checkRecipeIngredients($recipeName){
