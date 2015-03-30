@@ -41,7 +41,7 @@ function toggle(source) {
 	<?php foreach($users as $user){ ?>
 	<tr> 
 		<td><?php echo str_replace('_', ' ', $user['userName']); ?></td>
-		<td><?php $db->getUserType($user['userName']); ?></td>
+		<td><?php echo $db->getUserType($user['userName']); ?></td>
 		
 		<td style="background-color: #FFF"><input type="checkbox" name="user[ ]" value="<?php echo $user['userName']; ?>"/></d>
 		
