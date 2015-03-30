@@ -54,11 +54,12 @@ if(isset($_POST['block'])){
 				$recipes = $db->getRecipes();
 				foreach($recipes as $recipe){
 					if($_POST['recipeName'] == $recipe['name']){
-						echo "<option selected>"; 
+						echo "<option selected"; 
 					} else{
-						echo "<option>";
+						echo "<option";
 					}
-					echo $recipe['name'] . "</option>";
+					echo " value='{$recipe['name']}'>";
+					echo str_replace("_", " ", $recipe['name']) . "</option>";
 				} 
 				?>
 				</select>

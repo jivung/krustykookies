@@ -385,11 +385,20 @@ class Database {
 		return $result[0][0];
 	}
 	
+	public function getPalletCustomerName($orderId){
+		if($orderId == "-"){
+			return "-";
+		}
+		$sql = "SELECT DISTINCT fullName FROM customers NATURAL JOIN orders JOIN pallets ON orders.id=pallets.orderId WHERE pallets.orderId=?";
+		$result = $this->executeQuery($sql, array($orderId));
+		return $result[0][0];
+	}
+	
 	public function getPallets($id = NULL, $recipeName, $fromTime = NULL, $toTime = NULL, $isBlocked, $customerName){
 		$sql = "SELECT * FROM pallets";
 		$params = array();
 		if($id || ($recipeName && $recipeName!="all") || $fromTime || $toTime || $isBlocked || ($customerName && $customerName!="all")){
-			//$sql .= " WHERE ";
+			$sql .= " WHERE ";
 			if($id){
 				$sql .= "id=?";
 				$params[] = $id;
@@ -416,13 +425,11 @@ class Database {
 				$params[] = $toTime;
 			}
 			if($customerName && $customerName!="all"){
-				//if(count($params)){
-				//	$sql .= " AND ";
-				//}
-				echo $customerName;
-				//$sql .= "orderId IN(SELECT id FROM orders WHERE username=)";
-				$sqlet = "SELECT * FROM pallets JOIN orders ON pallets.orderId=orders.id NATURAL JOIN customers WHERE fullName";
-				echo_array($this->executeQuery($sqlet));
+				if(count($params)){
+					$sql .= " AND ";
+				}
+				$sql .= "orderId IN(SELECT orderId FROM pallets JOIN orders ON pallets.orderId=orders.id NATURAL JOIN customers WHERE fullName=?)";
+				$params[] = $customerName;
 			}
 			if($isBlocked){
 				if(count($params)){
