@@ -293,6 +293,11 @@ class Database {
 		return $this->executeQuery($sql);
 	}
 	
+	public function getOrder($id) {
+		$sql = "SELECT * FROM orders WHERE id = ?";
+		return $this->executeQuery($sql, array($id));
+	}
+	
 	public function getCompany($username) {
 		$sql = "SELECT fullName from customers WHERE userName = ?";
 		$result = $this->executeQuery($sql, array($username));
@@ -467,6 +472,11 @@ class Database {
 	private function getRecipePallets($recipe) {
 		$sql = "SELECT count(*) FROM pallets WHERE orderId IS NULL AND recipeName = ?";
 		return $this->executeQuery($sql, array($recipe))[0][0];
+	}
+	
+	public function getOrderPallets($order) {
+		$sql = "SELECT * FROM recipesInOrders WHERE orderId = ?";
+		return $this->executeQuery($sql, array($order));
 	}
 	
 }
