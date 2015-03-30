@@ -41,7 +41,7 @@ if (isset($_GET['false'])) {
 	?>
 	
 	<tr> 
-		<td><a href="order.php?o=<?php echo $order['id']; ?>"><?php echo str_replace('_', ' ', $company); ?></a></td>
+		<td><a href="order.php?o=<?php echo $order['id']; ?>" class="material"><?php echo str_replace('_', ' ', $company); ?></a></td>
 		<td><?php echo $order['wantedDate']; ?></td>
 		<td>
 		<?php if($order['deliveryTime'] !== NULL) { echo $order['deliveryTime']; } else { echo "Inte levererad"; } ?>

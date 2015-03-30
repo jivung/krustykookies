@@ -68,7 +68,7 @@ Användare av produktionsgränssnittet kan producera nya pallar av valt recept, 
 </p>
 <h2><b>2.5 Ordrar & leveranser</b></h2>
 <p class="breadtext">
-Användare av ordergränssnittet kan se kunders lagda beställningar, samt simulera utskick och leverans av dessa.
+Användare av ordergränssnittet kan se kunders lagda beställningar, samt simulera utskick och leverans av dessa. Ordrar kan även klickas på för att se beställda pallar i ordern.
 </p>
 <h2><b>2.6 Material & Recept</b></h2>
 <p class="breadtext">
