@@ -125,8 +125,8 @@ if($insufficientIngredients){
 				$customers = $db->getCustomers();
 				foreach($customers as $customer){
 					if($_POST['customerName'] == $customer['fullName']){
-						echo "<option selected>"; 
-					} else{
+						echo "<option selected"; 
+					} else {
 						echo "<option";
 					}
 					echo " value='{$customer['fullName']}'>";
