@@ -309,7 +309,9 @@ class Database {
 	}
 	
 	public function getCustomerOrders($name) {
-		$sql = "SELECT * FROM orders WHERE username";
+		$sql = "SELECT id, FROM_UNIXTIME(orderTime, '%Y-%m-%d, %H:%i') AS orderTime, FROM_UNIXTIME(sendTime, '%Y-%m-%d, %H:%i') AS sendTime, FROM_UNIXTIME(deliveryDate, '%Y-%m-%d, %H:%i') AS deliveryTime FROM orders WHERE username = ?";
+		$result = $this->executeQuery($sql, array($name));
+		return $result;
 	}
 	
 	public function checkRecipeIngredients($recipeName){
