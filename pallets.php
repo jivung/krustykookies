@@ -73,7 +73,7 @@ if($insufficientIngredients){
 
 <form action="pallets.php" method="POST">
 	
-	<table>
+	<table id="pallettable">
 		<tr>
 			<td>Id</td>
 			<td>Recept</td>
@@ -185,11 +185,11 @@ if($toTimeError){
 
 <?php } else if($_POST['search']){ ?>
 
-<p>Hittade ingen pall med sökta kriterier.</p>
+<p class="breadtext">Hittade ingen pall med sökta kriterier.</p>
 
 <?php } else{ ?>
 
-<p>Det finns inga pallar. Klicka på Skapa pall här ovanför.</p>
+<p class="breadtext">Det finns inga pallar. Klicka på Skapa pall här ovanför.</p>
 
 <?php } ?>
 
